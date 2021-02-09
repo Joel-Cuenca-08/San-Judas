@@ -17,8 +17,8 @@ class AjaxUsuario{
 
 
 //Editar Usuario
-if(isset($_POST["idEditar"])){
+if(isset($_POST["idBuscar"])){
     $editar=new AjaxUsuario();
-    $editar->idBuscar = $_POST["idEditar"];
+    $editar->idBuscar = $_POST["idBuscar"];
     $editar->ajaxBuscar(); 
 } 

@@ -6,6 +6,91 @@ class ControladorUsuarios{
         $Lista = ModeloUsuarios::MdlListar($id);
         return $Lista;
     }
+    static public function ctrAgrear(){
+        if(isset($_POST["ingPass"])){
+            //encryptacion de contraseña
+            $encriptar = crypt($_POST["ingPass"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+            $arrayD = array(
+                "IdPersona"=>$_POST["ingIdPersona"],
+                "usuario"=>$_POST["ingUsuario"],
+                "perfil"=>$_POST["ingPerfil"],
+                "password"=>$encriptar
+            );
+            $respuesta=ModeloUsuarios::MdlAgregar($arrayD);
+            if($respuesta==="ok"){
+                echo '<script>
+                swal({
+                    icon: "success",
+                    title: "Registrado",
+                    text: "Se registro correctamente",
+                    allowOutsideClick: false
+                  }).then((result)=>{
+                      if(result.value){
+                      }
+                    });
+                </script>
+                ';
+            }else{
+                echo '<script>
+                swal({
+                    icon: "error",
+                    title: "error",
+                    text: "No Se registro",
+                    allowOutsideClick: false
+                  });
+                </script>';
+            }
+        }
+    }
+    static public function ctrEditar(){
+        if(isset($_POST["editId"])){
+            $respuesta=0;    
+            if(strlen($_POST["editPass"])>0){           
+                    //encryptacion de contraseña 
+                    $encriptar = crypt($_POST["editPass"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');   
+                    $arrayD = array(
+                        "Id"=>$_POST["editId"], 
+                        "usuario"=>$_POST["editUsuario"],
+                        "password"=>$encriptar,
+                        "perfil"=>$_POST["editPerfil"],
+                        "estado"=>$_POST["editEstado"] 
+                    );        
+                    $respuesta=ModeloUsuarios::mdlEditar($arrayD);  
+            }else{  
+                $array2 = array(
+                    "Id"=>$_POST["editId"], 
+                    "usuario"=>$_POST["editUsuario"], 
+                    "perfil"=>$_POST["editPerfil"],
+                    "estado"=>$_POST["editEstado"] 
+                );        
+                $respuesta=ModeloUsuarios::MdlEditar2($array2); 
+            } 
+            if($respuesta==="ok"){
+                echo '<script>
+                swal({
+                    icon: "success",
+                    title: "Registrado",
+                    text: "Se registro correctamente",
+                    allowOutsideClick: false
+                  }).then((result)=>{
+                      if(result.value){
+                        window.location="usuarios"; 
+                      }
+                    });
+                </script>
+                ';
+            }else{
+                echo '<script>
+                swal({
+                    icon: "error",
+                    title: "error",
+                    text: "No Se registro",
+                    allowOutsideClick: false
+                  });
+                </script>';
+            }
+        }
+    }
     static public function ctrBorrar(){
         if(isset($_POST["idBorrar"])){   
                 $respuesta = ModeloUsuarios::mdlBorrar($_POST["idBorrar"]);
@@ -59,49 +144,11 @@ class ControladorUsuarios{
 
         }
     }
-    static public function ctrAgrear(){
-        if(isset($_POST["ingIdPersona"])){
-            //encryptacion de contraseña
-            $encriptar = crypt($_POST["ingPass"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-            $arrayD = array(
-                "IdPersona"=>$_POST["ingIdPersona"],
-                "usuario"=>$_POST["ingUsuario"],
-                "perfil"=>$_POST["ingPerfil"],
-                "password"=>$encriptar
-            );
-            $respuesta=ModeloUsuarios::MdlAgregar($arrayD);
-            if($respuesta==="ok"){
-                echo '<script>
-                swal({
-                    icon: "success",
-                    title: "Registrado",
-                    text: "Se registro correctamente",
-                    allowOutsideClick: false
-                  }).then((result)=>{
-                      if(result.value){
-                          window.location="usuarios";
-                      }
-                    });
-                </script>
-                ';
-            }else{
-                echo '<script>
-                swal({
-                    icon: "error",
-                    title: "error",
-                    text: "No Se registro",
-                    allowOutsideClick: false
-                  });
-                </script>';
-            }
-        }
-    }
-     static public function ctrListarPersona(){
-         $Lista = ModeloUsuarios::MdlListarPersona();
+     static public function MdlListarPersonaNoInscrita(){
+         $Lista = ModeloUsuarios::MdlListarPersonaNoInscrita();
          return $Lista;
-     }
+     } 
 
     
 
 }
-

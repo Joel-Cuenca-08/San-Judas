@@ -11,12 +11,12 @@ class ControladorVehiculo{
                 "Marca"=>$_POST["IngMarca"],
                 "Año"=>$_POST["IngAño"],
                 "Tipo"=>$_POST["IngTipo"]   
-            );
+            ); 
             $respuesta=ModeloVehiculo::mdlCrear($arrayD);
             if($respuesta==="ok"){
                 echo '<script>
                 swal({
-                    icon: "success",
+                    type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -30,7 +30,7 @@ class ControladorVehiculo{
             }else{
                 echo '<script>
                 swal({
-                    icon: "error",
+                    type: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -46,7 +46,7 @@ class ControladorVehiculo{
             if($respuesta==="ok"){
                 echo '<script>
                 swal({
-                    icon: "success",
+                    type: "success",
                     title: "Borrado",
                     text: "Se borro correctamente",
                     allowOutsideClick: false
@@ -61,7 +61,7 @@ class ControladorVehiculo{
                 echo ' 
                 <script> 
                 swal({
-                    icon: "error",
+                    type: "error",
                     title: "No se pudo borrar"
                 });   
                 </script> 
@@ -71,7 +71,7 @@ class ControladorVehiculo{
     }
 
     static public function ctrListarPropietarios(){
-        $Lista = ModeloVehiculo::mdlListarPropietarios();
+        $Lista = ModeloVehiculo::mdlListarPropetarios();
         return $Lista;
     }
 

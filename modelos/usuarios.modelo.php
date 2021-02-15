@@ -30,8 +30,8 @@ class ModeloUsuarios{
         $stmt->close();
         $stmt=null;
     }
-    static public function MdlMostarUsuarios($usu, $pass){
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM persona P inner join usuarios U on U.IdPersona=P.Id where U.usuario='$usu' and U.password ='$pass'");        
+    static public function MdlMostarUsuarios($usu){
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM persona P inner join usuarios U on U.IdPersona=P.Id where U.usuario='$usu'");        
         $stmt -> execute();
         return $stmt -> fetch();
         $stmt -> close();

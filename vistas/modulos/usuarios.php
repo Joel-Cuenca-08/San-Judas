@@ -35,7 +35,7 @@
                           foreach($ListaUsuario as $Key => $Usu){
                           ?>
                         <tr>
-                            <td><?=$Usu["Id"]?></td>
+                            <td><?=($Key+1)?></td>
                             <td><?=$Usu["IdPersona"]?></td>
                             <td><?=$Usu["Nombre"]?> <?=$Usu["ApellidoPa"]?> <?=$Usu["ApellidoMa"]?></td>
                             <td><?=$Usu["usuario"]?></td>
@@ -56,7 +56,7 @@
                                         onclick="getUsuario(<?=$Usu['Id']?>,'<?=$Usu['IdPersona']?>','<?=$Usu['usuario']?>','<?=$Usu['perfil']?>','<?=$Usu['estado']?>')"><i
                                             class="fas fa-pencil-alt"></i></button>
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Usu['Id']?>)"
-                                        data-toggle="modal" data-target="#modalBorrar" disabled><i
+                                        data-toggle="modal" data-target="#modalBorrar"><i
                                             class="fa fa-times"></i></button>
                                 </div>
                             </td>
@@ -229,7 +229,7 @@
                         <div class="input-group">
 
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <select class="form-control input-lg" id="editPersona" disabled>
+                            <select class="form-control input-lg" id="editPersona">
                                 <?php  
                                 foreach($ListaUsuario as $Key => $Per){
                                 ?>

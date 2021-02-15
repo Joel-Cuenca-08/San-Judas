@@ -5,21 +5,23 @@ require_once "Conexion.php";
 
 class ModeloVehiculo{
 
-    static public function mdlListarPropietarios(){
-        $stmt = Conexion::conectar()->prepare("SELECT p.*, e.* FROM propietario p inner join persona e on p.IdPersona = e.Id");        
+
+    /**Personas no inscritas en tabla conductor**/
+    static public function mdlListarPropetarios (){
+        $stmt = Conexion::conectar()->prepare("SELECT P.Id,P.IdPersona,PE.Nombre,PE.ApellidoPa,PE.ApellidoMa from propietario P inner join persona PE on PE.Id=P.IdPersona");        
         $stmt -> execute();
         return $stmt -> fetchAll();
         $stmt -> close();
         $stmt -> null;
-    }
+    } 
 
     static public function mdlCrear($datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO vehiculo( Id, IdPropietario, Marca, Año, Tipo) VALUES(:Id, :IdPropietario, :Marca, :Año, :Tipo)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO vehiculo ( Id, IdPropietario, Marca, Año, Tipo) VALUES(:Id, :IdPropietario, :Marca, :Año, :Tipo)");
         $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
         $stmt -> bindParam(":IdPropietario",$datos["IdPropietario"],PDO::PARAM_STR);
         $stmt -> bindParam(":Marca",$datos["Marca"],PDO::PARAM_STR);
         $stmt -> bindParam(":Año",$datos["Año"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Tipo",$datos["Tipo"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Tipo",$datos["Tipo"],PDO::PARAM_STR);  
         if($stmt->execute()){
             return "ok";            
         }

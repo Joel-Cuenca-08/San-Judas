@@ -77,7 +77,7 @@
                             <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
 
                             <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Pro['Id']?>)"
-                                        data-toggle="modal" data-target="#modalBorrar" disabled><i
+                                        data-toggle="modal" data-target="#modalBorrar"><i
                                             class="fa fa-times"></i></button>
                         </div>
                       </td>
@@ -133,7 +133,7 @@
                           <select class="form-control input-lg" name="ingIdPersona" required>
                               <option value="">Seleccione</option>
                               <?php 
-                              $PersonaLista=ControladorPropietario::mdlListarPersonaNoInscrita(); 
+                              $PersonaLista=ControladorPropietario::ctrListarPersonaNoInscrita(); 
                               foreach($PersonaLista as $Key => $Per){
                               ?>
                               <option value="<?=$Per["Id"]?>"><?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>

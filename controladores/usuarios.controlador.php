@@ -20,7 +20,7 @@ class ControladorUsuarios{
             if($respuesta==="ok"){
                 echo '<script>
                 swal({
-                    icon: "success",
+                    type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -34,7 +34,7 @@ class ControladorUsuarios{
             }else{
                 echo '<script>
                 swal({
-                    icon: "error",
+                    type: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -69,7 +69,7 @@ class ControladorUsuarios{
             if($respuesta==="ok"){
                 echo '<script>
                 swal({
-                    icon: "success",
+                    type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -83,7 +83,7 @@ class ControladorUsuarios{
             }else{
                 echo '<script>
                 swal({
-                    icon: "error",
+                    type: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -98,7 +98,7 @@ class ControladorUsuarios{
                 if($respuesta==="ok"){
                     echo '<script>
                     swal({
-                        icon: "success",
+                        type: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
                         allowOutsideClick: false
@@ -113,7 +113,7 @@ class ControladorUsuarios{
                     echo ' 
                     <script> 
                     swal({
-                        icon: "error",
+                        type: "error",
                         title: "No se pudo borrar"
                     });   
                     </script> 
@@ -125,20 +125,24 @@ class ControladorUsuarios{
         if(isset($_POST["ingUsuario"])){
             if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingUsuario"]) && 
                preg_match('/^[a-zA-Z0-9]+$/', $_POST["ingPassword"])){ 
-                   //encryptar contraseña 
-                $encriptar = crypt($_POST["ingPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-                $respuesta = ModeloUsuarios::MdlMostarUsuarios($_POST["ingUsuario"],$encriptar); 
+                $respuesta = ModeloUsuarios::MdlMostarUsuarios($_POST["ingUsuario"]); 
                 if($respuesta){
-                    $_SESSION["iniciarSesion"] = "ok";
-                    $_SESSION["ID_PERSONA"]=$respuesta["IdPersona"];
-                    $_SESSION["NOMBRE"]=$respuesta["Nombre"];
-                    $_SESSION["ROL"]=$respuesta["perfil"];
-                    $_SESSION["APELLIDO"]=($respuesta["ApellidoPa"].' '.$respuesta["ApellidoMa"]);
-                    echo '<script>
-                        window.location = "inicio";
-                    </script>';
+                        //encryptar contraseña 
+                        $encriptar = crypt($_POST["ingPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+                    if($respuesta["password"]===$encriptar){
+                        $_SESSION["iniciarSesion"] = "ok";
+                        $_SESSION["ID_PERSONA"]=$respuesta["IdPersona"];
+                        $_SESSION["NOMBRE"]=$respuesta["Nombre"];
+                        $_SESSION["ROL"]=$respuesta["perfil"];
+                        $_SESSION["APELLIDO"]=($respuesta["ApellidoPa"].' '.$respuesta["ApellidoMa"]);
+                        echo '<script>
+                            window.location = "inicio";
+                        </script>';
+                    }else{
+                        echo '<br><div class="alert alert-danger">Usuario o Contraseña incorrecta</div>';
+                    }
                 }else{
-                    echo '<br><div class="alert alert-danger">Usuario o Contraseña incorrecta</div>';
+                    echo '<br><div class="alert alert-danger">Usuario no encontrado</div>';
                 }
 
             }

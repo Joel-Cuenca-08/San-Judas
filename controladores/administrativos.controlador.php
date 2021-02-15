@@ -22,7 +22,7 @@ class ControladorAdministrativos{
             if($respuesta==="ok"){
                 echo '<script>
                 swal({
-                    icon: "success",
+                    type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -36,7 +36,7 @@ class ControladorAdministrativos{
             }else{
                 echo '<script>
                 swal({
-                    icon: "error",
+                    type: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -53,7 +53,7 @@ class ControladorAdministrativos{
                 if($respuesta==="ok"){
                     echo '<script>
                     swal({
-                        icon: "success",
+                        type: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
                         allowOutsideClick: false
@@ -68,7 +68,7 @@ class ControladorAdministrativos{
                     echo ' 
                     <script> 
                     swal({
-                        icon: "error",
+                        type: "error",
                         title: "No se pudo borrar"
                     });   
                     </script> 

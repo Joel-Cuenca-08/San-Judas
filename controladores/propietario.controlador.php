@@ -22,7 +22,7 @@ class ControladorPropietario{
             if($respuesta==="ok"){
                 echo '<script>
                 swal({
-                    icon: "success",
+                    type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -36,7 +36,7 @@ class ControladorPropietario{
             }else{
                 echo '<script>
                 swal({
-                    icon: "error",
+                    type: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -47,10 +47,10 @@ class ControladorPropietario{
     }
 
     /**Lista Persona no Inscrita**/
-    static public function MdlListarPersonaNoInscrita(){
+    static public function ctrListarPersonaNoInscrita(){
         $Lista = ModeloPropietario::MdlListarPersonaNoInscrita();
         return $Lista;
-    } 
+    }  
 
     /**Borrar Propietario**/
     static public function ctrBorrar(){
@@ -59,7 +59,7 @@ class ControladorPropietario{
                 if($respuesta==="ok"){
                     echo '<script>
                     swal({
-                        icon: "success",
+                        type: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
                         allowOutsideClick: false
@@ -74,7 +74,7 @@ class ControladorPropietario{
                     echo ' 
                     <script> 
                     swal({
-                        icon: "error",
+                        type: "error",
                         title: "No se pudo borrar"
                     });   
                     </script> 

@@ -41,14 +41,22 @@
                             <td><?=$Usu["usuario"]?></td>
                             <td><?=$Usu["password"]?></td>  
                             <td><?=$Usu["perfil"]?></td>
-                            <td><button class="btn btn-success btn-xs">Activado</button></td>
+                            <td>
+                            <?php
+                            if($Usu["estado"]==="1"){
+                                echo '<button class="btn btn-success btn-xs">Activo</button>';
+                            }else{
+                                echo '<button class="btn btn-danger btn-xs">Inactivo</button>';
+                            }
+                            ?>
+                            </td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditar"
                                         onclick="getUsuario(<?=$Usu['Id']?>,'<?=$Usu['IdPersona']?>','<?=$Usu['usuario']?>','<?=$Usu['perfil']?>','<?=$Usu['estado']?>')"><i
                                             class="fas fa-pencil-alt"></i></button>
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Usu['Id']?>)"
-                                        data-toggle="modal" data-target="#modalBorrar"><i
+                                        data-toggle="modal" data-target="#modalBorrar" disabled><i
                                             class="fa fa-times"></i></button>
                                 </div>
                             </td>
@@ -91,8 +99,6 @@
 
                         <!--ENTRADA PARA INGRESAR PERSONA-->
                     <div class="form-group ">
-
-
 
                         <label>Seleccione una Persona <span class="text-danger">*</span></label>
                         <div class="input-group">
@@ -225,8 +231,8 @@
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <select class="form-control input-lg" id="editPersona" disabled>
                                 <?php  
-                          foreach($ListaUsuario as $Key => $Per){
-                          ?>
+                                foreach($ListaUsuario as $Key => $Per){
+                                ?>
                                 <option value="<?=$Per["IdPersona"]?>"><?=$Per["IdPersona"]?> - <?=$Per["ApellidoPa"]?>
                                     <?=$Per["ApellidoMa"]?>
                                     <?=$Per["Nombre"]?></option>
@@ -334,7 +340,7 @@
                     <h1><i class="fas fa-trash text-danger"></i></h1>
                     <br>
                     <h4>¿Desea borrar usuario?</h4>
-                    <input type="text" id="idBorrar" name="idBorrar" required>
+                    <input type="hidden" id="idBorrar" name="idBorrar" required>
                     <?php
                     $obj = new ControladorUsuarios();
                     $obj ->ctrBorrar(); 

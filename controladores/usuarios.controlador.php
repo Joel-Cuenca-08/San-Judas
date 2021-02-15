@@ -26,6 +26,7 @@ class ControladorUsuarios{
                     allowOutsideClick: false
                   }).then((result)=>{
                       if(result.value){
+                        window.location="usuarios"; 
                       }
                     });
                 </script>

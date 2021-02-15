@@ -26,7 +26,7 @@
         
         <div class="box-header with-border">
           
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAdministrativo">
+            <button class="btn btn-success" data-toggle="modal" data-target="#modalAgregarAdministrativo">
             Agregar Administrativo
             </button>
 
@@ -38,33 +38,49 @@
 
             <thead>
               <tr>
+                  
                   <th  style="width:10px">#</th>
                   <th>Persona</th>
                   <th>Nro Documento</th>
                   <th>Telefono</th>
                   <th>Cargo</th>
                   <th>Funcion</th>
+                  <th>Sedes</th>
                   <th>Estado</th>
                   <th>Acciones</th>
               </tr>
             </thead>
 
             <tbody>
+                    <?php 
+                        $ListaAdmi=ControladorAdministrativos::ctrListar();
+                        foreach($ListaAdmi as $Key => $Admi){
+                    ?>
               <tr>
-                  <td>1</td>
-                  <td>Joel Cuenca</td>
-                  <td>78362718</td>
-                  <th>981323219</th>
-                  <td>Administrador de Ruta</td>
-                  <td>Registrar los horarios de salida</td>
-                  <td><button class="btn btn-success btn-xs">Activado</button></td>
+                    <td><?=$Admi["Id"]?></td>
+                    <td><?=$Admi["Nombre"]?> <?=$Admi["ApellidoPa"]?> <?=$Admi["ApellidoMa"]?></td>
+                    <td><?=$Admi["IdPersona"]?></td>
+                    <td><?=$Admi["Telefono"]?></td>
+                    <td><?=$Admi["Cargo"]?></td>
+                    <td><?=$Admi["Funcion"]?></td>
+                    <td><?=$Admi["Sede"]?></td>
+                    <td>
+                    <?php
+                            if($Admi["Estado"]==="1"){
+                                echo '<button class="btn btn-success btn-xs">Activo</button>';
+                            }else{
+                                echo '<button class="btn btn-danger btn-xs">Inactivo</button>';
+                            }
+                        ?>
+                    </td>
                   <td>
                     <div class="btn-group">
                         <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
 
-                        <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                        <button class="btn btn-danger" disabled><i class="fa fa-times"></i></button>
                     </div>
                   </td>
+                  <?php } ?>
               </tr>
             </tbody>
 
@@ -93,7 +109,7 @@
       <!-- Modal content-->
       <div class="modal-content">
 
-        <form role="formaulario" method="post">
+        <form role="formulario" method="post">
 
           <!------------------------CABEZA DEL MODAL----------------->
           <div class="modal-header" style="background:#3c8dbc; color:white">
@@ -105,9 +121,84 @@
           </div>
         
           <!-----------------------CUERPO DEL MODAL------------------>
+          
+          <!--INGRESAR PERSONA-->
           <div class="modal-body">
-            <p>Some text in the modal.</p>
-          </div>
+          <p><span class="text-danger">* Casilla Obligatoria</span>
+            <div class="form-group ">
+                <label>Seleccione una Persona <span class="text-danger">*</span></label>
+                <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                      <select class="form-control input-lg" name="ingIdPersona" required>
+                          <option value="">Seleccione</option>
+                          <?php 
+                          $PersonaLista=ControladorAdministrativos::ctrListarPersonaNoInscrita(); 
+                          foreach($PersonaLista as $Key => $Per){
+                          ?>
+                          <option value="<?=$Per["Id"]?>"><?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
+                              <?=$Per["Nombre"]?></option>
+
+                          <?php } ?>
+                      </select>
+                </div>
+            </div>
+
+          <!--INGRESAR SEDE-->
+          
+            <div class="form-group ">
+                <label>Seleccione una Sede <span class="text-danger">*</span></label>
+                <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                      <select class="form-control input-lg" name="ingIdSede" required>
+                          <option value="">Seleccione</option>
+                          <?php 
+                          $SedeLista=ControladorAdministrativos::ctrListarSede(); 
+                          foreach($SedeLista as $Key => $Sede){
+                          ?>
+                          <option value="<?=$Sede["Id"]?>"><?=$Sede["Sede"]?></option>
+
+                          <?php } ?>
+                      </select>
+                </div>
+            </div>
+
+
+          <!--ENTRADA PARA INGRESAR EL CARGO-->
+            <div class="form-group">
+
+                  <label>Ingrese Cargo <span class="text-danger">*</span></label>
+
+                  <div class="input-group">
+                      <span class="input-group-addon "><i class="fa fa-users"></i></span>
+
+                      <select class="form-control input-lg" name="IngCargo">
+                          <option value="">Seleccionar Cargo</option>
+                          <option >Administrador General</option>
+                          <option >Administrador de Ruta</option>
+                          <option >Secretariado</option>
+                      </select>
+                  </div>
+
+            </div>
+
+
+
+          <!--ENTRADA PARA INGRESAR LA TARJETA DE PROPIEDAD-->
+            <div class="form-group">
+
+              <label>Ingrese Funcion</label>
+              <div class="input-group">
+
+                  <span class="input-group-addon"><i class="fas fa-font"></i></span>
+                  <input type="text" class="form-control input-lg" name="IngFuncion"
+                      placeholder="Detallar la funcion">
+
+              </div>
+
+            </div>
+        </div>
 
            <!-------------------PIE DEL MODAL----------------->
           <div class="modal-footer">
@@ -116,6 +207,10 @@
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
 
           </div>
+          <?php 
+              $obj=new ControladorAdministrativos();
+              $obj->ctrAgregar();
+          ?>
 
         </form>
 

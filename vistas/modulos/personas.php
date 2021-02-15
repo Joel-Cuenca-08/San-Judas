@@ -25,11 +25,9 @@
       <div class="box">
 
         <div class="box-header with-border">
-    
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPersona">
+            <button class="btn btn-success" data-toggle="modal" data-target="#modalAgregarPersona">
               Agregar Persona
             </button>
-
         </div>
 
         <div class="box-body">
@@ -37,41 +35,46 @@
           <table class="table table-bordered table-striped dt-responsive tablas">
               <thead>
                 <tr>
-                    <th  style="width:10px">#</th>
-                    <th>Nombre</th>
-                    <th>Apellido Paterno</th>
-                    <th>Apellido Materno</th>
-                    <th>Telefono</th>
-                    <th>Tipo de Documento</th>
-                    <th>Nro. Documento</th>
+                    <th>DNI</th>
+                    <th>Tipo Documento</th>
                     <th>Nacionalidad</th>
+                    <th>Nombre</th>
+                    <th>ApellidoPa</th>
+                    <th>ApellidoMa</th>
+                    <th>Telefono</th>
                     <th>Correo</th>
                     <th>Dirección</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>
                 </tr>
               </thead>
 
               <tbody>
+                <?php
+                  $ListaPersona=ControladorPersonas::ctrListar();
+                  foreach($ListaPersona as $Key => $Per){
+                ?>
                 <tr>
-                    <td>1</td>
-                    <td>Joel</td>
-                    <td>Cuenca Villogas</td>
-                    <td>Cuenca Villogas</td>
-                    <td>981323726</td>
-                    <td>DNI</td>
-                    <td>78594637</td>
-                    <td>Peruana</td>
-                    <td>joel.04@gmail.com</td>
-                    <td>Mz o lt 39 VES</td>
+                    <td><?=$Per["Id"]?></td>
+                    <td><?=$Per["TipoDocumento"]?></td>
+                    <td><?=$Per["Nacionalidad"]?></td>
+                    <td><?=$Per["Nombre"]?></td>
+                    <td><?=$Per["ApellidoPa"]?></td>
+                    <td><?=$Per["ApellidoMa"]?></td>
+                    <td><?=$Per["Telefono"]?></td>
+                    <td><?=$Per["Correo"]?></td>
+                    <td><?=$Per["Direccion"]?></td>
+                    <td><?=$Per["Creado"]?></td>
                     <td>
                       <div class="btn-group">
-                          <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                          <button class="btn btn-warning" data-target=""><i class="fas fa-pencil-alt"></i></button>
 
-                          <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                          <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Per['Id']?>)"
+                                  data-toggle="modal" data-target="#modalBorrar"><i class="fa fa-times"></i></button>
                       </div>
                     </td>
                 </tr>
-
+                <?php } ?>
                 
               </tbody>
 
@@ -154,7 +157,8 @@
 
                           <div class="input-group">
                             <span class="input-group-addon"><i class="fas fa-id-card"></i></span>
-                            <input type="text" class="form-control input-lg" name="nuevoNroDoc" placeholder="Ingresar Documento" required>
+                            <input type="text" class="form-control input-lg" name="nuevoNroDoc" pattern="[0-9]{7,10}" maxlength="12"  
+                            placeholder="Ingresar Documento" required>
                           </div>
 
                       </div>
@@ -228,7 +232,7 @@
                   <div class="input-group">
               
                     <span class="input-group-addon"><i class="fas fa-phone-alt"></i></span>
-                    <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar Telefono" required>
+                    <input type="text" pattern="[0-9]{7,10}" maxlength="10" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar Telefono" required>
 
                   </div>
 
@@ -304,6 +308,35 @@
 </div>
 
 
+<!-- Modal borrar-->
+<div class="modal fade" id="modalBorrar" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <form role="form" method="post">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <br>
+                    <h1><i class="fas fa-trash text-danger"></i></h1>
+                    <br>
+                    <h4>¿Desea borrar Persona?</h4>
+                    <input type="hidden" id="idBorrar" name="idBorrar" required>
+                    <?php
+                    $obj = new ControladorPersonas();
+                    $obj ->ctrBorrar(); 
+                    ?>
+                    <br>
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">Cancelar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-danger mt-2">Borrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 
 

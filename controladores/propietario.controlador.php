@@ -1,24 +1,24 @@
 <?php
 
-class ControladorAdministrativos{
-    
+class ControladorPropietario{
 
+    /**Listar**/
     static public function ctrListar(){
-        $Lista = ModeloAdministrativos::MdlListar();
+        $Lista = ModeloPropietario::mdlListar();
         return $Lista;
     }
 
     /**Agregar**/
-    static public function ctrAgregar(){
+    static public function ctrAgrear(){
         if(isset($_POST["ingIdPersona"])){
             
             $arrayD = array(
                 "IdPersona"=>$_POST["ingIdPersona"],
-                "IdSede"=>$_POST["ingIdSede"],
-                "Cargo"=>$_POST["IngCargo"],
-                "Funcion"=>$_POST["IngFuncion"]   
+                "TarjetaPropiedad"=>$_POST["ingTarjetaPro"],
+                "Ruc"=>$_POST["ingRuc"],
+                "TelEmergencia"=>$_POST["ingTel"]   
             );
-            $respuesta=ModeloAdministrativos::mdlCrear($arrayD);
+            $respuesta=ModeloPropietario::mdlAgregar($arrayD);
             if($respuesta==="ok"){
                 echo '<script>
                 swal({
@@ -28,7 +28,7 @@ class ControladorAdministrativos{
                     allowOutsideClick: false
                   }).then((result)=>{
                       if(result.value){
-                        window.location="administrativos"; 
+                        window.location="propietarios"; 
                       }
                     });
                 </script>
@@ -46,10 +46,16 @@ class ControladorAdministrativos{
         }
     }
 
-    
+    /**Lista Persona no Inscrita**/
+    static public function MdlListarPersonaNoInscrita(){
+        $Lista = ModeloPropietario::MdlListarPersonaNoInscrita();
+        return $Lista;
+    } 
+
+    /**Borrar Propietario**/
     static public function ctrBorrar(){
         if(isset($_POST["idBorrar"])){   
-                $respuesta = ModeloAdministrativo::mdlBorrar($_POST["idBorrar"]);
+                $respuesta = ModeloPropietario::mdlBorrar($_POST["idBorrar"]);
                 if($respuesta==="ok"){
                     echo '<script>
                     swal({
@@ -77,13 +83,8 @@ class ControladorAdministrativos{
         }
     }
 
-    static public function ctrListarPersonaNoInscrita(){
-        $Lista = ModeloAdministrativos::MdlListarPersonaNoInscrita();
-        return $Lista;
-    } 
 
-    static public function ctrListarSede(){
-        $Lista = ModeloAdministrativos::mdlListarSede();
-        return $Lista;
-    }
+
+
+
 }

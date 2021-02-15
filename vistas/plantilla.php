@@ -102,7 +102,6 @@
             $_GET["ruta"] === "rutas" ||
             $_GET["ruta"] === "periodos" ||
             $_GET["ruta"] === "propietarios"||
-            $_GET["ruta"] === "propietarios"||
             $_GET["ruta"] === "administrativos"||
             $_GET["ruta"] === "salir"){
             

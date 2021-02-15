@@ -2,7 +2,7 @@
 require_once "conexion.php";
 
 class ModeloPersonas{
-
+    /**Registrar Persona */
     static public function mdlRegistrarPersona($tabla, $datos){
 
         $stmt = Conexion::conectar() -> prepare("INSERT INTO $tabla(Id, TipoDocumento, Nacionalidad, Nombre, 
@@ -32,5 +32,29 @@ class ModeloPersonas{
 
         $stmt -> null;
 
+    }
+
+    /**Listar Persona**/
+    static public function mdlListar(){
+        
+        $stmt = Conexion::conectar() -> prepare("SELECT * FROM persona");
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+        $stmt -> close();
+        $stmt -> null;
+    }
+
+    /**Borrar Persona**/
+    static public function mdlBorrar($id){
+        $stmt = Conexion::conectar()->prepare("DELETE FROM persona WHERE Id=:Id"); 
+        $stmt -> bindParam(":Id",$id,PDO::PARAM_STR);      
+        if($stmt->execute()){
+            return "ok";            
+        }
+        else{
+            return "error";
+        }
+        $stmt->close();
+        $stmt=null;
     }
 }

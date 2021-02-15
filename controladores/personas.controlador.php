@@ -35,22 +35,15 @@ class ControladorPersonas{
                     echo '<script>
                 
                     swal({
-                           
-                           type: "success",
-                           title: "¡La persona fue registrada correctamente!",
-                           showConfirmButton: true,
-                           confirmButtonText: "Cerrar",
-                           closeOnConfirm: false
-                       
-                       }).then((result) => {
-                           
-                           if(result.values){
-                               window.location = "personas";
-                           }
-   
-                       });
-   
-                       
+                        icon: "success",
+                        title: "Registrado",
+                        text: "Se registro correctamente",
+                        allowOutsideClick: false
+                      }).then((result)=>{
+                          if(result.value){
+                            window.location="personas"; 
+                          }
+                        });
                    </script>';
 
                 }
@@ -60,25 +53,59 @@ class ControladorPersonas{
                 
                 echo '<script>
                 
-                 swal({
-                        
-                        type: "error",
-                        title: "¡Los campos no pueden ir vacios o llevar caracteres especiales!",
-                        showConfirmButton: true,
-                        confirmButtonText: "Cerrar",
-                        closeOnConfirm: false
-                    
-                    }).then((result) => {
-                        
-                        if(result.values){
-                            window.location = "personas";
-                        }
-
-                    });
-
-                    
+                 swal({      
+                    swal({
+                        icon: "error",
+                        title: "error",
+                        text: "No Se registro",
+                        allowOutsideClick: false
+                      });
                 </script>';
             }
         }
     }
+
+    /**Listar Persona**/
+
+    static public function ctrListar(){
+        $Lista = ModeloPersonas::mdlListar();
+        return $Lista;
+    }
+
+    /**Borrar Persona**/
+    static public function ctrBorrar(){
+        if(isset($_POST["idBorrar"])){   
+                $respuesta = ModeloPersonas::mdlBorrar($_POST["idBorrar"]);
+                if($respuesta==="ok"){
+                    echo '<script>
+                    swal({
+                        icon: "success",
+                        title: "Borrado",
+                        text: "Se borro correctamente",
+                        allowOutsideClick: false
+                    }).then((result)=>{
+                        if(result.value){
+                            window.location="personas"; 
+                        }
+                        });
+                    </script>
+                    ';  
+                } else{
+                    echo ' 
+                    <script> 
+                    swal({
+                        icon: "error",
+                        title: "No se pudo borrar"
+                    });   
+                    </script> 
+                    ';
+                } 
+        }
+    }
+
+    static public function ctrEditar(){
+        
+    }
+
+
 }

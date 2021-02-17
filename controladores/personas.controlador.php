@@ -5,19 +5,7 @@ class ControladorPersonas{
     /**Registrar Persona**/
     static public function ctrCrearPersonas(){
 
-        if(isset($_POST["nuevoNombre"])){
-
-            if(preg_match('/^[a-zA-Z]+$/',$_POST["nuevoNombre"]) && 
-               preg_match('/^[a-zA-Z]+$/',$_POST["nuevoApellidoPa"]) &&
-               preg_match('/^[a-zA-Z]+$/',$_POST["nuevoApellidoMa"]) &&
-               preg_match('/^[0-9]+$/',$_POST["nuevoTelefono"]) &&
-               preg_match('/^[0-9]+$/',$_POST["nuevoNroDoc"]) &&
-               preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/',$_POST["nuevoCorreo"]) &&
-               preg_match('/^[a-zA-Z]+$/',$_POST["nuevoNacionalidad"])){
-                   
-
-               $tabla = "persona";
-
+        if(isset($_POST["nuevoNombre"])){ 
                $datos = array("Nombre" => $_POST["nuevoNombre"],
                               "ApellidoPa" => $_POST["nuevoApellidoPa"],
                               "ApellidoMa" => $_POST["nuevoApellidoMa"],
@@ -26,15 +14,11 @@ class ControladorPersonas{
                               "Id" => $_POST["nuevoNroDoc"],
                               "Nacionalidad" => $_POST["nuevoNacionalidad"],
                               "Correo" => $_POST["nuevoCorreo"],
-                              "Direccion" => $_POST["nuevoDireccion"]);
-
-                $respuesta = ModeloPersonas::mdlRegistrarPersona($tabla, $datos);
-
-                if($respuesta == "ok"){
-                   
-                    echo '<script>
-                
-                    swal({
+                              "Direccion" => $_POST["nuevoDireccion"]); 
+                $respuesta = ModeloPersonas::mdlRegistrarPersona($datos);
+                if($respuesta == "ok"){                   
+                    echo '<script>                
+                    swal.fire({
                         type: "success",
                         title: "Registrado",
                         text: "Se registro correctamente",
@@ -45,23 +29,17 @@ class ControladorPersonas{
                           }
                         });
                    </script>';
-
-                }
-
-            }else{
-   
-                
-                echo '<script>
-                
-                 swal({      
-                    swal({
+                }else{
+                    echo '<script>                
+                    swal.fire({
                         type: "error",
-                        title: "error",
-                        text: "No Se registro",
+                        title: "Error",
+                        text: "verifique datos ingresados",
                         allowOutsideClick: false
                       });
-                </script>';
-            }
+                   </script>';
+                }
+
         }
     }
 
@@ -78,7 +56,7 @@ class ControladorPersonas{
                 $respuesta = ModeloPersonas::mdlBorrar($_POST["idBorrar"]);
                 if($respuesta==="ok"){
                     echo '<script>
-                    swal({
+                    Swal({
                         type: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
@@ -93,7 +71,7 @@ class ControladorPersonas{
                 } else{
                     echo ' 
                     <script> 
-                    swal({
+                    Swal({
                         type: "error",
                         title: "No se pudo borrar"
                     });   

@@ -21,7 +21,7 @@ class ControladorConductor{
             $respuesta=ModeloConductor::mdlAgregar($arrayD);
             if($respuesta==="ok"){
                 echo '<script>
-                swal({
+                Swal({
                     type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
@@ -35,7 +35,7 @@ class ControladorConductor{
                 ';
             }else{
                 echo '<script>
-                swal({
+                Swal({
                     type: "error",
                     title: "error",
                     text: "No Se registro",
@@ -52,7 +52,7 @@ class ControladorConductor{
                 $respuesta = ModeloConductor::mdlBorrar($_POST["idBorrar"]);
                 if($respuesta==="ok"){
                     echo '<script>
-                    swal({
+                    Swal({
                         type: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
@@ -67,7 +67,7 @@ class ControladorConductor{
                 } else{
                     echo ' 
                     <script> 
-                    swal({
+                    Swal({
                         type: "error",
                         title: "No se pudo borrar"
                     });   

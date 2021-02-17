@@ -19,7 +19,7 @@ class ControladorUsuarios{
             $respuesta=ModeloUsuarios::MdlAgregar($arrayD);
             if($respuesta==="ok"){
                 echo '<script>
-                swal({
+                Swal({
                     type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
@@ -33,7 +33,7 @@ class ControladorUsuarios{
                 ';
             }else{
                 echo '<script>
-                swal({
+                Swal({
                     type: "error",
                     title: "error",
                     text: "No Se registro",
@@ -68,7 +68,7 @@ class ControladorUsuarios{
             } 
             if($respuesta==="ok"){
                 echo '<script>
-                swal({
+                Swal({
                     type: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
@@ -82,7 +82,7 @@ class ControladorUsuarios{
                 ';
             }else{
                 echo '<script>
-                swal({
+                Swal({
                     type: "error",
                     title: "error",
                     text: "No Se registro",
@@ -97,7 +97,7 @@ class ControladorUsuarios{
                 $respuesta = ModeloUsuarios::mdlBorrar($_POST["idBorrar"]);
                 if($respuesta==="ok"){
                     echo '<script>
-                    swal({
+                    Swal({
                         type: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
@@ -112,7 +112,7 @@ class ControladorUsuarios{
                 } else{
                     echo ' 
                     <script> 
-                    swal({
+                    Swal({
                         type: "error",
                         title: "No se pudo borrar"
                     });   

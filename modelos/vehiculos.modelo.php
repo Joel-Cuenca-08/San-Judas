@@ -16,7 +16,7 @@ class ModeloVehiculo{
     } 
 
     static public function mdlCrear($datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO vehiculo ( Id, IdPropietario, Marca, Año, Tipo) VALUES(:Id, :IdPropietario, :Marca, :Año, :Tipo)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `vehiculo`(Id, IdPropietario, Marca, Año, Tipo) VALUES (:Id, :IdPropietario, :Marca, :Año, :Tipo)");
         $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
         $stmt -> bindParam(":IdPropietario",$datos["IdPropietario"],PDO::PARAM_STR);
         $stmt -> bindParam(":Marca",$datos["Marca"],PDO::PARAM_STR);

@@ -73,7 +73,7 @@
                     <div class="btn-group">
                         <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
 
-                        <button class="btn btn-danger" onclick="getBorrarUsu(<?=$vehi['Id']?>)"
+                        <button class="btn btn-danger" onclick="getBorrarUsu('<?=$vehi['Id']?>')"
                                 data-toggle="modal" data-target="#modalBorrar" ><i class="fa fa-times"></i></button>
                     </div>
                   </td>

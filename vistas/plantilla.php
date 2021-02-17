@@ -16,9 +16,7 @@
   ====================================-->
     <!-- Bootstrap 3.3.7 -->
     <link rel="stylesheet" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="vistas/bower_components/font-awesome/css/font-awesome.min.css">
-    <!-- Ionicons -->
+     <!-- Ionicons -->
     <link rel="stylesheet" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="vistas/dist/css/AdminLTE.css">
@@ -29,10 +27,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="vistas/dist/css/skins/_all-skins.min.css">
-    <!-- Google Font -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <!-- DataTables -->
+   <!-- DataTables -->
     <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
     <!--Iconos FontAwesome -->
@@ -44,9 +39,7 @@
     <!-- jQuery 3 -->
     <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap 3.3.7 -->
-    <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="vistas/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> 
     <!-- AdminLTE App -->
     <script src="vistas/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
@@ -57,7 +50,7 @@
     <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
     <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
     <!--SweetAlert2 -->
-    <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <!-- Usuario -->
     <script src="vistas/js/usuario.js"></script>
 

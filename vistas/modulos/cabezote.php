@@ -37,7 +37,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="vistas/img/usuarios/default/anonymous.png" class="user-image">
 
-                            <span class="hidden-xs"><?=$_SESSION["NOMBRE"].' '.$_SESSION["APELLIDO"];?></span>
+                            <span class="hidden-xs"><?=$_SESSION["NOMBRE"].' '.$_SESSION["APELLIDO"]?></span>
                         </a>
 
 

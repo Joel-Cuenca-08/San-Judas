@@ -3,11 +3,10 @@ require_once "conexion.php";
 
 class ModeloPersonas{
     /**Registrar Persona */
-    static public function mdlRegistrarPersona($tabla, $datos){
+    static public function mdlRegistrarPersona($datos){
 
-        $stmt = Conexion::conectar() -> prepare("INSERT INTO $tabla(Id, TipoDocumento, Nacionalidad, Nombre, 
-        ApellidoPa, ApellidoMa, Telefono, Correo, Direccion) VALUES (:Id, :TipoDocumento, :Nacionalidad, 
-        :Nombre, :ApellidoPa, :ApellidoMa, :Telefono, :Correo, :Direccion)");
+        $stmt = Conexion::conectar() -> prepare("INSERT INTO `persona`(Id, TipoDocumento, Nacionalidad, Nombre, ApellidoPa, ApellidoMa, Telefono, Correo, Direccion) VALUES 
+        (:Id, :TipoDocumento, :Nacionalidad, :Nombre, :ApellidoPa, :ApellidoMa, :Telefono, :Correo, :Direccion)");
 
         $stmt -> bindParam(":Id", $datos["Id"], PDO::PARAM_STR);
         $stmt -> bindParam(":TipoDocumento", $datos["TipoDocumento"], PDO::PARAM_STR);

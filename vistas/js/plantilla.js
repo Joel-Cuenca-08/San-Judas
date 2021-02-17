@@ -54,7 +54,7 @@ $(document).ready(function () {
         buttons: [
             {
                 extend: "excel",
-                messageTop: "Informacion de Gilda Ballivian Rosado",
+                messageTop: "Informacion de San judas tadeo",
                 title: "Reporte",
             },
         ],

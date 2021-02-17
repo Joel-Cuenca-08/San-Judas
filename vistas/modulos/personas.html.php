@@ -34,7 +34,7 @@
 
         <div class="card-body">
           
-          <table class="table table-bordered table-striped dt-responsive tablas">
+          <table class="table table-bordered table-striped dt-responsive Data-Table">
               <thead>
                 <tr>
                     <th  style="width:10px">#</th>

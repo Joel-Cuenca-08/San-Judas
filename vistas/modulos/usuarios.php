@@ -9,13 +9,13 @@
         </ol>
     </section>
     <section class="content">
-        <div class="box">
-            <div class="box-header with-border">
+        <div class="card">
+            <div class="card-header with-border">
                 <button class="btn btn-success" data-toggle="modal" data-target="#modalAgregarUsuario">
                     Agregar Usuario
                 </button>
             </div>
-            <div class="box-body">
+            <div class="card-body">
                 <table class="table table-bordered table-striped dt-responsive tablas">
                     <thead>
                         <tr>

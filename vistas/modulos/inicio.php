@@ -1,47 +1,47 @@
  <div class="content-wrapper">
-    
-    <section class="content-header">
 
-      <h1>
-
-        Inicio
-        
-
-      </h1>
-
-      <ol class="breadcrumb">
-
-        <li><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
-        <li class="active">Inicio</li>
-        
-      </ol>
-       
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-
-      <!-- Default box -->
-      <div class="box">
-      
-                
-        <!-- /.box-body -->
-        <div class="container-fluid">
-          <div class="row">
-			      <div class="col-12">
-				        <h1 class="text-center">Bienvenido al Sistema</h1>
-            </div>
-          </div>
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
-
-      
-		
+     <section class="content-header">
 
 
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+         <div class="row">
+             <div class="col-md-6">
+                 <h1>
+
+                     Inicio
+
+
+                 </h1>
+             </div>
+             <div class="col-md-6">
+                 <ol class="breadcrumb float-sm-right">
+                     <li class="breadcrumb-item"><a href="#">Inicio</a></li>
+                     <li class="breadcrumb-item active">Dashboard v3</li>
+                 </ol>
+             </div>
+         </div>
+
+     </section>
+
+     <!-- Main content -->
+     <section class="content">
+
+
+         <!-- /.box-body -->
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-12">
+                     <h1 class="text-center">Bienvenido al Sistema</h1>
+                 </div>
+             </div>
+             <!-- /.box-footer-->
+         </div>
+         <!-- /.box -->
+
+
+
+
+
+     </section>
+     <!-- /.content -->
+ </div>
+ <!-- /.content-wrapper -->

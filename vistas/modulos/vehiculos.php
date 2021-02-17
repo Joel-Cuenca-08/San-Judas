@@ -22,8 +22,8 @@
     <section class="content">
 
       <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
+      <div class="card">
+        <div class="card-header with-border">
             
             <button class="btn btn-success" data-toggle="modal" data-target="#modalAgregarVehiculo">
             Agregar Vehiculo
@@ -32,7 +32,7 @@
         </div>
 
 
-        <div class="box-body">
+        <div class="card-body">
         
         <table class="table table-bordered table-striped dt-responsive tablas">  
 

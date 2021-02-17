@@ -1,46 +1,57 @@
-<div id="back"> </div>
 <div class="login-box">
-  <div class="login-logo">
-    
-  <img src="vistas/img/plantilla/icono-sj2.png" class="img-responsive" 
-  style="padding: 0">
+    <!-- /.login-logo -->
+    <div class="F-Down card shadow">
+        <div class="card-body login-card-body">
+            <center>
+                <img src="vistas/img/plantilla/icono-sj2.png" class="img-responsive" style="width: 100%">
+            </center>
 
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">
-    <p class="login-box-msg">Iniciar Sesion</p>
+<br>
+<br>
+            <form class="needs-validation" method="post" novalidate>
 
-    <form method="post">
+                <div class="form-group">
+                    <label>Usuario</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" pattern="[0-9]{6,15}" maxlength="15"
+                            placeholder="N° de Documento" name="ingUsuario" autofocus required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <i class="fas fa-id-card text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="invalid-feedback">
+                            Recuerde ingresar correctamente su N° de Documento
+                        </div>
 
-      <div class="form-group has-feedback">
+                        <div class="valid-feedback">
+                            N° de Documento valido
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <div class="input-group mb-3" id="show_hide_password2">
+                        <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword"
+                            required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <a href="#"><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
 
-        <input type="text" class="form-control" placeholder="Usuario" name="ingUsuario" required>
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-
-      </div>
-
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword" required>
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-
-      <div class="row">
-        
-        <div class="col-xs-4">
-          <button type="submit" class="btn btn-success btn-block btn-flat">Ingresar</button>
-        </div>
-        
-      </div>
-
-       
-      <?php
+                <?php
           $login = new ControladorUsuarios();
           $login -> ctrIngresarUsuario();  
       ?>
 
-    </form>
+            </form>
 
-   
-  </div>
-  
-</div>
+
+        </div>
+
+    </div>

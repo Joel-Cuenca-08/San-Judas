@@ -1,61 +1,33 @@
-<header class="main-header">
-    <!---========================
-            LOGOTIPO
-    ==========================-->
-
-    <a href="inicio" class="logo">
-        <!--logo mini-->
-        <span class="logo-mini">
-            <img src="vistas/img/plantilla/icono-sj.png" class="img-responsive"
-            style="padding:0px 0px">
-        </span>
-        
-        <!--logo normal-->
-        <span class="logo-lg">
-            <img src="vistas/img/plantilla/icono-sj2.png" class="img-responsive"
-            style="padding:15px 0px" >
-        </span>
-    </a>
-
-     <!---========================
-           BARRA DE NAVEGACION
-    ==========================-->
-    <nav class="navbar navbar-static-top bg-success" role="navigation">
-            
-            <!-- Botón de Navegación -->
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-               
-                <span class="sr-omly">Menu</span>
-           
-            </a>
-
-            <!-- Perfil de usuario -->
-            <div class="navbar-custom-menu">
-                <ul class="nav navbar-nav">
-
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="vistas/img/usuarios/default/anonymous.png" class="user-image">
-
-                            <span class="hidden-xs"><?=$_SESSION["NOMBRE"].' '.$_SESSION["APELLIDO"]?></span>
-                        </a>
-
-
-                        <!--Dropdown- toggle -->
-                         <ul class="dropdown-menu">
-                
-                                <li class="user-body">
-                                    <div class="pull-right">
-                                        <a href="salir" class="btn btn-default btn-flat">Salir</a>
-                                    </div>
-                                </li>
-
-                          </ul>
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-green navbar-dark border-bottom-0">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#" role="button"><span
+                    class="navbar-toggler-icon"></span></a>
+        </li>
+    </ul>
+    <!-- Right navbar links -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
+        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown user-menu">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                    <span class="d-md-inline"><i class="fas fa-user"></i>&nbsp;
+                        <?=$_SESSION["NOMBRE"]?> <?=$_SESSION["APELLIDO"]?> </span> &nbsp;<i class="fas fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> 
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                        <a href="Salir" class="btn btn-danger btn-block float-right ">Cerrar
+                            Sesion&nbsp; <i class="fas fa-sign-out-alt"></i></a>
                     </li>
-
                 </ul>
-            </div>
-
-            
-    </nav>
-</header>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!-- /.navbar -->

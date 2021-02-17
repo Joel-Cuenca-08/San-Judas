@@ -13,7 +13,7 @@ function getUsuario2(id) {
       cache: false,
       contentType: false,
       processData: false,
-      dataType: "json",
+      dataicon: "json",
       success: function (resultado) {
         $("#editId").val(resultado["Id"]),
           $("#editPersona").val(resultado["IdPersona"]),

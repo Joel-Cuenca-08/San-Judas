@@ -21,8 +21,8 @@ class ControladorPropietario{
             $respuesta=ModeloPropietario::mdlAgregar($arrayD);
             if($respuesta==="ok"){
                 echo '<script>
-                Swal({
-                    type: "success",
+                Swal.fire({
+                    icon: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -35,8 +35,8 @@ class ControladorPropietario{
                 ';
             }else{
                 echo '<script>
-                Swal({
-                    type: "error",
+                Swal.fire({
+                    icon: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -58,8 +58,8 @@ class ControladorPropietario{
                 $respuesta = ModeloPropietario::mdlBorrar($_POST["idBorrar"]);
                 if($respuesta==="ok"){
                     echo '<script>
-                    Swal({
-                        type: "success",
+                    Swal.fire({
+                        icon: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
                         allowOutsideClick: false
@@ -73,8 +73,8 @@ class ControladorPropietario{
                 } else{
                     echo ' 
                     <script> 
-                    Swal({
-                        type: "error",
+                    Swal.fire({
+                        icon: "error",
                         title: "No se pudo borrar"
                     });   
                     </script> 

@@ -19,7 +19,7 @@ class ControladorPersonas{
                 if($respuesta == "ok"){                   
                     echo '<script>                
                     swal.fire({
-                        type: "success",
+                        icon: "success",
                         title: "Registrado",
                         text: "Se registro correctamente",
                         allowOutsideClick: false
@@ -32,7 +32,7 @@ class ControladorPersonas{
                 }else{
                     echo '<script>                
                     swal.fire({
-                        type: "error",
+                        icon: "error",
                         title: "Error",
                         text: "verifique datos ingresados",
                         allowOutsideClick: false
@@ -56,8 +56,8 @@ class ControladorPersonas{
                 $respuesta = ModeloPersonas::mdlBorrar($_POST["idBorrar"]);
                 if($respuesta==="ok"){
                     echo '<script>
-                    Swal({
-                        type: "success",
+                    Swal.fire({
+                        icon: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
                         allowOutsideClick: false
@@ -71,8 +71,8 @@ class ControladorPersonas{
                 } else{
                     echo ' 
                     <script> 
-                    Swal({
-                        type: "error",
+                    Swal.fire({
+                        icon: "error",
                         title: "No se pudo borrar"
                     });   
                     </script> 

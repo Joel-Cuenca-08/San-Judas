@@ -3,20 +3,12 @@
 class ControladorVehiculo{
 
     static public function ctrAgregar(){
-        if(isset($_POST["IngID"])){
-            
-            $arrayD = array(
-                "Id"=> $_POST["IngID"],
-                "IdPropietario"=>$_POST["IngIdPropietario"],
-                "Marca"=>$_POST["IngMarca"],
-                "Año"=>$_POST["IngAño"],
-                "Tipo"=>$_POST["IngTipo"]   
-            ); 
-            $respuesta=ModeloVehiculo::mdlCrear($arrayD);
+        if(isset($_POST["IngID"])){ 
+            $respuesta=ModeloVehiculo::mdlCrear($_POST["IngID"],$_POST["IngIdPropietario"],$_POST["IngMarca"],$_POST["IngAño"],$_POST["IngTipo"]);
             if($respuesta==="ok"){
                 echo '<script>
-                Swal({
-                    type: "success",
+                Swal.fire({
+                    icon: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -29,8 +21,8 @@ class ControladorVehiculo{
                 ';
             }else{
                 echo '<script>
-                Swal({
-                    type: "error",
+                Swal.fire({
+                    icon: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -45,8 +37,8 @@ class ControladorVehiculo{
             $respuesta = ModeloVehiculo::mdlBorrar($_POST["idBorrar"]);
             if($respuesta==="ok"){
                 echo '<script>
-                Swal({
-                    type: "success",
+                Swal.fire({
+                    icon: "success",
                     title: "Borrado",
                     text: "Se borro correctamente",
                     allowOutsideClick: false
@@ -60,8 +52,8 @@ class ControladorVehiculo{
             } else{
                 echo ' 
                 <script> 
-                Swal({
-                    type: "error",
+                Swal.fire({
+                    icon: "error",
                     title: "No se pudo borrar"
                 });   
                 </script> 

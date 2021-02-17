@@ -50,7 +50,7 @@
     <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
     <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
     <!--SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Usuario -->
     <script src="vistas/js/usuario.js"></script>
 

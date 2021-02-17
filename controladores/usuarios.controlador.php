@@ -19,8 +19,8 @@ class ControladorUsuarios{
             $respuesta=ModeloUsuarios::MdlAgregar($arrayD);
             if($respuesta==="ok"){
                 echo '<script>
-                Swal({
-                    type: "success",
+                Swal.fire({
+                    icon: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -33,8 +33,8 @@ class ControladorUsuarios{
                 ';
             }else{
                 echo '<script>
-                Swal({
-                    type: "error",
+                Swal.fire({
+                    icon: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -68,8 +68,8 @@ class ControladorUsuarios{
             } 
             if($respuesta==="ok"){
                 echo '<script>
-                Swal({
-                    type: "success",
+                Swal.fire({
+                    icon: "success",
                     title: "Registrado",
                     text: "Se registro correctamente",
                     allowOutsideClick: false
@@ -82,8 +82,8 @@ class ControladorUsuarios{
                 ';
             }else{
                 echo '<script>
-                Swal({
-                    type: "error",
+                Swal.fire({
+                    icon: "error",
                     title: "error",
                     text: "No Se registro",
                     allowOutsideClick: false
@@ -97,8 +97,8 @@ class ControladorUsuarios{
                 $respuesta = ModeloUsuarios::mdlBorrar($_POST["idBorrar"]);
                 if($respuesta==="ok"){
                     echo '<script>
-                    Swal({
-                        type: "success",
+                    Swal.fire({
+                        icon: "success",
                         title: "Borrado",
                         text: "Se borro correctamente",
                         allowOutsideClick: false
@@ -112,8 +112,8 @@ class ControladorUsuarios{
                 } else{
                     echo ' 
                     <script> 
-                    Swal({
-                        type: "error",
+                    Swal.fire({
+                        icon: "error",
                         title: "No se pudo borrar"
                     });   
                     </script> 

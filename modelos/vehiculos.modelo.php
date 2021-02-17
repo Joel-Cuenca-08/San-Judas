@@ -15,13 +15,8 @@ class ModeloVehiculo{
         $stmt -> null;
     } 
 
-    static public function mdlCrear($datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `vehiculo`(Id, IdPropietario, Marca, Año, Tipo) VALUES (:Id, :IdPropietario, :Marca, :Año, :Tipo)");
-        $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
-        $stmt -> bindParam(":IdPropietario",$datos["IdPropietario"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Marca",$datos["Marca"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Año",$datos["Año"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Tipo",$datos["Tipo"],PDO::PARAM_STR);  
+    static public function mdlCrear($d1,$d2,$d3,$d4,$d5){
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `vehiculo`(Id, IdPropietario, Marca, Año, Tipo) VALUES ('$d1', $d2, '$d3', $d4, '$d5')");
         if($stmt->execute()){
             return "ok";            
         }
@@ -44,8 +39,7 @@ class ModeloVehiculo{
 
 
     static public function mdlBorrar($id){
-        $stmt = Conexion::conectar()->prepare("DELETE FROM vehiculo WHERE Id=:Id"); 
-        $stmt -> bindParam(":Id",$id,PDO::PARAM_STR);      
+        $stmt = Conexion::conectar()->prepare("DELETE FROM `vehiculo` WHERE Id='$id' "); 
         if($stmt->execute()){
             return "ok";            
         }

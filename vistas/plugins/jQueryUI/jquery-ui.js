@@ -3121,7 +3121,7 @@ $.widget( "ui.autocomplete", {
 				that.xhr = $.ajax({
 					url: url,
 					data: request,
-					dataType: "json",
+					dataicon: "json",
 					success: function( data ) {
 						response( data );
 					},
@@ -8543,7 +8543,7 @@ var dialog = $.widget( "ui.dialog", {
 				{ click: props, text: name } :
 				props;
 			// Default to a non-submitting button
-			props = $.extend( { type: "button" }, props );
+			props = $.extend( { icon: "button" }, props );
 			// Change the context for the click callback to be the main element
 			click = props.click;
 			props.click = function() {
@@ -9445,15 +9445,15 @@ $.effects = {
 			props: {
 				red: {
 					idx: 0,
-					type: "byte"
+					icon: "byte"
 				},
 				green: {
 					idx: 1,
-					type: "byte"
+					icon: "byte"
 				},
 				blue: {
 					idx: 2,
-					type: "byte"
+					icon: "byte"
 				}
 			}
 		},
@@ -9462,15 +9462,15 @@ $.effects = {
 			props: {
 				hue: {
 					idx: 0,
-					type: "degrees"
+					icon: "degrees"
 				},
 				saturation: {
 					idx: 1,
-					type: "percent"
+					icon: "percent"
 				},
 				lightness: {
 					idx: 2,
-					type: "percent"
+					icon: "percent"
 				}
 			}
 		}
@@ -9509,7 +9509,7 @@ each( spaces, function( spaceName, space ) {
 	space.cache = "_" + spaceName;
 	space.props.alpha = {
 		idx: 3,
-		type: "percent",
+		icon: "percent",
 		def: 1
 	};
 });

@@ -60,11 +60,9 @@ class ModeloPersonas{
 
     static public function mdlEditar($datos){
         
-        $stmt = Conexion::conectar()->prepare("UPDATE persona SET Id=:Id, TipoDocumento=:TipoDocumento,
+        $stmt = Conexion::conectar()->prepare("UPDATE persona SET TipoDocumento=:TipoDocumento,
         Nacionalidad=:Nacionalidad, Nombre=:Nombre, ApellidoPa=:ApellidoPa, ApellidoMa=:ApellidoMa, Telefono=:Telefono,
         Correo=:Correo, Direccion=:Direccion WHERE Id=:Id");
-        
-        
         $stmt -> bindParam(":TipoDocumento",$datos["TipoDocumento"],PDO::PARAM_STR);
         $stmt -> bindParam(":Nacionalidad",$datos["Nacionalidad"],PDO::PARAM_STR);
         $stmt -> bindParam(":Nombre",$datos["Nombre"],PDO::PARAM_STR);

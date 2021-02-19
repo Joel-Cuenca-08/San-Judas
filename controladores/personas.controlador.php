@@ -94,16 +94,14 @@ class ControladorPersonas{
                            "Correo" => $_POST["editCorreo"],
                            "Direccion" => $_POST["editDireccion"]); 
             
-            $respuesta=ModeloPersonas::mdlEditar($datos); 
-            var_dump($datos);
-            die();
+            $respuesta=ModeloPersonas::mdlEditar($datos);  
 
             if($respuesta==="ok"){
                 echo '<script>
                 Swal.fire({
                     icon: "success",
-                    title: "Registrado",
-                    text: "Se registro correctamente",
+                    title: "Actualizado",
+                    text: "Se actualizado correctamente",
                     allowOutsideClick: false
                   }).then((result)=>{
                       if(result.value){

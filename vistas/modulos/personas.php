@@ -45,8 +45,7 @@
                             <th>ApellidoMa</th>
                             <th>Telefono</th>
                             <th>Correo</th>
-                            <th>Dirección</th>
-                            <th>Fecha</th>
+                            <th>Dirección</th> 
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -65,12 +64,11 @@
                             <td><?=$Per["ApellidoMa"]?></td>
                             <td><?=$Per["Telefono"]?></td>
                             <td><?=$Per["Correo"]?></td>
-                            <td><?=$Per["Direccion"]?></td>
-                            <td><?=$Per["Creado"]?></td>
+                            <td><?=$Per["Direccion"]?></td> 
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarPer" 
-                                    onclick="getPersona(<?=$Per['Id']?>,'<?=$Per['Nombre']?>','<?=$Per['ApellidoPa']?>','<?=$Per['ApellidoMa']?>',
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarPer"
+                                        onclick="getPersona(<?=$Per['Id']?>,'<?=$Per['Nombre']?>','<?=$Per['ApellidoPa']?>','<?=$Per['ApellidoMa']?>',
                                     '<?=$Per['Telefono']?>','<?=$Per['TipoDocumento']?>','<?=$Per['Nacionalidad']?>','<?=$Per['Correo']?>','<?=$Per['Direccion']?>')"><i
                                             class="fas fa-pencil-alt"></i></button>
 
@@ -350,14 +348,13 @@
 
 
                         <div class="row">
-                            
+
                             <!--ENTRADA PARA SELECCIONAR DOCUMENTO-->
                             <div class="col-md-4">
                                 <label>Tipo de Documento <span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
 
-                                    <select class="form-control input-lg" name="editTipo" id="editTipo" required>
-                                        <option>Seleccione Tipo</option>
+                                    <select class="form-control input-lg" name="editTipo" id="editTipo" readonly>
                                         <option>DNI</option>
                                         <option>Carnet de Extranjeria</option>
                                     </select>
@@ -368,7 +365,7 @@
 
                             <!--ENTRADA PARA INGRESAR NACIONALIDAD-->
                             <div class="col-md-4">
-                                <label>Ingrese Nacionalidad<span class="text-danger">*</span></label>
+                                <label>Nacionalidad<span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-passport"></i></span>
@@ -383,14 +380,14 @@
                             <!--ENTRADA PARA INGRESAR DOCUMENTO-->
 
                             <div class="col-md-4">
-                                <label>Ingrese Nro de Documento <span class="text-danger">*</span></label>
+                                <label>Nro de Documento <span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
 
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                         <input type="text" class="form-control input-lg" name="editId" id="editId"
                                             pattern="[0-9]{7,10}" maxlength="12" placeholder="Ingresar Documento"
-                                            required>
+                                            readonly>
                                     </div>
                                 </div>
                             </div>
@@ -402,7 +399,7 @@
 
                             <!--ENTRADA PARA INGRESAR NOMBRE-->
                             <div class="col-md-4">
-                                <label>Ingrese Nombre <span class="text-danger">*</span></label>
+                                <label>Nombre <span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
 
@@ -418,7 +415,7 @@
 
                             <!--ENTRADA PARA INGRESAR APELLIDO PATERNO-->
                             <div class="col-md-4">
-                                <label>Ingrese Apellido Paterno <span class="text-danger">*</span></label>
+                                <label>Apellido Paterno <span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -430,7 +427,7 @@
 
 
                             <div class="col-md-4">
-                                <label>Ingrese Apellido Materno <span class="text-danger">*</span></label>
+                                <label>Apellido Materno <span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
 
                                     <div class="input-group-prepend">
@@ -448,7 +445,7 @@
 
                             <!--ENTRADA PARA INGRESAR CELULAR-->
                             <div class="col-md-4">
-                                <label>Ingrese telefono o celular <span class="text-danger">*</span></label>
+                                <label>telefono o celular <span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
@@ -465,11 +462,11 @@
 
                             <!--ENTRADA PARA INGRESAR CORREO-->
                             <div class="col-md-4">
-                                <label>Ingrese Correo<span class="text-danger">*</span></label>
+                                <label>Correo<span class="text-danger">*</span></label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-envelope-open-text"></i></span>
-                                        <input type="text" class="form-control input-lg" name="editCorreo"
+                                        <input type="email" class="form-control input-lg" name="editCorreo"
                                             id="editCorreo" placeholder="Ingresar Correo" required>
                                     </div>
 
@@ -479,7 +476,7 @@
 
                             <!--ENTRADA PARA INGRESAR DIRECCION-->
                             <div class="col-md-4">
-                                <label>Ingrese Direccion</label>
+                                <label>Direccion</label>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-city"></i></span>

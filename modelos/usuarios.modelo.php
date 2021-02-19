@@ -66,6 +66,8 @@ class ModeloUsuarios{
         $stmt -> bindParam(":estado",$datos["estado"],PDO::PARAM_STR);
         $stmt -> bindParam(":password",$datos["password"],PDO::PARAM_STR);
         $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
+
+        
         if($stmt->execute()){
             return "ok";            
         }

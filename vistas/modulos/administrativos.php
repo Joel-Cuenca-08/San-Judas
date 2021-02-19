@@ -2,19 +2,20 @@
 
     <section class="content-header">
 
-        <h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    Gestionar Personal Administrativo
+                </h1>
+            </div>
 
-            Gestionar Personal Administrativo
-
-
-        </h1>
-
-        <ol class="breadcrumb">
-
-            <li><a href="inicio"><i class="fas fa-home"></i> Inicio</a></li>
-            <li class="active">Gestionar Personal Administrativo</li>
-
-        </ol>
+            <div class="col-md-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="breadcrumb-item active">Gestionar Personal Administrativo</li>
+                </ol>
+            </div>
+        </div>
 
     </section>
 
@@ -26,7 +27,7 @@
 
             <div class="card-header with-border">
 
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalAgregarAdministrativo">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAdministrativo">
                     Agregar Administrativo
                 </button>
 
@@ -112,7 +113,7 @@
             <form role="formulario" method="post">
 
                 <!------------------------CABEZA DEL MODAL----------------->
-                <div class="modal-header" style="background:#3c8dbc; color:white"> 
+                <div class="modal-header" style="background:#3c8dbc; color:white">
                     <h4 class="modal-title">Agregar Administrativo</h4>
 
                     <button type="button" class="close  bg-danger" data-dismiss="modal">&times;</button>
@@ -126,7 +127,8 @@
                     <p><span class="text-danger">* Casilla Obligatoria</span>
                     <div class="form-group ">
                         <label>Seleccione una Persona <span class="text-danger">*</span></label>
-                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
                             <select class="form-control input-lg" name="ingIdPersona" required>
                                 <option value="">Seleccione</option>
                                 <?php 
@@ -145,7 +147,8 @@
 
                     <div class="form-group ">
                         <label>Seleccione una Sede <span class="text-danger">*</span></label>
-                        <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                             <select class="form-control input-lg" name="ingIdSede" required>
                                 <option value="">Seleccione</option>
                                 <?php 
@@ -165,8 +168,8 @@
 
                         <label>Ingrese Cargo <span class="text-danger">*</span></label>
 
-                        <div class="input-group">
-                            <span class="input-group-addon "><i class="fa fa-users"></i></span>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text "><i class="fa fa-users"></i></span>
 
                             <select class="form-control input-lg" name="IngCargo">
                                 <option value="">Seleccionar Cargo</option>
@@ -184,9 +187,9 @@
                     <div class="form-group">
 
                         <label>Ingrese Funcion</label>
-                        <div class="input-group">
+                        <div class="input-group-prepend">
 
-                            <span class="input-group-addon"><i class="fas fa-font"></i></span>
+                            <span class="input-group-text"><i class="fas fa-font"></i></span>
                             <input type="text" class="form-control input-lg" name="IngFuncion"
                                 placeholder="Detallar la funcion">
 

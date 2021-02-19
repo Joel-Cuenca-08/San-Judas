@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="main-header navbar navbar-expand navbar-green navbar-dark border-bottom-0">
+<nav class="main-header navbar navbar-expand navbar-dark border-bottom-0">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -22,7 +22,7 @@
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right"> 
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="Salir" class="btn btn-danger btn-block float-right ">Cerrar
+                        <a href="salir" class="btn btn-danger btn-block float-right ">Cerrar
                             Sesion&nbsp; <i class="fas fa-sign-out-alt"></i></a>
                     </li>
                 </ul>

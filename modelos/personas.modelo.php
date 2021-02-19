@@ -56,4 +56,35 @@ class ModeloPersonas{
         $stmt->close();
         $stmt=null;
     }
+
+
+    static public function mdlEditar($datos){
+        
+        $stmt = Conexion::conectar()->prepare("UPDATE persona SET Id=:Id, TipoDocumento=:TipoDocumento,
+        Nacionalidad=:Nacionalidad, Nombre=:Nombre, ApellidoPa=:ApellidoPa, ApellidoMa=:ApellidoMa, Telefono=:Telefono,
+        Correo=:Correo, Direccion=:Direccion WHERE Id=:Id");
+        
+        
+        $stmt -> bindParam(":TipoDocumento",$datos["TipoDocumento"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Nacionalidad",$datos["Nacionalidad"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Nombre",$datos["Nombre"],PDO::PARAM_STR);
+        $stmt -> bindParam(":ApellidoPa",$datos["ApellidoPa"],PDO::PARAM_STR);
+        $stmt -> bindParam(":ApellidoMa",$datos["ApellidoMa"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Telefono",$datos["Telefono"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Correo",$datos["Correo"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Direccion",$datos["Direccion"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
+
+        
+        if($stmt->execute()){
+            return "ok";            
+        }
+        else{
+            return "error";
+        }
+        $stmt->close();
+        $stmt=null;
+
+
+    }
 }

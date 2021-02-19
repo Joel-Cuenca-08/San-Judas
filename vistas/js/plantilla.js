@@ -57,6 +57,8 @@ $(document).ready(function () {
                 messageTop: "Informacion de San judas tadeo",
                 title: "Reporte",
             },
+            
         ],
+        
     });
 });

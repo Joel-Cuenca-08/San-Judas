@@ -1,103 +1,106 @@
 <div class="content-wrapper">
-    
+
     <section class="content-header">
 
-      <h1>
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    Administrar Propietarios
+                </h1>
+            </div>
 
-        Administrar Propietarios
-        
+            <div class="col-md-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="breadcrumb-item active">Administrar Propietarios</li>
+                </ol>
+            </div>
+        </div>
 
-      </h1>
-
-      <ol class="breadcrumb">
-
-        <li><a href="#"><i class="fas fa-home"></i>Inicio</a></li>
-        <li class="active">Administrar Propietarios</li>
-        
-      </ol>
-       
     </section>
 
     <!-- Main content -->
     <section class="content">
 
-      <!-- Default box -->
-      <div class="card">
-          <div class="card-header with-border">
-              <button class="btn btn-success" data-toggle="modal" data-target="#modalAgregarPropietario">
-                Registrar Propietarios
-              </button>
-          </div>
+        <!-- Default box -->
+        <div class="card">
+            <div class="card-header with-border">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarPropietario">
+                    Registrar Propietarios
+                </button>
+            </div>
 
-          <div class="card-body">
+            <div class="card-body">
 
-              <table class="table table-bordered table-striped dt-responsive tablas">   
+                <table class="table table-bordered table-striped dt-responsive tablas" style="width:100%">
 
-                <thead>
-                  <tr>
-                      <th  style="width:10px">#</th>
-                      <th>Persona</th>  
-                      <th>Nro Documento</th>
-                      <th>Nro Tarjeta de Propiedad</th>
-                      <th>RUC</th>
-                      <th>Telefono</th>
-                      <th>Correo</th>
-                      <th>Telefono de Emergencia</th>
-                      <th>Estado</th>
-                      <th>Acciones</th>
-                  </tr>
-                </thead>
+                    <thead>
+                        <tr>
+                            <th style="width:10px">#</th>
+                            <th>Persona</th>
+                            <th>Nro Documento</th>
+                            <th>Nro Tarjeta de Propiedad</th>
+                            <th>RUC</th>
+                            <th>Telefono</th>
+                            <th>Correo</th>
+                            <th>Telefono de Emergencia</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
 
-                <tbody>
+                    <tbody>
 
-                    <?php 
+                        <?php 
                         $ListaPro=ControladorPropietario::ctrListar();
                         foreach($ListaPro as $Key => $Pro){
                     ?>
-                  <tr>
-                      <td><?=$Pro["Id"]?></td>
-                      <td><?=$Pro["Nombre"]?> <?=$Pro["ApellidoPa"]?> <?=$Pro["ApellidoMa"]?></td>
-                      <td><?=$Pro["IdPersona"]?></td>
-                      <td><?=$Pro["TarjetaPropiedad"]?></td>
-                      <td><?=$Pro["Ruc"]?></td>
-                      <td><?=$Pro["Telefono"]?></td>
-                      <td><?=$Pro["Correo"]?></td>
-                      <td><?=$Pro["TelEmergencia"]?></td>
-                      <td>
-                        <?php
+                        <tr>
+                            <td><?=($Key+1)?></td>
+                            <td><?=$Pro["Nombre"]?> <?=$Pro["ApellidoPa"]?> <?=$Pro["ApellidoMa"]?></td>
+                            <td><?=$Pro["IdPersona"]?></td>
+                            <td><?=$Pro["TarjetaPropiedad"]?></td>
+                            <td><?=$Pro["Ruc"]?></td>
+                            <td><?=$Pro["Telefono"]?></td>
+                            <td><?=$Pro["Correo"]?></td>
+                            <td><?=$Pro["TelEmergencia"]?></td>
+                            <td>
+                                <?php
                             if($Pro["Estado"]==="1"){
                                 echo '<button class="btn btn-success btn-xs">Activo</button>';
                             }else{
                                 echo '<button class="btn btn-danger btn-xs">Inactivo</button>';
                             }
                         ?>
-                      </td>
-                      <td>
-                        <div class="btn-group">
-                            <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarP"
+                                    onclick="getPropietario(<?=$Pro['Id']?>,'<?=$Pro['IdPersona']?>','<?=$Pro['TarjetaPropiedad']?>','<?=$Pro['Ruc']?>','<?=$Pro['TelEmergencia']?>','<?=$Pro['Estado']?>')">
+                                    <i class="fas fa-pencil-alt"></i></button>
 
-                            <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Pro['Id']?>)"
+                                    <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Pro['Id']?>)"
                                         data-toggle="modal" data-target="#modalBorrar"><i
                                             class="fa fa-times"></i></button>
-                        </div>
-                      </td>
-                  </tr>
-                  <?php } ?>
-                </tbody>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
 
-              </table>
+                </table>
 
 
-          </div>
-        
-      </div>
-    
+            </div>
+
+        </div>
+
 
     </section>
 
-  </div>
- 
-   <!--=====================================================
+</div>
+
+<!--=====================================================
       Modal Agregar Propietarios
 =====================================================---->
 
@@ -105,123 +108,113 @@
 <!-- Modal -->
 <div class="modal fade" id="modalAgregarPropietario" role="dialog">
     <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
 
-        <form role="formulario" method="post">
+        <!-- Modal content-->
+        <div class="modal-content">
 
-          <!------------------------CABEZA DEL MODAL----------------->
-          <div class="modal-header" style="background:#3c8dbc; color:white">
+            <form role="formulario" method="post">
 
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Agregar Propietario</h4>
-            
+                <!------------------------CABEZA DEL MODAL----------------->
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <h4 class="modal-title">Agregar Propietario</h4>
+                    <button type="button" class="close bg-danger " data-dismiss="modal">&times;</button>
 
-          </div>
-        
-          <!-----------------------CUERPO DEL MODAL------------------>
-          <div class="modal-body">
-              
-                 <!--ENTRADA PARA INGRESAR PERSONA-->
-                 <div class="form-group ">
 
-                    <label>Seleccione una Persona <span class="text-danger">*</span></label>
-                    <div class="input-group">
 
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                          <select class="form-control input-lg" name="ingIdPersona" required>
-                              <option value="">Seleccione</option>
-                              <?php 
+                </div>
+
+                <!-----------------------CUERPO DEL MODAL------------------>
+                <div class="modal-body">
+
+                    <!--ENTRADA PARA INGRESAR PERSONA-->
+                    <div class="form-group ">
+
+                        <label>Seleccione una Persona <span class="text-danger">*</span></label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <select class="form-control input-lg" name="ingIdPersona" required>
+                                <option value="">Seleccione</option>
+                                <?php 
                               $PersonaLista=ControladorPropietario::ctrListarPersonaNoInscrita(); 
                               foreach($PersonaLista as $Key => $Per){
                               ?>
-                              <option value="<?=$Per["Id"]?>"><?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
-                                  <?=$Per["Nombre"]?></option>
+                                <option value="<?=$Per["Id"]?>"><?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
+                                    <?=$Per["Nombre"]?></option>
 
-                              <?php } ?>
-                          </select>
-                    </div>
+                                <?php } ?>
+                            </select>
+                        </div>
 
-
-                  </div>
-
-                  <!--ENTRADA PARA INGRESAR LA TARJETA DE PROPIEDAD-->
-                  <div class="form-group">
-
-                    <label>Ingrese Tarjeta de Propiedad <span class="text-danger">*</span></label>
-                    <div class="input-group">
-
-                        <span class="input-group-addon"><i class="far fa-credit-card"></i></span>
-                        <input type="text" class="form-control input-lg" name="ingTarjetaPro"
-                            placeholder="Ingresar Tarjeta de Propiedad" required>
 
                     </div>
 
-                  </div>
+                    <!--ENTRADA PARA INGRESAR LA TARJETA DE PROPIEDAD-->
+                    <div class="form-group">
 
-                  <!--ENTRADA PARA INGRESAR RUC-->
+                        <label>Ingrese Tarjeta de Propiedad <span class="text-danger">*</span></label>
+                        <div class="input-group-prepend">
 
-                  <div class="form-group">
+                            <span class="input-group-text"><i class="far fa-credit-card"></i></span>
+                            <input type="text" class="form-control input-lg" name="ingTarjetaPro"
+                                placeholder="Ingresar Tarjeta de Propiedad" required>
 
-                    <label>Ingrese Ruc</label>
-                    <div class="input-group">
-
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="11"  name="ingRuc"
-                            placeholder="Ingresar Nro de Ruc">
-
-                    </div>
-
-                  </div>
-
-                  <!--ENTRADA PARA INGRESAR TELEFONO DE EMERGENCIA-->
-
-                  <div class="form-group">
-
-                    <label>Ingrese Telefono o Celular de Emergencia</label>
-                    <div class="input-group">
-
-                            <span class="input-group-addon"><i class="fas fa-phone-alt"></i></span>
-                            <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="9"  name="ingTel"
-                            placeholder="Ingresar Nro de Telefeno">
+                        </div>
 
                     </div>
 
-                  </div>
-              
-          </div>
+                    <!--ENTRADA PARA INGRESAR RUC-->
 
-           <!-------------------PIE DEL MODAL----------------->
-          <div class="modal-footer">
+                    <div class="form-group">
 
-            <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                        <label>Ingrese Ruc</label>
+                        <div class="input-group-prepend">
 
-          </div>
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="11"
+                                name="ingRuc" placeholder="Ingresar Nro de Ruc">
 
-          <?php 
+                        </div>
+
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR TELEFONO DE EMERGENCIA-->
+
+                    <div class="form-group">
+
+                        <label>Ingrese Telefono o Celular de Emergencia</label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                            <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="9"
+                                name="ingTel" placeholder="Ingresar Nro de Telefeno">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-------------------PIE DEL MODAL----------------->
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+                </div>
+
+                <?php 
               $obj=new ControladorPropietario();
               $obj->ctrAgrear();
           ?>
 
-        </form>
+            </form>
 
-      </div>
-      
+        </div>
+
     </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- Modal borrar-->
@@ -252,4 +245,139 @@
             </div>
         </form>
     </div>
+</div>
+
+
+
+
+
+<!--=====================================================
+      Modal Editar Propietarios
+=====================================================---->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalEditarP" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <form role="formulario" method="post">
+
+                <!------------------------CABEZA DEL MODAL----------------->
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <h4 class="modal-title">Editar Propietario</h4>
+                    <button type="button" class="close bg-danger " data-dismiss="modal">&times;</button>
+
+                </div>
+
+                <!-----------------------CUERPO DEL MODAL------------------>
+                <div class="modal-body">
+
+                    <!--ENTRADA PARA INGRESAR PERSONA-->
+                    <div class="form-group ">
+                      <input type="hidden" id="editId" name="editId" required>
+                        <label>Seleccione una Persona <span class="text-danger">*</span></label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <select class="form-control input-lg" id="editIdPersona" disabled>
+                                <option value="">Seleccione</option>
+                                <?php 
+                             
+                              foreach($ListaPro as $Key => $Pro){
+                              ?>
+                                <option value="<?=$Pro["IdPersona"]?>"><?=$Pro["Nombre"]?> <?=$Pro["ApellidoPa"]?> 
+                                <?=$Pro["ApellidoMa"]?></option>
+
+                                <?php } ?>
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR LA TARJETA DE PROPIEDAD-->
+                    <div class="form-group">
+
+                        <label>Ingrese Tarjeta de Propiedad <span class="text-danger">*</span></label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="far fa-credit-card"></i></span>
+                            <input type="text" class="form-control input-lg" name="editTarjeta" id="editTarjeta"
+                                placeholder="Ingresar Tarjeta de Propiedad" required>
+
+                        </div>
+
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR RUC-->
+
+                    <div class="form-group">
+
+                        <label>Ingrese Ruc</label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="11"
+                                name="editRuc" id="editRuc" placeholder="Ingresar Nro de Ruc">
+
+                        </div>
+
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR TELEFONO DE EMERGENCIA-->
+
+                    <div class="form-group">
+
+                        <label>Ingrese Telefono o Celular de Emergencia</label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                            <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="9"
+                                name="editTel" id="editTel" placeholder="Ingresar Nro de Telefeno">
+
+                        </div>
+
+                    </div>
+
+
+                    <!--ENTRADA PARA INGRESAR ESTADO-->
+                    <div class="form-group">
+
+                        <label> Estado <span class="text-danger">*</span></label>
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+
+                            <select class="form-control input-lg" name="editEstado" id="editEstado" required>
+                                <option value="1">Activo</option>
+                                <option value="0">Desactivo</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-------------------PIE DEL MODAL----------------->
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+                </div>
+
+                <?php 
+              $obj=new ControladorPropietario();
+              $obj->ctrEditar();
+          ?>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>

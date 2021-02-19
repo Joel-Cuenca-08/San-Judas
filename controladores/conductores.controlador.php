@@ -82,5 +82,44 @@ class ControladorConductor{
         $Lista = ModeloConductor::MdlListarPersonaNoInscrita();
         return $Lista;
     } 
+
+
+    /**Editar Condcutor**/
+    static public function ctrEditar(){
+        if(isset($_POST["editId"])){
+            
+            $arrayD = array(
+                "Id"=>$_POST["editId"], 
+                "NroLicencia"=>$_POST["editLicencia"],
+                "CatLicencia"=>$_POST["editCatLicencia"],
+                "Estado"=>$_POST["editEstado"]  
+            );
+            $respuesta=ModeloConductor::mdlEditar($arrayD);
+            if($respuesta==="ok"){
+                echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Registrado",
+                    text: "Se registro correctamente",
+                    allowOutsideClick: false
+                  }).then((result)=>{
+                      if(result.value){
+                        window.location="conductores"; 
+                      }
+                    });
+                </script>
+                ';
+            }else{
+                echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "error",
+                    text: "No Se registro",
+                    allowOutsideClick: false
+                  });
+                </script>';
+            }
+        }
+    }
 }
 

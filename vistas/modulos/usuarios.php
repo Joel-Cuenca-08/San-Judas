@@ -1,26 +1,35 @@
 <div class="content-wrapper">
     <section class="content-header">
-        <h1>
-            Administrar Usuarios
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="inicio"><i class="fas fa-home"></i> Inicio</a></li>
-            <li class="active">Administrar Usuarios</li>
-        </ol>
+
+        <div class="row">
+            <div class="col-md-6">
+                <h1>
+                    Administrar Usuarios
+                </h1>
+            </div>
+
+            <div class="col-md-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="inicio"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li class="breadcrumb-item active">Administrar Usuarios</li>
+                </ol>
+            </div>
+        </div>
+
     </section>
     <section class="content">
         <div class="card">
             <div class="card-header with-border">
-                <button class="btn btn-success" data-toggle="modal" data-target="#modalAgregarUsuario">
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarUsuario">
                     Agregar Usuario
                 </button>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped dt-responsive tablas">
+                <table class="table table-bordered table-striped dt-responsive tablas" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width:10px">#</th>
-                            <th>DNi</th>
+                            <th>DNI</th>
                             <th>Persona</th>
                             <th>Usuario</th>
                             <th>Contraseña</th>
@@ -39,10 +48,10 @@
                             <td><?=$Usu["IdPersona"]?></td>
                             <td><?=$Usu["Nombre"]?> <?=$Usu["ApellidoPa"]?> <?=$Usu["ApellidoMa"]?></td>
                             <td><?=$Usu["usuario"]?></td>
-                            <td><?=$Usu["password"]?></td>  
+                            <td><?=$Usu["password"]?></td>
                             <td><?=$Usu["perfil"]?></td>
                             <td>
-                            <?php
+                                <?php
                             if($Usu["estado"]==="1"){
                                 echo '<button class="btn btn-success btn-xs">Activo</button>';
                             }else{
@@ -85,12 +94,9 @@
             <form role="form" method="post">
 
                 <!------------------------CABEZA DEL MODAL----------------->
-                <div class="modal-header" style="background:#449d44; color:white">
-
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Agregar Usaurio</h4>
-
-
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <h4 class="modal-title">Agregar Usuario</h4>
+                    <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
                 </div>
 
                 <!-----------------------CUERPO DEL MODAL------------------>
@@ -101,9 +107,9 @@
                     <div class="form-group ">
 
                         <label>Seleccione una Persona <span class="text-danger">*</span></label>
-                        <div class="input-group">
+                        <div class="input-group-prepend">
 
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
                             <select class="form-control input-lg" name="ingIdPersona" required>
                                 <option value="">Seleccione</option>
                                 <?php 
@@ -128,9 +134,9 @@
 
                         <label>Ingrese Usuario <span class="text-danger">*</span></label>
 
-                        <div class="input-group">
+                        <div class="input-group-prepend">
 
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
                             <input type="text" class="form-control input-lg" name="ingUsuario"
                                 placeholder="Ingresar Usuario" required>
 
@@ -145,13 +151,13 @@
 
                         <label>Ingrese Contraseña <span class="text-danger">*</span></label>
 
-                        <div class="input-group">
 
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
                             <input type="password" class="form-control input-lg" name="ingPass"
                                 placeholder="Ingresar Contraseña" required>
-
                         </div>
+
 
                     </div>
 
@@ -163,8 +169,8 @@
 
                         <label>Ingrese Perfil <span class="text-danger">*</span></label>
 
-                        <div class="input-group">
-                            <span class="input-group-addon "><i class="fa fa-users"></i></span>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text "><i class="fa fa-users"></i></span>
 
                             <select class="form-control input-lg" name="ingPerfil">
                                 <option value="">Seleccionar Perfil</option>
@@ -197,6 +203,11 @@
 
 </div>
 
+<!--=====================================================
+      Modal Editar Usuario
+=====================================================---->
+
+
 <!-- Modal -->
 <div class="modal fade" id="modalEditar" role="dialog">
     <div class="modal-dialog">
@@ -207,10 +218,10 @@
             <form role="form" method="post">
 
                 <!------------------------CABEZA DEL MODAL----------------->
-                <div class="modal-header" style="background:#449d44; color:white">
-
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Editar Usaurio</h4>
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                <h4 class="modal-title">Editar Usuario</h4>
+                    <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
+                    
 
 
                 </div>
@@ -219,17 +230,17 @@
                 <div class="modal-body">
                     <p><span class="text-danger">* Casilla Obligatoria</span>
 
-                        <!--ENTRADA PARA INGRESAR PERSONA-->
+                        <!--ENTRADA PARA EDITAR PERSONA-->
                     <div class="form-group ">
 
 
                         <input type="hidden" id="editId" name="editId" required>
 
                         <label>Persona <span class="text-danger">*</span></label>
-                        <div class="input-group">
+                        <div class="input-group-prepend">
 
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <select class="form-control input-lg" id="editPersona">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <select class="form-control input-lg" id="editPersona" disabled>
                                 <?php  
                                 foreach($ListaUsuario as $Key => $Per){
                                 ?>
@@ -244,7 +255,7 @@
 
                     </div>
 
-                    <!--ENTRADA PARA INGRESAR USUARIO-->
+                    <!--ENTRADA PARA EDITAR USUARIO-->
 
                     <div class="form-group">
 
@@ -252,9 +263,9 @@
 
                         <label> Usuario <span class="text-danger">*</span></label>
 
-                        <div class="input-group">
+                        <div class="input-group-prepend">
 
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
                             <input type="text" class="form-control input-lg" id="editUsuario" name="editUsuario"
                                 required>
 
@@ -263,23 +274,23 @@
                     </div>
 
 
-                    <!--ENTRADA PARA INGRESAR CONTRASEÑA-->
+                    <!--ENTRADA PARA EDITAR CONTRASEÑA-->
 
-                    <div class="form-group"> 
-                        <label> Contraseña <span class="text-danger">(opcional)</span></label> 
-                        <div class="input-group"> 
-                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            <input type="password" class="form-control input-lg" id="editPass" name="editPass"> 
-                        </div> 
+                    <div class="form-group">
+                        <label> Contraseña <span class="text-danger">(opcional)</span></label>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                            <input type="password" class="form-control input-lg" id="editPass" name="editPass">
+                        </div>
                     </div>
- 
-                    <!--ENTRADA PARA INGRESAR PERFIL-->
+
+                    <!--ENTRADA PARA EDITAR PERFIL-->
                     <div class="form-group">
 
                         <label> Perfil <span class="text-danger">*</span></label>
 
-                        <div class="input-group">
-                            <span class="input-group-addon "><i class="fa fa-users"></i></span>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text "><i class="fas fa-id-badge"></i></span>
 
                             <select class="form-control input-lg" name="editPerfil" id="editPerfil" required>
                                 <option>Administrador</option>
@@ -289,13 +300,13 @@
                         </div>
 
                     </div>
-                    <!--ENTRADA PARA INGRESAR PERFIL-->
+                    <!--ENTRADA PARA EDITAR ESTADO-->
                     <div class="form-group">
 
                         <label> Estado <span class="text-danger">*</span></label>
 
-                        <div class="input-group">
-                            <span class="input-group-addon "><i class="fa fa-users"></i></span>
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
 
                             <select class="form-control input-lg" name="editEstado" id="editEstado" required>
                                 <option value="1">Activo</option>
@@ -315,7 +326,7 @@
                     <?php  
               ?>
                 </div>
-                    <?php
+                <?php
                     $obj = new ControladorUsuarios();
                     $obj ->ctrEditar(); 
                     ?>

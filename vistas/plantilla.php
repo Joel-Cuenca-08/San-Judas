@@ -68,6 +68,8 @@
     <script src="vistas/js/usuario.js"></script>
     <script src="vistas/js/persona.js"></script>
     <script src="vistas/js/plantilla.js"></script>
+    <script src="vistas/js/propietario.js"></script>
+    <script src="vistas/js/conductor.js"></script>
 
 </head>
 

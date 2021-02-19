@@ -83,6 +83,46 @@ class ControladorPropietario{
         }
     }
 
+    /**Editar**/
+
+    static public function ctrEditar(){
+        if(isset($_POST["editId"])){
+
+            $arrayD = array(
+                "Id"=>$_POST["editId"], 
+                "TarjetaPropiedad"=>$_POST["editTarjeta"],
+                "Ruc"=>$_POST["editRuc"],
+                "TelEmergencia"=>$_POST["editTel"],
+                "Estado"=>$_POST["editEstado"]  
+            );        
+            $respuesta=ModeloPropietario::mdlEditar($arrayD);  
+            if($respuesta==="ok"){
+                echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Registrado",
+                    text: "Se registro correctamente",
+                    allowOutsideClick: false
+                  }).then((result)=>{
+                      if(result.value){
+                        window.location="propietarios"; 
+                      }
+                    });
+                </script>
+                ';
+            }else{
+                echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "error",
+                    text: "No Se registro",
+                    allowOutsideClick: false
+                  });
+                </script>';
+            }
+        }
+    }
+
 
 
 

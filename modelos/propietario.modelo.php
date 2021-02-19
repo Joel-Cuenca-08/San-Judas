@@ -43,8 +43,8 @@ class ModeloPropietario{
 
     /**Borrar Propietario**/
     static public function mdlBorrar($id){
-        $stmt = Conexion::conectar()->prepare("DELETE FROM `propietario` WHERE Id=:Id"); 
-        $stmt -> bindParam(":Id",$id,PDO::PARAM_STR);      
+        $stmt = Conexion::conectar()->prepare("DELETE FROM `propietario` WHERE Id='$id'"); 
+            
         if($stmt->execute()){
             return "ok";            
         }
@@ -54,5 +54,27 @@ class ModeloPropietario{
         $stmt->close();
         $stmt=null;
     }
+
+
+    /**Editar**/
+    static public function mdlEditar($datos){
+        $stmt = Conexion::conectar()->prepare("UPDATE `propietario` SET TarjetaPropiedad=:TarjetaPropiedad, Ruc=:Ruc, TelEmergencia=:TelEmergencia, Estado=:Estado WHERE Id=:Id");  
+        $stmt -> bindParam(":TarjetaPropiedad",$datos["TarjetaPropiedad"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Ruc",$datos["Ruc"],PDO::PARAM_STR);
+        $stmt -> bindParam(":TelEmergencia",$datos["TelEmergencia"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Estado",$datos["Estado"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
+
+        if($stmt->execute()){
+            return "ok";            
+        }
+        else{
+            return "error";
+        }
+        $stmt->close();
+        $stmt=null;
+    }
+
+    
     
 }

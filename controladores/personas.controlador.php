@@ -82,7 +82,47 @@ class ControladorPersonas{
     }
 
     static public function ctrEditar(){
-        
+        if(isset($_POST["editId"])){
+            
+            $datos = array("Id" => $_POST["editId"],
+                           "Nombre" => $_POST["editNombre"],
+                           "ApellidoPa" => $_POST["editApellidoPa"],
+                           "ApellidoMa" => $_POST["editApellidoMa"],
+                           "Telefono" => $_POST["editTelefono"],
+                           "TipoDocumento" => $_POST["editTipo"],
+                           "Nacionalidad" => $_POST["editNacionalidad"],
+                           "Correo" => $_POST["editCorreo"],
+                           "Direccion" => $_POST["editDireccion"]); 
+            
+            $respuesta=ModeloPersonas::mdlEditar($datos); 
+            var_dump($datos);
+            die();
+
+            if($respuesta==="ok"){
+                echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Registrado",
+                    text: "Se registro correctamente",
+                    allowOutsideClick: false
+                  }).then((result)=>{
+                      if(result.value){
+                        window.location="personas"; 
+                      }
+                    });
+                </script>
+                ';
+            }else{
+                echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "error",
+                    text: "No Se registro",
+                    allowOutsideClick: false
+                  });
+                </script>';
+            }
+        }
     }
 
 

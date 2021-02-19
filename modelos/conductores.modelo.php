@@ -54,4 +54,23 @@ class ModeloConductor{
         $stmt=null;
     }
 
+
+    /**Editar**/
+    static public function mdlEditar($datos){
+        $stmt = Conexion::conectar()->prepare("UPDATE `conductor` SET NroLicencia=:NroLicencia, CatLicencia=:CatLicencia, Estado=:Estado WHERE Id=:Id");  
+        $stmt -> bindParam(":NroLicencia",$datos["NroLicencia"],PDO::PARAM_STR);
+        $stmt -> bindParam(":CatLicencia",$datos["CatLicencia"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Estado",$datos["Estado"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
+
+        if($stmt->execute()){
+            return "ok";            
+        }
+        else{
+            return "error";
+        }
+        $stmt->close();
+        $stmt=null;
+    }
+
 }

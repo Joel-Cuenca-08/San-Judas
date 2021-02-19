@@ -14,7 +14,7 @@
                     <label>Usuario</label>
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" pattern="[0-9]{6,15}" maxlength="15"
-                            placeholder="N° de Documento" name="ingUsuario" autofocus required>
+                            placeholder="Ingrese su Usuario" name="ingUsuario" autofocus required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="fas fa-id-card text-primary"></i>

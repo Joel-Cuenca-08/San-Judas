@@ -64,12 +64,18 @@
     <link href="vistas/plugins/select2/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
     <!-- Usuario -->
     <script src="vistas/js/usuario.js"></script>
     <script src="vistas/js/persona.js"></script>
     <script src="vistas/js/plantilla.js"></script>
     <script src="vistas/js/propietario.js"></script>
     <script src="vistas/js/conductor.js"></script>
+    <script src="vistas/js/administrativo.js"></script>
 
 </head>
 

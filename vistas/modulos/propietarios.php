@@ -275,7 +275,7 @@
                 <!-----------------------CUERPO DEL MODAL------------------>
                 <div class="modal-body">
 
-                    <!--ENTRADA PARA INGRESAR PERSONA-->
+                    <!--ENTRADA PARA EDITAR PERSONA-->
                     <div class="form-group ">
                       <input type="hidden" id="editId" name="editId" required>
                         <label>Seleccione una Persona <span class="text-danger">*</span></label>
@@ -298,7 +298,7 @@
 
                     </div>
 
-                    <!--ENTRADA PARA INGRESAR LA TARJETA DE PROPIEDAD-->
+                    <!--ENTRADA PARA EDITAR LA TARJETA DE PROPIEDAD-->
                     <div class="form-group">
 
                         <label>Ingrese Tarjeta de Propiedad <span class="text-danger">*</span></label>
@@ -312,7 +312,7 @@
 
                     </div>
 
-                    <!--ENTRADA PARA INGRESAR RUC-->
+                    <!--ENTRADA PARA EDITAR RUC-->
 
                     <div class="form-group">
 
@@ -327,7 +327,7 @@
 
                     </div>
 
-                    <!--ENTRADA PARA INGRESAR TELEFONO DE EMERGENCIA-->
+                    <!--ENTRADA PARA EDITAR TELEFONO DE EMERGENCIA-->
 
                     <div class="form-group">
 
@@ -343,7 +343,7 @@
                     </div>
 
 
-                    <!--ENTRADA PARA INGRESAR ESTADO-->
+                    <!--ENTRADA PARA EDITAR ESTADO-->
                     <div class="form-group">
 
                         <label> Estado <span class="text-danger">*</span></label>

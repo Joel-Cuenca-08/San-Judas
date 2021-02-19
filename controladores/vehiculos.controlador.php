@@ -3,8 +3,8 @@
 class ControladorVehiculo{
 
     static public function ctrAgregar(){
-        if(isset($_POST["IngID"])){ 
-            $respuesta=ModeloVehiculo::mdlCrear($_POST["IngID"],$_POST["IngIdPropietario"],$_POST["IngMarca"],$_POST["IngAño"],$_POST["IngTipo"]);
+        if(isset($_POST["IngPlaca"])){ 
+            $respuesta=ModeloVehiculo::mdlCrear($_POST["IngIdPropietario"],$_POST["IngPlaca"],$_POST["IngMarca"],$_POST["IngAño"],$_POST["IngTipo"]);
             if($respuesta==="ok"){
                 echo '<script>
                 Swal.fire({

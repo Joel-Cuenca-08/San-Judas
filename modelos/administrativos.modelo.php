@@ -5,7 +5,7 @@ class ModeloAdministrativos{
 
     /**Listar Administrativos**/
     static public function mdlListar(){
-    $stmt = Conexion::conectar() -> prepare("SELECT a.*, p.Nombre, p.ApellidoPa, p.ApellidoMa,p.Telefono, S.Sede, per.Nombre FROM persona p inner join administrativo a on a.IdPersona= p.Id  inner join sede S on A.IdSede = S.Id inner join periodo per on a.IdPeriodo=per.Id");
+    $stmt = Conexion::conectar() -> prepare("SELECT a.*, p.Nombre, p.ApellidoPa, p.ApellidoMa,p.Telefono, S.Sede, per.Nombre as periodo, per.Id FROM persona p inner join administrativo a on a.IdPersona= p.Id  inner join sede S on A.IdSede = S.Id inner join periodo per on a.IdPeriodo=per.Id");
         $stmt -> execute();
         return $stmt -> fetchAll(); 
         $stmt -> close();
@@ -13,9 +13,10 @@ class ModeloAdministrativos{
     }
 
     static public function mdlCrear($datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO administrativo( IdPersona, IdSede, Cargo, Funcion) VALUES(:IdPersona, :IdSede, :Cargo, :Funcion)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO administrativo( IdPersona, IdPeriodo, IdSede, Cargo, Funcion) VALUES(:IdPersona, :IdPeriodo, :IdSede, :Cargo, :Funcion)");
         $stmt -> bindParam(":IdPersona",$datos["IdPersona"],PDO::PARAM_STR);
         $stmt -> bindParam(":IdSede",$datos["IdSede"],PDO::PARAM_STR);
+        $stmt -> bindParam(":IdPeriodo",$datos["IdPeriodo"],PDO::PARAM_STR);
         $stmt -> bindParam(":Cargo",$datos["Cargo"],PDO::PARAM_STR);
         $stmt -> bindParam(":Funcion",$datos["Funcion"],PDO::PARAM_STR);
         if($stmt->execute()){
@@ -29,6 +30,15 @@ class ModeloAdministrativos{
     }
 
     static public function mdlBorrar($id){
+        $stmt = Conexion::conectar()->prepare("DELETE FROM `administrativo` WHERE Id='$id' "); 
+        if($stmt->execute()){
+            return "ok";            
+        }
+        else{
+            return "error";
+        }
+        $stmt->close();
+        $stmt=null;
 
     }
 
@@ -57,6 +67,26 @@ class ModeloAdministrativos{
         $stmt -> close();
         $stmt -> null;
 
+    }
+
+    static public function mdlEditar($datos){
+        $stmt = Conexion::conectar()->prepare("UPDATE `administrativo` SET IdPeriodo=:IdPeriodo, IdSede=:IdSede, Cargo=:Cargo, Funcion=:Funcion, Estado=:Estado WHERE Id=:Id");  
+        
+        $stmt -> bindParam(":IdPeriodo",$datos["IdPeriodo"],PDO::PARAM_STR);
+        $stmt -> bindParam(":IdSede",$datos["IdSede"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Cargo",$datos["Cargo"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Funcion",$datos["Funcion"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Estado",$datos["Estado"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
+        
+        if($stmt->execute()){
+            return "ok";            
+        }
+        else{
+            return "error";
+        }
+        $stmt->close();
+        $stmt=null;
     }
     
 

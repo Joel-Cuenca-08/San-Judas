@@ -35,12 +35,13 @@
 
             <div class="card-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas" style="width:100%">
+                <table class="table table-bordered table-striped dt-responsive Data-Table" style="width:100%">
 
                     <thead>
                         <tr>
-                            <th style="width:10px">Nro Placa</th>
+                            <th style="width:10px">#</th>
                             <th>Propietario</th>
+                            <th>Nro Placa</th>
                             <th>Marca</th>
                             <th>Año</th>
                             <th>Tipo</th>
@@ -56,8 +57,9 @@
                     ?>
 
                         <tr>
-                            <td><?=$vehi["Id"]?></td>
+                            <td><?=($Key+1)?></td>
                             <td><?=$vehi["Nombre"]?> <?=$vehi["ApellidoPa"]?> <?=$vehi["ApellidoMa"]?></td>
+                            <td><?=$vehi["Placa"]?></td>
                             <td><?=$vehi["Marca"]?></td>
                             <td><?=$vehi["Año"]?></td>
                             <td><?=$vehi["Tipo"]?></td>
@@ -109,7 +111,7 @@
 
                 <!------------------------CABEZA DEL MODAL----------------->
                 <div class="modal-header" style="background:#3c8dbc; color:white">
-                <h4 class="modal-title">Agregar Vehículo</h4>
+                    <h4 class="modal-title">Agregar Vehículo</h4>
                     <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
                 </div>
 
@@ -119,21 +121,7 @@
 
 
 
-                        <!--INGRESAR PLACA-->
-                    <div class="form-group">
-
-                        <label>Ingrese Placa del Vehiculo <span class="text-danger">*</span></label>
-                        <div class="input-group-prepend">
-
-                            <span class="input-group-text"><i class="fas fa-font"></i></span>
-                            <input type="text" class="form-control input-lg" name="IngID" required
-                                placeholder="Ingresar Placa Vehicular">
-
-                        </div>
-
-                    </div>
-
-                    <!--INGRESAR PROPIETARIO-->
+                        <!--INGRESAR PROPIETARIO-->
                     <div class="form-group ">
                         <label>Seleccione el Propietario<span class="text-danger">*</span></label>
                         <div class="input-group-prepend">
@@ -151,6 +139,20 @@
                                 <?php } ?>
                             </select>
                         </div>
+                    </div>
+
+                    <!--INGRESAR PLACA-->
+                    <div class="form-group">
+
+                        <label>Ingrese Placa del Vehiculo <span class="text-danger">*</span></label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fas fa-font"></i></span>
+                            <input type="text" class="form-control input-lg" name="IngPlaca" required
+                                placeholder="Ingresar Placa Vehicular">
+
+                        </div>
+
                     </div>
 
                     <!--INGRESAR MARCA-->
@@ -176,7 +178,7 @@
                         <div class="input-group-prepend">
 
                             <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                            <input type="text" class="form-control input-lg" name="IngAño" placeholder="Ingrese el Año">
+                            <input type="number" min="1900" max="2099" step="1" class="form-control input-lg" name="IngAño" placeholder="Ingrese el Año">
 
                         </div>
 

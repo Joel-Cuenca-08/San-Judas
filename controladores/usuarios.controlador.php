@@ -70,8 +70,8 @@ class ControladorUsuarios{
                 echo '<script>
                 Swal.fire({
                     icon: "success",
-                    title: "Registrado",
-                    text: "Se registro correctamente",
+                    title: "Actualizado",
+                    text: "Se actualizo correctamente",
                     allowOutsideClick: false
                   }).then((result)=>{
                       if(result.value){

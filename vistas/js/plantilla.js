@@ -57,8 +57,13 @@ $(document).ready(function () {
                 messageTop: "Informacion de San judas tadeo",
                 title: "Reporte",
             },
+            {
+                extend: "pdfHtml5",
+                messageTop: "Informacion de los Administrativos de San judas tadeo",
+                title: "Reporte en pdf",
+            }
             
-        ],
+        ]
         
     });
 });

@@ -16,7 +16,7 @@ class ModeloVehiculo{
     } 
 
     static public function mdlCrear($d1,$d2,$d3,$d4,$d5){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `vehiculo`(Id, IdPropietario, Marca, Año, Tipo) VALUES ('$d1', $d2, '$d3', $d4, '$d5')");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `vehiculo`(IdPropietario, Placa, Marca, Año, Tipo) VALUES ('$d1', '$d2', '$d3', $d4, '$d5')");
         if($stmt->execute()){
             return "ok";            
         }

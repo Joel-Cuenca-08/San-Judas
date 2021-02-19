@@ -5,7 +5,7 @@ class ModeloAdministrativos{
 
     /**Listar Administrativos**/
     static public function mdlListar(){
-    $stmt = Conexion::conectar() -> prepare("SELECT a.*, p.Nombre, p.ApellidoPa, p.ApellidoMa,p.Telefono, S.Sede FROM persona p inner join administrativo a on a.IdPersona= p.Id  inner join sede S on A.IdSede = S.Id");
+    $stmt = Conexion::conectar() -> prepare("SELECT a.*, p.Nombre, p.ApellidoPa, p.ApellidoMa,p.Telefono, S.Sede, per.Nombre FROM persona p inner join administrativo a on a.IdPersona= p.Id  inner join sede S on A.IdSede = S.Id inner join periodo per on a.IdPeriodo=per.Id");
         $stmt -> execute();
         return $stmt -> fetchAll(); 
         $stmt -> close();
@@ -50,6 +50,14 @@ class ModeloAdministrativos{
         $stmt -> null;
     }
 
+    static public function mdlListarPeriodo(){
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM periodo");        
+        $stmt -> execute();
+        return $stmt -> fetchAll();
+        $stmt -> close();
+        $stmt -> null;
+
+    }
     
 
 

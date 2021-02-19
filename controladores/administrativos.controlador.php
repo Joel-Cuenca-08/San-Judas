@@ -86,4 +86,9 @@ class ControladorAdministrativos{
         $Lista = ModeloAdministrativos::mdlListarSede();
         return $Lista;
     }
+
+    static public function ctrListarPeriodo(){
+        $Lista = ModeloAdministrativos::mdlListarPeriodo();
+        return $Lista;
+    }
 }

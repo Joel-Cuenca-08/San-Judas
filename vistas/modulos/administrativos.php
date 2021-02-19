@@ -46,7 +46,8 @@
                             <th>Telefono</th>
                             <th>Cargo</th>
                             <th>Funcion</th>
-                            <th>Sedes</th>
+                            <th>Sede</th>
+                            <th>Periodo</th>
                             <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
@@ -65,6 +66,7 @@
                             <td><?=$Admi["Cargo"]?></td>
                             <td><?=$Admi["Funcion"]?></td>
                             <td><?=$Admi["Sede"]?></td>
+                            <td><?=$Admi["Nombre"]?></td>
                             <td>
                                 <?php
                             if($Admi["Estado"]==="1"){

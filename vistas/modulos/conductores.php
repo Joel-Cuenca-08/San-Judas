@@ -58,7 +58,7 @@
                         <tr>
                             <td><?=($Key+1)?></td>
                             <td><?=$Con["Nombre"]?> <?=$Con["ApellidoPa"]?> <?=$Con["ApellidoMa"]?></td>
-                            <td><?=$Con["IdPersona"]?></td>
+                            <td><?=$Con["NumeroDoc"]?></td>
                             <td><?=$Con["Telefono"]?></td>
                             <td><?=$Con["CatLicencia"]?></td>
                             <td><?=$Con["NroLicencia"]?></td>

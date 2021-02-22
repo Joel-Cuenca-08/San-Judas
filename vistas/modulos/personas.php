@@ -37,15 +37,16 @@
                 <table class="table table-bordered table-striped dt-responsive tablas" style="width:100%">
                     <thead>
                         <tr>
-                            <th>DNI</th>
+                            <th  style="width:10px">#</th>
                             <th>Tipo Documento</th>
                             <th>Nacionalidad</th>
+                            <th>Nro Documento</th>
                             <th>Nombre</th>
                             <th>ApellidoPa</th>
                             <th>ApellidoMa</th>
                             <th>Telefono</th>
                             <th>Correo</th>
-                            <th>Dirección</th> 
+                            <th>Dirección</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -56,21 +57,22 @@
                   foreach($ListaPersona as $Key => $Per){
                 ?>
                         <tr>
-                            <td><?=$Per["Id"]?></td>
+                            <td><?=($Key+1)?></td>
                             <td><?=$Per["TipoDocumento"]?></td>
                             <td><?=$Per["Nacionalidad"]?></td>
+                            <td><?=$Per["NumeroDoc"]?></td>
                             <td><?=$Per["Nombre"]?></td>
                             <td><?=$Per["ApellidoPa"]?></td>
                             <td><?=$Per["ApellidoMa"]?></td>
                             <td><?=$Per["Telefono"]?></td>
                             <td><?=$Per["Correo"]?></td>
-                            <td><?=$Per["Direccion"]?></td> 
+                            <td><?=$Per["Direccion"]?></td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarPer"
                                         onclick="getPersona(<?=$Per['Id']?>,'<?=$Per['Nombre']?>','<?=$Per['ApellidoPa']?>','<?=$Per['ApellidoMa']?>',
-                                    '<?=$Per['Telefono']?>','<?=$Per['TipoDocumento']?>','<?=$Per['Nacionalidad']?>','<?=$Per['Correo']?>','<?=$Per['Direccion']?>')"><i
-                                            class="fas fa-pencil-alt"></i></button>
+                                    '<?=$Per['Telefono']?>','<?=$Per['TipoDocumento']?>','<?=$Per['Nacionalidad']?>','<?=$Per['Correo']?>','<?=$Per['Direccion']?>','<?=$Per['NumeroDoc']?>')">
+                                    <i class="fas fa-pencil-alt"></i></button>
 
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Per['Id']?>)"
                                         data-toggle="modal" data-target="#modalBorrar"><i
@@ -341,163 +343,163 @@
                 </div>
 
                 <!-----------------------CUERPO DEL MODAL------------------>
+
+
                 <div class="modal-body">
+                    <input type="hidden" id="editId" name="editId" required>
 
-                    <div class="modal-body">
-                        <p><span class="text-danger">* Casilla Obligatoria</span>
+                  
+                    <div class="row">
 
+                        <!--ENTRADA PARA SELECCIONAR DOCUMENTO-->
+                        <div class="col-md-4">
+                            <label>Tipo de Documento <span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
 
-                        <div class="row">
-
-                            <!--ENTRADA PARA SELECCIONAR DOCUMENTO-->
-                            <div class="col-md-4">
-                                <label>Tipo de Documento <span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-
-                                    <select class="form-control input-lg" name="editTipo" id="editTipo" readonly>
-                                        <option>DNI</option>
-                                        <option>Carnet de Extranjeria</option>
-                                    </select>
-                                </div>
-
-                            </div>
-
-
-                            <!--ENTRADA PARA INGRESAR NACIONALIDAD-->
-                            <div class="col-md-4">
-                                <label>Nacionalidad<span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                        <input type="text" class="form-control input-lg" name="editNacionalidad"
-                                            id="editNacionalidad" placeholder="Ingresar Nacionalidad" required>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!--ENTRADA PARA INGRESAR DOCUMENTO-->
-
-                            <div class="col-md-4">
-                                <label>Nro de Documento <span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                                        <input type="text" class="form-control input-lg" name="editId" id="editId"
-                                            pattern="[0-9]{7,10}" maxlength="12" placeholder="Ingresar Documento"
-                                            readonly>
-                                    </div>
-                                </div>
+                                <select class="form-control input-lg" name="editTipo" id="editTipo">
+                                    <option>DNI</option>
+                                    <option>Carnet de Extranjeria</option>
+                                </select>
                             </div>
 
                         </div>
 
 
-                        <div class="row">
-
-                            <!--ENTRADA PARA INGRESAR NOMBRE-->
-                            <div class="col-md-4">
-                                <label>Nombre <span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-
-                                        <span class="input-group-text"><i class="fa fa-user"></i></span>
-                                        <input type="text" class="form-control input-lg" name="editNombre"
-                                            id="editNombre" placeholder="Ingresar Nombre" required>
-
-                                    </div>
-
+                        <!--ENTRADA PARA INGRESAR NACIONALIDAD-->
+                        <div class="col-md-4">
+                            <label>Nacionalidad<span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                    <input type="text" class="form-control input-lg" name="editNacionalidad"
+                                        id="editNacionalidad" placeholder="Ingresar Nacionalidad" required>
                                 </div>
 
                             </div>
-
-                            <!--ENTRADA PARA INGRESAR APELLIDO PATERNO-->
-                            <div class="col-md-4">
-                                <label>Apellido Paterno <span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        <input type="text" class="form-control input-lg" name="editApellidoPa"
-                                            id="editApellidoPa" placeholder="Ingresar Apellido Paterno" required>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-4">
-                                <label>Apellido Materno <span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
-                                        <input type="text" class="form-control input-lg" name="editApellidoMa"
-                                            id="editApellidoMa" placeholder="Ingresar Apellido Materno" required>
-                                    </div>
-                                </div>
-                            </div>
-
 
                         </div>
 
-                        <div class="row">
+                        <!--ENTRADA PARA INGRESAR DOCUMENTO-->
 
-                            <!--ENTRADA PARA INGRESAR CELULAR-->
-                            <div class="col-md-4">
-                                <label>telefono o celular <span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
-                                        <input type="text" pattern="[0-9]{7,10}" maxlength="10"
-                                            class="form-control input-lg" name="editTelefono" id="editTelefono"
-                                            placeholder="Ingresar Telefono" required>
-
-                                    </div>
+                        <div class="col-md-4">
+                            <label>Numero de Documento <span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
+                                    <input type="text" pattern="[0-9]{7,10}" maxlength="10"
+                                        class="form-control input-lg" name="editnroDoc" id="editnroDoc"
+                                        placeholder="Ingresar Telefono" required>
 
                                 </div>
 
                             </div>
-
-
-                            <!--ENTRADA PARA INGRESAR CORREO-->
-                            <div class="col-md-4">
-                                <label>Correo<span class="text-danger">*</span></label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-envelope-open-text"></i></span>
-                                        <input type="email" class="form-control input-lg" name="editCorreo"
-                                            id="editCorreo" placeholder="Ingresar Correo" required>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                            <!--ENTRADA PARA INGRESAR DIRECCION-->
-                            <div class="col-md-4">
-                                <label>Direccion</label>
-                                <div class="input-group mb-3">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="fas fa-city"></i></span>
-                                        <input type="nu" class="form-control input-lg" name="editDireccion"
-                                            id="editDireccion" placeholder="Ingresar Direccion">
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
 
                         </div>
+
 
                     </div>
 
 
+                    <div class="row">
 
+                        <!--ENTRADA PARA INGRESAR NOMBRE-->
+                        <div class="col-md-4">
+                            <label>Nombre <span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+
+                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" name="editNombre" id="editNombre"
+                                        placeholder="Ingresar Nombre" required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!--ENTRADA PARA INGRESAR APELLIDO PATERNO-->
+                        <div class="col-md-4">
+                            <label>Apellido Paterno <span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" name="editApellidoPa"
+                                        id="editApellidoPa" placeholder="Ingresar Apellido Paterno" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <label>Apellido Materno <span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control input-lg" name="editApellidoMa"
+                                        id="editApellidoMa" placeholder="Ingresar Apellido Materno" required>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <!--ENTRADA PARA INGRESAR CELULAR-->
+                        <div class="col-md-4">
+                            <label>telefono o celular <span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                                    <input type="text" pattern="[0-9]{7,10}" maxlength="10"
+                                        class="form-control input-lg" name="editTelefono" id="editTelefono"
+                                        placeholder="Ingresar Telefono" required>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!--ENTRADA PARA INGRESAR CORREO-->
+                        <div class="col-md-4">
+                            <label>Correo<span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope-open-text"></i></span>
+                                    <input type="email" class="form-control input-lg" name="editCorreo" id="editCorreo"
+                                        placeholder="Ingresar Correo" required>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <!--ENTRADA PARA INGRESAR DIRECCION-->
+                        <div class="col-md-4">
+                            <label>Direccion</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-city"></i></span>
+                                    <input type="nu" class="form-control input-lg" name="editDireccion"
+                                        id="editDireccion" placeholder="Ingresar Direccion">
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
 
                 </div>
+
+
 
                 <!-------------------PIE DEL MODAL----------------->
                 <div class="modal-footer">

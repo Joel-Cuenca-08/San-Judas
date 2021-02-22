@@ -12,9 +12,9 @@ class ControladorUsuarios{
             $encriptar = crypt($_POST["ingPass"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
             $arrayD = array(
                 "IdPersona"=>$_POST["ingIdPersona"],
-                "usuario"=>$_POST["ingUsuario"],
-                "perfil"=>$_POST["ingPerfil"],
-                "password"=>$encriptar
+                "Usuario"=>$_POST["ingUsuario"],
+                "Perfil"=>$_POST["ingPerfil"],
+                "Password"=>$encriptar
             );
             $respuesta=ModeloUsuarios::MdlAgregar($arrayD);
             if($respuesta==="ok"){
@@ -51,18 +51,18 @@ class ControladorUsuarios{
                     $encriptar = crypt($_POST["editPass"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');   
                     $arrayD = array(
                         "Id"=>$_POST["editId"], 
-                        "usuario"=>$_POST["editUsuario"],
-                        "password"=>$encriptar,
-                        "perfil"=>$_POST["editPerfil"],
-                        "estado"=>$_POST["editEstado"] 
+                        "Usuario"=>$_POST["editUsuario"],
+                        "Password"=>$encriptar,
+                        "Perfil"=>$_POST["editPerfil"],
+                        "Estado"=>$_POST["editEstado"] 
                     );        
                     $respuesta=ModeloUsuarios::mdlEditar($arrayD);  
             }else{  
                 $array2 = array(
                     "Id"=>$_POST["editId"], 
-                    "usuario"=>$_POST["editUsuario"], 
-                    "perfil"=>$_POST["editPerfil"],
-                    "estado"=>$_POST["editEstado"] 
+                    "Usuario"=>$_POST["editUsuario"], 
+                    "Perfil"=>$_POST["editPerfil"],
+                    "Estado"=>$_POST["editEstado"] 
                 );        
                 $respuesta=ModeloUsuarios::MdlEditar2($array2); 
             } 
@@ -129,11 +129,11 @@ class ControladorUsuarios{
                 if($respuesta){
                         //encryptar contraseña 
                         $encriptar = crypt($_POST["ingPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-                    if($respuesta["password"]===$encriptar){
+                    if($respuesta["Password"]===$encriptar){
                         $_SESSION["iniciarSesion"] = "ok";
                         $_SESSION["ID_PERSONA"]=$respuesta["IdPersona"];
                         $_SESSION["NOMBRE"]=$respuesta["Nombre"];
-                        $_SESSION["ROL"]=$respuesta["perfil"];
+                        $_SESSION["ROL"]=$respuesta["Perfil"];
                         $_SESSION["APELLIDO"]=($respuesta["ApellidoPa"].' '.$respuesta["ApellidoMa"]);
                         echo '<script>
                             window.location = "inicio";

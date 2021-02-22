@@ -48,7 +48,7 @@ class ControladorAdministrativos{
     }
 
     
-    static public function ctrBorrar(){
+    static public function ctrBorrarAdmi(){
         if(isset($_POST["idBorrar"])){   
                 $respuesta = ModeloAdministrativos::mdlBorrar($_POST["idBorrar"]);
                 
@@ -96,8 +96,8 @@ class ControladorAdministrativos{
 
 
 
-    static public function ctrEditar(){
-        if(isset($_POST["editIdPersona"])){
+    static public function ctrEditarAdmi(){
+        if(isset($_POST["editId"])){
             
             $arrayD = array(
                 "Id"=>$_POST["editId"], 
@@ -107,10 +107,9 @@ class ControladorAdministrativos{
                 "Funcion"=>$_POST["editFuncion"],
                 "Estado"=>$_POST["editEstado"]    
             );
-            
+           
             $respuesta=ModeloAdministrativos::mdlEditar($arrayD);
-            
-
+   
             if($respuesta==="ok"){
                 echo '<script>
                 Swal.fire({

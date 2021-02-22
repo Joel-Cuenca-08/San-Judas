@@ -76,6 +76,7 @@
     <script src="vistas/js/propietario.js"></script>
     <script src="vistas/js/conductor.js"></script>
     <script src="vistas/js/administrativo.js"></script>
+    <script src="vistas/js/vehiculo.js"></script>
 
 </head>
 
@@ -109,7 +110,7 @@
              Contenido 
         ============================*/
         if(isset($_GET["ruta"])){
-//estoy que le agrego === porque es mas rapido al validar
+        //estoy que le agrego === porque es mas rapido al validar
           if($_GET["ruta"] === "inicio" ||
             $_GET["ruta"] === "usuarios" || 
             $_GET["ruta"] === "personas" ||

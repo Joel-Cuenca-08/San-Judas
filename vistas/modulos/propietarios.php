@@ -58,7 +58,7 @@
                         <tr>
                             <td><?=($Key+1)?></td>
                             <td><?=$Pro["Nombre"]?> <?=$Pro["ApellidoPa"]?> <?=$Pro["ApellidoMa"]?></td>
-                            <td><?=$Pro["IdPersona"]?></td>
+                            <td><?=$Pro["NumeroDoc"]?></td>
                             <td><?=$Pro["TarjetaPropiedad"]?></td>
                             <td><?=$Pro["Ruc"]?></td>
                             <td><?=$Pro["Telefono"]?></td>

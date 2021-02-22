@@ -95,12 +95,13 @@ class ControladorConductor{
                 "Estado"=>$_POST["editEstado"]  
             );
             $respuesta=ModeloConductor::mdlEditar($arrayD);
+            
             if($respuesta==="ok"){
                 echo '<script>
                 Swal.fire({
                     icon: "success",
-                    title: "Registrado",
-                    text: "Se registro correctamente",
+                    title: "Actualizado",
+                    text: "Se actualizo correctamente",
                     allowOutsideClick: false
                   }).then((result)=>{
                       if(result.value){

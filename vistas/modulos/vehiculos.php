@@ -74,7 +74,10 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-warning" data-toggle="modal"
+                                        data-target="#modalEditarVehiculo"
+                                        onclick="getVehiculo(<?=$vehi['Id']?>,'<?=$vehi['IdPersona']?>','<?=$vehi['Placa']?>','<?=$vehi['Marca']?>','<?=$vehi['Año']?>','<?=$vehi['Tipo']?>','<?=$vehi['Estado']?>')">
+                                        <i class="fas fa-pencil-alt"></i></button>
 
                                     <button class="btn btn-danger" onclick="getBorrarUsu('<?=$vehi['Id']?>')"
                                         data-toggle="modal" data-target="#modalBorrar"><i
@@ -178,7 +181,8 @@
                         <div class="input-group-prepend">
 
                             <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                            <input type="number" min="1900" max="2099" step="1" class="form-control input-lg" name="IngAño" placeholder="Ingrese el Año">
+                            <input type="number" min="1900" max="2099" step="1" class="form-control input-lg"
+                                name="IngAño" placeholder="Ingrese el Año">
 
                         </div>
 
@@ -229,7 +233,6 @@
 
 
 
-
 <!-- Modal borrar-->
 <div class="modal fade" id="modalBorrar" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1">
     <div class="modal-dialog">
@@ -258,4 +261,151 @@
             </div>
         </form>
     </div>
+</div>
+
+
+
+
+<!--=====================================================
+      Modal Editar Vehiculo
+=====================================================---->
+
+<!-- Modal -->
+<div class="modal fade" id="modalEditarVehiculo" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <form role="formulario" method="post">
+
+                <!------------------------CABEZA DEL MODAL----------------->
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <h4 class="modal-title">Editar Vehículo</h4>
+                    <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-----------------------CUERPO DEL MODAL------------------>
+                <div class="modal-body">
+                    <input type="hidden" id="editId" name="editId" required>
+                    <!--INGRESAR PROPIETARIO-->
+                    <div class="form-group ">
+                        <label>Propietario</label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fa fa-users"></i></span>
+                            <select class="form-control input-lg" id="editIdPersona" disabled>
+                                <option value="">Seleccione</option>
+                                <?php 
+                              
+                              foreach($ListaVehi as $Key => $vehi){
+                              ?>
+                                <option value="<?=$vehi["IdPersona"]?>"><?=$vehi["Nombre"]?> <?=$vehi["ApellidoPa"]?>
+                                    <?=$vehi["ApellidoMa"]?> </option>
+
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--INGRESAR PLACA-->
+                    <div class="form-group">
+
+                        <label>Placa del Vehiculo</label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fas fa-font"></i></span>
+                            <input type="text" class="form-control input-lg" name="editPlaca" id="editPlaca" required
+                                placeholder="Ingresar Placa Vehicular">
+
+                        </div>
+
+                    </div>
+
+                    <!--INGRESAR MARCA-->
+
+                    <div class="form-group">
+
+                        <label>Marca</label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fas fa-taxi"></i></span>
+                            <input type="text" class="form-control input-lg" name="editMarca" id="editMarca"
+                                placeholder="Ingrese la Marca">
+
+                        </div>
+
+                    </div>
+
+                    <!--INGRESAR AÑO-->
+
+                    <div class="form-group">
+
+                        <label>Año </label>
+                        <div class="input-group-prepend">
+
+                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                            <input type="number" min="1900" max="2099" step="1" class="form-control input-lg"
+                                name="editAño" id="editAño" placeholder="Ingrese el Año">
+
+                        </div>
+
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR EL TIPO DE VEHICULO-->
+                    <div class="form-group">
+
+                        <label>Tipo de Vehiculo </label>
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text "><i class="fas fa-bus-alt"></i></span>
+
+                            <select class="form-control input-lg" name="editTipo" id="editTipo">
+                                <option value="">Seleccionar Vehiculo</option>
+                                <option value="Combi">Combi</option>
+                                <option value="Coaster">Coaster</option>
+                                <option value="Bus">Bus</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!--ENTRADA PARA EDITAR ESTADO-->
+                    <div class="form-group">
+
+                        <label> Estado</label>
+
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-toggle-on"></i></span>
+
+                            <select class="form-control input-lg" name="editEstado" id="editEstado" required>
+                                <option value="1">Activo</option>
+                                <option value="0">Desactivo</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-------------------PIE DEL MODAL----------------->
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+                </div>
+
+                <?php
+                    $obj = new ControladorVehiculo();
+                    $obj -> ctrEditarV();
+                
+                ?>
+
+            </form>
+
+        </div>
+
+    </div>
+
 </div>

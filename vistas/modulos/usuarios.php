@@ -29,7 +29,7 @@
                     <thead>
                         <tr>
                             <th style="width:10px">#</th>
-                            <th>DNI</th>
+                            <th>Nro Documento</th>
                             <th>Persona</th>
                             <th>Usuario</th>
                             <th>Contraseña</th>
@@ -45,14 +45,14 @@
                           ?>
                         <tr>
                             <td><?=($Key+1)?></td>
-                            <td><?=$Usu["IdPersona"]?></td>
+                            <td><?=$Usu["NumeroDoc"]?></td>
                             <td><?=$Usu["Nombre"]?> <?=$Usu["ApellidoPa"]?> <?=$Usu["ApellidoMa"]?></td>
-                            <td><?=$Usu["usuario"]?></td>
-                            <td><?=$Usu["password"]?></td>
-                            <td><?=$Usu["perfil"]?></td>
+                            <td><?=$Usu["Usuario"]?></td>
+                            <td><?=$Usu["Password"]?></td>
+                            <td><?=$Usu["Perfil"]?></td>
                             <td>
                                 <?php
-                            if($Usu["estado"]==="1"){
+                            if($Usu["Estado"]==="1"){
                                 echo '<button class="btn btn-success btn-xs">Activo</button>';
                             }else{
                                 echo '<button class="btn btn-danger btn-xs">Inactivo</button>';
@@ -62,7 +62,7 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditar"
-                                        onclick="getUsuario(<?=$Usu['Id']?>,'<?=$Usu['IdPersona']?>','<?=$Usu['usuario']?>','<?=$Usu['perfil']?>','<?=$Usu['estado']?>')"><i
+                                        onclick="getUsuario(<?=$Usu['Id']?>,'<?=$Usu['IdPersona']?>','<?=$Usu['Usuario']?>','<?=$Usu['Perfil']?>','<?=$Usu['Estado']?>')"><i
                                             class="fas fa-pencil-alt"></i></button>
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Usu['Id']?>)"
                                         data-toggle="modal" data-target="#modalBorrar"><i

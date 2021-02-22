@@ -56,6 +56,7 @@ class ControladorPropietario{
     static public function ctrBorrar(){
         if(isset($_POST["idBorrar"])){   
                 $respuesta = ModeloPropietario::mdlBorrar($_POST["idBorrar"]);
+                
                 if($respuesta==="ok"){
                     echo '<script>
                     Swal.fire({

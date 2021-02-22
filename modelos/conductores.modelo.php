@@ -63,6 +63,7 @@ class ModeloConductor{
         $stmt -> bindParam(":Estado",$datos["Estado"],PDO::PARAM_STR);
         $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
 
+        
         if($stmt->execute()){
             return "ok";            
         }

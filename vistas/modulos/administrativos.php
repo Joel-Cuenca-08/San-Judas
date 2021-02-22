@@ -61,7 +61,7 @@
                         <tr>
                             <td><?=($Key+1)?></td>
                             <td><?=$Admi["Nombre"]?> <?=$Admi["ApellidoPa"]?> <?=$Admi["ApellidoMa"]?></td>
-                            <td><?=$Admi["IdPersona"]?></td>
+                            <td><?=$Admi["NumeroDoc"]?></td>
                             <td><?=$Admi["Telefono"]?></td>
                             <td><?=$Admi["Cargo"]?></td>
                             <td><?=$Admi["Funcion"]?></td>
@@ -78,9 +78,10 @@
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarAdministrativo"
-                                    onclick="getAdministrativo(<?=$Admi['Id']?>,'<?=$Admi['IdPersona']?>','<?=$Admi['IdPeriodo']?>','<?=$Admi['IdSede']?>','<?=$Admi['Cargo']?>','<?=$Admi['Funcion']?>','<?=$Admi['Estado']?>')">
-                                    <i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-warning" data-toggle="modal"
+                                        data-target="#modalEditarAdministrativo"
+                                        onclick="getAdministrativo(<?=$Admi['Id']?>,'<?=$Admi['IdPersona']?>','<?=$Admi['IdPeriodo']?>','<?=$Admi['IdSede']?>','<?=$Admi['Cargo']?>','<?=$Admi['Funcion']?>','<?=$Admi['Estado']?>')">
+                                        <i class="fas fa-pencil-alt"></i></button>
 
                                     <button class="btn btn-danger" onclick="getBorrarUsu('<?=$Admi['Id']?>')"
                                         data-toggle="modal" data-target="#modalBorrar"><i
@@ -155,7 +156,7 @@
                         <label>Seleccione una Sede <span class="text-danger">*</span></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                            <select class="form-control input-lg" name="ingIdSede" id="" required>
+                            <select class="form-control input-lg" name="ingIdSede"  required>
                                 <option value="">Seleccione</option>
                                 <?php 
                           $SedeLista=ControladorAdministrativos::ctrListarSede(); 
@@ -247,37 +248,6 @@
 </div>
 
 
-<!-- Modal borrar-->
-<div class="modal fade" id="modalBorrar" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1">
-    <div class="modal-dialog">
-        <form role="form" method="post">
-            <div class="modal-content">
-                <div class="modal-body text-center">
-                    <br>
-                    <h1><i class="fas fa-trash text-danger"></i></h1>
-                    <br>
-                    <h4>¿Desea eliminar el Administrativo?</h4>
-                    <input type="hidden" id="idBorrar" name="idBorrar" required>
-                    <?php
-                    $obj = new ControladorAdministrativos();
-                    $obj ->ctrBorrar(); 
-                    ?>
-                    <br>
-                    <div class="row text-center">
-                        <div class="col-md-6">
-                            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">Cancelar</button>
-                        </div>
-                        <div class="col-md-6">
-                            <button type="submit" class="btn btn-danger mt-2">Borrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-
-
 <!--=====================================================
       Modal Editar Administrativos
 =====================================================---->
@@ -316,8 +286,8 @@
                           
                           foreach($ListaAdmi as $Key => $Per){
                           ?>
-                                <option value="<?=$Per["IdPersona"]?>"><?=$Per["Nombre"]?> <?=$Per["ApellidoPa"]?> 
-                                <?=$Per["ApellidoMa"]?></option>
+                                <option value="<?=$Per["IdPersona"]?>"><?=$Per["Nombre"]?> <?=$Per["ApellidoPa"]?>
+                                    <?=$Per["ApellidoMa"]?></option>
 
                                 <?php } ?>
                             </select>
@@ -330,7 +300,7 @@
                         <label>Sede</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                            <select class="form-control input-lg" id="editIdSede" required>
+                            <select class="form-control input-lg" name="editIdSede" id="editIdSede" required>
                                 <option value="">Seleccione</option>
                                 <?php 
                           
@@ -384,12 +354,12 @@
                         <label>Periodo</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                            <select class="form-control input-lg"  id="editIdPeriodo" disabled>
-                                <option value="">Seleccione</option>
+                            <select class="form-control input-lg" name="editIdPeriodo" id="editIdPeriodo" >
+                                <option>Seleccione</option>
                                 <?php 
-                          
-                          foreach($PeriodoLista as $Key => $periodo){
-                          ?>
+                                $PeriodoLista=ControladorAdministrativos::ctrListarPeriodo(); 
+                                foreach($PeriodoLista as $Key => $periodo){
+                                ?>
                                 <option value="<?=$periodo["Id"]?>"><?=$periodo["Nombre"]?></option>
 
                                 <?php } ?>
@@ -426,7 +396,7 @@
                 </div>
                 <?php 
               $obj=new ControladorAdministrativos();
-              $obj->ctrEditar();
+              $obj->ctrEditarAdmi();
           ?>
 
             </form>
@@ -435,4 +405,34 @@
 
     </div>
 
+</div>
+
+<!-- Modal borrar-->
+<div class="modal fade" id="modalBorrar" role="dialog" data-backdrop="static" data-keyboard="false" tabindex="-1">
+    <div class="modal-dialog">
+        <form role="form" method="post">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <br>
+                    <h1><i class="fas fa-trash text-danger"></i></h1>
+                    <br>
+                    <h4>¿Desea borrar Administrativo?</h4>
+                    <input type="hidden" id="idBorrar" name="idBorrar" required>
+                    <?php
+                    $obj = new ControladorAdministrativos();
+                    $obj ->ctrBorrarAdmi(); 
+                    ?>
+                    <br>
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-secondary mt-2" data-dismiss="modal">Cancelar</button>
+                        </div>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-danger mt-2">Borrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

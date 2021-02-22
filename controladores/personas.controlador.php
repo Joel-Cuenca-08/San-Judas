@@ -11,7 +11,7 @@ class ControladorPersonas{
                               "ApellidoMa" => $_POST["nuevoApellidoMa"],
                               "Telefono" => $_POST["nuevoTelefono"],
                               "TipoDocumento" => $_POST["ingTipoDocumento"],
-                              "Id" => $_POST["nuevoNroDoc"],
+                              "NumeroDoc" => $_POST["nuevoNroDoc"],
                               "Nacionalidad" => $_POST["nuevoNacionalidad"],
                               "Correo" => $_POST["nuevoCorreo"],
                               "Direccion" => $_POST["nuevoDireccion"]); 
@@ -85,16 +85,18 @@ class ControladorPersonas{
         if(isset($_POST["editId"])){
             
             $datos = array("Id" => $_POST["editId"],
+                            "TipoDocumento"=> $_POST["editTipo"],
                            "Nombre" => $_POST["editNombre"],
                            "ApellidoPa" => $_POST["editApellidoPa"],
                            "ApellidoMa" => $_POST["editApellidoMa"],
+                           "NumeroDoc" => $_POST["editnroDoc"],
                            "Telefono" => $_POST["editTelefono"],
                            "TipoDocumento" => $_POST["editTipo"],
                            "Nacionalidad" => $_POST["editNacionalidad"],
                            "Correo" => $_POST["editCorreo"],
                            "Direccion" => $_POST["editDireccion"]); 
             
-            var_dump($datos);
+            
             
             $respuesta=ModeloPersonas::mdlEditar($datos);  
 

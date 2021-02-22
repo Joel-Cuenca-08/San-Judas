@@ -5,10 +5,10 @@ class ModeloPersonas{
     /**Registrar Persona */
     static public function mdlRegistrarPersona($datos){
 
-        $stmt = Conexion::conectar() -> prepare("INSERT INTO `persona`(Id, TipoDocumento, Nacionalidad, Nombre, ApellidoPa, ApellidoMa, Telefono, Correo, Direccion) VALUES 
-        (:Id, :TipoDocumento, :Nacionalidad, :Nombre, :ApellidoPa, :ApellidoMa, :Telefono, :Correo, :Direccion)");
+        $stmt = Conexion::conectar() -> prepare("INSERT INTO `persona`(NumeroDoc, TipoDocumento, Nacionalidad, Nombre, ApellidoPa, ApellidoMa, Telefono, Correo, Direccion) VALUES 
+        (:NumeroDoc, :TipoDocumento, :Nacionalidad, :Nombre, :ApellidoPa, :ApellidoMa, :Telefono, :Correo, :Direccion)");
 
-        $stmt -> bindParam(":Id", $datos["Id"], PDO::PARAM_STR);
+        $stmt -> bindParam(":NumeroDoc", $datos["NumeroDoc"], PDO::PARAM_STR);
         $stmt -> bindParam(":TipoDocumento", $datos["TipoDocumento"], PDO::PARAM_STR);
         $stmt -> bindParam(":Nacionalidad", $datos["Nacionalidad"], PDO::PARAM_STR);
         $stmt -> bindParam(":Nombre", $datos["Nombre"], PDO::PARAM_STR);
@@ -61,10 +61,13 @@ class ModeloPersonas{
     static public function mdlEditar($datos){
         
         $stmt = Conexion::conectar()->prepare("UPDATE persona SET TipoDocumento=:TipoDocumento,
-        Nacionalidad=:Nacionalidad, Nombre=:Nombre, ApellidoPa=:ApellidoPa, ApellidoMa=:ApellidoMa, Telefono=:Telefono,
+        Nacionalidad=:Nacionalidad, NumeroDoc=:NumeroDoc, Nombre=:Nombre, ApellidoPa=:ApellidoPa, ApellidoMa=:ApellidoMa, Telefono=:Telefono,
         Correo=:Correo, Direccion=:Direccion WHERE Id=:Id");
+
+        
         $stmt -> bindParam(":TipoDocumento",$datos["TipoDocumento"],PDO::PARAM_STR);
         $stmt -> bindParam(":Nacionalidad",$datos["Nacionalidad"],PDO::PARAM_STR);
+        $stmt -> bindParam(":NumeroDoc",$datos["NumeroDoc"],PDO::PARAM_STR);
         $stmt -> bindParam(":Nombre",$datos["Nombre"],PDO::PARAM_STR);
         $stmt -> bindParam(":ApellidoPa",$datos["ApellidoPa"],PDO::PARAM_STR);
         $stmt -> bindParam(":ApellidoMa",$datos["ApellidoMa"],PDO::PARAM_STR);
@@ -80,6 +83,8 @@ class ModeloPersonas{
         else{
             return "error";
         }
+        var_dump();
+        die();
         $stmt->close();
         $stmt=null;
 

@@ -1,4 +1,4 @@
-function getPersona(id,Nombre,ApellidoPa,ApellidoMa,Tel,TipoDoc,Nacionalidad,Correo,Direccion) {
+function getPersona(id,Nombre,ApellidoPa,ApellidoMa,Tel,TipoDoc,Nacionalidad,Correo,Direccion,NroDoc) {
     //limpiando campos
     $("#editId").val(""),
     $("#editNombre").val(""),
@@ -8,7 +8,8 @@ function getPersona(id,Nombre,ApellidoPa,ApellidoMa,Tel,TipoDoc,Nacionalidad,Cor
     $("#editTipo").val(""),
     $("#editNacionalidad").val(""),
     $("#editCorreo").val(""),
-    $("#editDireccion").val("")
+    $("#editDireccion").val(""),
+    $("#editnroDoc").val("")
     //asignando datos
     $("#editId").val(id),
     $("#editNombre").val(Nombre),
@@ -18,7 +19,8 @@ function getPersona(id,Nombre,ApellidoPa,ApellidoMa,Tel,TipoDoc,Nacionalidad,Cor
     $("#editTipo").val(TipoDoc),
     $("#editNacionalidad").val(Nacionalidad),
     $("#editCorreo").val(Correo),
-    $("#editDireccion").val(Direccion);
+    $("#editDireccion").val(Direccion),
+    $("#editnroDoc").val(NroDoc);
   }
 
   

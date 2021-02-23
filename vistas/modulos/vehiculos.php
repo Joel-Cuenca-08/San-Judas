@@ -136,8 +136,8 @@
                               $PropietarioLista=ControladorVehiculo::ctrListarPropietarios(); 
                               foreach($PropietarioLista as $Key => $Propi){
                               ?>
-                                <option value="<?=$Propi["Id"]?>"><?=$Propi["ApellidoPa"]?> <?=$Propi["ApellidoMa"]?>
-                                    <?=$Propi["Nombre"]?></option>
+                                <option value="<?=$Propi["Id"]?>"> <?=$Propi["Nombre"]?> <?=$Propi["ApellidoPa"]?> <?=$Propi["ApellidoMa"]?>
+                                    </option>
 
                                 <?php } ?>
                             </select>

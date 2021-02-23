@@ -136,8 +136,8 @@
                               $PersonaLista=ControladorConductor::mdlListarPersonaNoInscrita(); 
                               foreach($PersonaLista as $Key => $Per){
                               ?>
-                                <option value="<?=$Per["Id"]?>"><?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
-                                    <?=$Per["Nombre"]?></option>
+                                <option value="<?=$Per["Id"]?>"><?=$Per["Nombre"]?> <?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
+                                    </option>
 
                                 <?php } ?>
                             </select>

@@ -38,12 +38,10 @@
                     <thead>
                         <tr>
                             <th  style="width:10px">#</th>
+                            <th>Nombre</th>
                             <th>Tipo Documento</th>
                             <th>Nacionalidad</th>
                             <th>Nro Documento</th>
-                            <th>Nombre</th>
-                            <th>ApellidoPa</th>
-                            <th>ApellidoMa</th>
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Dirección</th>
@@ -58,12 +56,10 @@
                 ?>
                         <tr>
                             <td><?=($Key+1)?></td>
+                            <td><?=$Per["Nombre"]?> <?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?></td>
                             <td><?=$Per["TipoDocumento"]?></td>
                             <td><?=$Per["Nacionalidad"]?></td>
                             <td><?=$Per["NumeroDoc"]?></td>
-                            <td><?=$Per["Nombre"]?></td>
-                            <td><?=$Per["ApellidoPa"]?></td>
-                            <td><?=$Per["ApellidoMa"]?></td>
                             <td><?=$Per["Telefono"]?></td>
                             <td><?=$Per["Correo"]?></td>
                             <td><?=$Per["Direccion"]?></td>
@@ -150,6 +146,8 @@
 
                         </div>
 
+                        
+
                         <!--ENTRADA PARA INGRESAR DOCUMENTO-->
 
                         <div class="col-md-4">
@@ -159,7 +157,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-id-card"></i></span>
                                     <input type="text" class="form-control input-lg" name="nuevoNroDoc"
-                                        pattern="[0-9]{7,10}" maxlength="12" placeholder="Ingresar Documento" required>
+                                        pattern="[0-9]{8,12}" maxlength="12" placeholder="Ingresar Documento" required>
                                 </div>
                             </div>
                         </div>

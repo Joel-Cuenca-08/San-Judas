@@ -42,3 +42,4 @@ function getUsuario(id,idP,usu,perfil,estado) {
 function getBorrarUsu(a) {
   $("#idBorrar").val(a);
 }
+

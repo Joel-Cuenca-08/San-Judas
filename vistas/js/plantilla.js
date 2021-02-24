@@ -60,6 +60,7 @@ $(document).ready(function () {
             {
                 extend: "pdfHtml5",
                 messageTop: "Informacion de los Administrativos de San judas tadeo",
+                orientation: 'landscape',
                 title: "Reporte en pdf",
             }
             

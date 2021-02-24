@@ -36,19 +36,17 @@
 
             <div class="card-body">
 
-                <table class="table table-bordered table-striped dt-responsive tablas" style="width:100%">
+                <table class="table table-bordered table-striped dt-responsive Data-Table" style="width:100%">
 
                     <thead>
                         <tr>
 
-                            <th>Administrativo</th>
-                            <th>Sede</th>
+                            <th style="width:10px">#</th>
                             <th>Conductor</th>
                             <th>Placa</th>
                             <th>Fecha</th>
                             <th>Hora Salida</th>
                             <th>Hora Llegada</th>
-                            <th>Duración</th>
                             <th>Ganancia</th>
                             <th>Nro Vuelta</th>
                             <th>Observacion</th>
@@ -57,26 +55,29 @@
                     </thead>
 
                     <tbody>
-
+                        <?php 
+                        $ListaRuta=ControladorRuta::ctrListar();
+                        foreach($ListaRuta as $Key => $ruta){
+                        ?>
 
                         <tr>
 
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?=($Key+1)?></td>
+                            <td><?=$ruta["Conductor"]?></td>
+                            <td><?=$ruta["Placa"]?></td>
+                            <td><?=$ruta["Fecha"]?></td>
+                            <td><?=$ruta["HoraSalida"]?></td>
+                            <td><?=$ruta["HoraLlegada"]?></td>
+                            <td><?=$ruta["Ganancia"]?></td>
+                            <td><?=$ruta["Vuelta"]?></td>
+                            <td><?=$ruta["Observacion"]?></td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
                                 </div>
                             </td>
+
+                            <?php } ?>
                         </tr>
 
                     </tbody>
@@ -116,7 +117,7 @@
                 <!-----------------------CUERPO DEL MODAL------------------>
                 <div class="modal-body">
                     <p><span class="text-danger">* Casilla Obligatoria</span>
-
+                    
                     <div class="row">
 
                         <!--ENTRADA PARA SELECCIONAR CONDUCTOR-->
@@ -124,10 +125,15 @@
                             <label>Seleccione Conductor <span class="text-danger">*</span></label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                <select class="form-control input-lg" name="ingPlaca" required>
+                                <select class="form-control input-lg" name="ingConductor" required>
                                     <option>Seleccione Conductor</option>
-                                    <option>Jose Paza</option>
-                                    <option>Antonio Contreras</option>
+                                    <?php 
+                                    $ConductorLista=ControladorRuta::ctrListarConductor(); 
+                                    foreach($ConductorLista as $Key => $Conduc){
+                                    ?>
+                                    <option value="<?=$Conduc["Id"]?>"> <?=$Conduc["Conductor"]?></option>
+                                    <?php } ?>
+
                                 </select>
                             </div>
                         </div>
@@ -140,8 +146,12 @@
                                 <span class="input-group-text"><i class="fas fa-passport"></i></span>
                                 <select class="form-control input-lg" name="ingAdministrativo" required>
                                     <option>Seleccione Nombre</option>
-                                    <option>Joel Cuenca</option>
-                                    <option>Danitza Pamela</option>
+                                    <?php 
+                                    $AdministrativoLista=ControladorRuta::ctrListarAdministrativo(); 
+                                    foreach($AdministrativoLista as $Key => $Admi){
+                                    ?>
+                                    <option value="<?=$Admi["Id"]?>"> <?=$Admi["Administrativo"]?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -152,9 +162,14 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-passport"></i></span>
                                 <select class="form-control input-lg" name="ingPlaca" required>
-                                    <option>Seleccione Vehiculo</option>
-                                    <option>AFH-192</option>
-                                    <option>ARB-699</option>
+                                    <option value="">Seleccione Vehiculo</option>
+                                    <?php 
+                                    $VehiculoLista=ControladorRuta::ctrListarVehiculo(); 
+                                    foreach($VehiculoLista as $Key => $Vehi){
+                                    ?>
+                                    <option value="<?=$Vehi["Id"]?>"> <?=$Vehi["Placa"]?></option>
+
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
@@ -193,7 +208,7 @@
                             <label>Ingrese vuelta<span class="text-danger">*</span></label>
                             <div class="input-group mb-3">
 
-                                <select class="form-control input-lg" name="ingObservacion" required>
+                                <select class="form-control input-lg" name="ingVuelta" required>
                                     <option>Seleccione Nro de Vuelta</option>
                                     <option>V1</option>
                                     <option>V2</option>
@@ -254,8 +269,11 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Guardar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <?php
+                    $obj=new ControladorRuta();
+                    $obj->ctrAgregar();
+                    ?>
                 </div>
-
             </form>
 
         </div>

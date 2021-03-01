@@ -45,10 +45,7 @@
                             <th>Conductor</th>
                             <th>Placa</th>
                             <th>Fecha</th>
-                            <th>Hora Salida</th>
-                            <th>Hora Llegada</th>
                             <th>Ganancia</th>
-                            <th>Nro Vuelta</th>
                             <th>Observacion</th>
                             <th>Accion</th>
                         </tr>
@@ -66,16 +63,22 @@
                             <td><?=$ruta["Conductor"]?></td>
                             <td><?=$ruta["Placa"]?></td>
                             <td><?=$ruta["Fecha"]?></td>
-                            <td><?=$ruta["HoraSalida"]?></td>
-                            <td><?=$ruta["HoraLlegada"]?></td>
                             <td><?=$ruta["Ganancia"]?></td>
                             <td><?=$ruta["Vuelta"]?></td>
-                            <td><?=$ruta["Observacion"]?></td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn btn-warning"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn btn-primary" data-toggle="modal"
+                                        data-target="#modalAgregarDetalleRuta" onclick="getRuta('<?=$ruta['Id']?>')"><i
+                                            class="fas fa-plus-circle"></i></button>
+                                </div>
+                                <div class="btn-group">
+                                    <button class="btn btn-warning" data-toggle="modal"
+                                        data-target="#modalListarDetalleRuta" onclick="getRuta('<?=$ruta['Id']?>')"><i
+                                            class="fas fa-eye"></i></button>
+                                            
                                 </div>
                             </td>
+                            
 
                             <?php } ?>
                         </tr>
@@ -96,7 +99,7 @@
 </div>
 
 <!--=====================================================
-      Modal Agregar Persona
+      Modal Agregar Ruta
 =====================================================---->
 <!-- The Modal -->
 <div class="modal fade" id="modalAgregarRuta">
@@ -117,7 +120,7 @@
                 <!-----------------------CUERPO DEL MODAL------------------>
                 <div class="modal-body">
                     <p><span class="text-danger">* Casilla Obligatoria</span>
-                    
+
                     <div class="row">
 
                         <!--ENTRADA PARA SELECCIONAR CONDUCTOR-->
@@ -158,7 +161,7 @@
 
                         <!--ENTRADA PARA SELECCIONAR VEHICULO-->
                         <div class="col-md-4">
-                            <label>Seleccione su Placa Vehicular<span class="text-danger">*</span></label>
+                            <label>Seleccione Placa Vehicular<span class="text-danger">*</span></label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-passport"></i></span>
                                 <select class="form-control input-lg" name="ingPlaca" required>
@@ -221,48 +224,6 @@
 
                     </div>
 
-                    <div class="row">
-
-                        <!--ENTRADA PARA INGRESAR HORA SALIDA-->
-                        <div class="col-md-4">
-                            <label>Ingrese Hora de Salida<span class="text-danger">*</span></label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                    <input type="time" name="ingSalida" placeholder="Ingresar Hora salida" required>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <!--ENTRADA PARA INGRESAR HORA LLEGADA-->
-                        <div class="col-md-4">
-                            <label>Ingrese Hora de Llegada</label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                    <input type="time" name="ingLlegada" disabled>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <!--ENTRADA PARA INGRESAR OBSERVACION-->
-                        <div class="col-md-4">
-                            <label>Ingrese Observacion</label>
-                            <div class="input-group mb-3">
-
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                                    <input type="text" class="form-control input-lg" name="ingObservacion"
-                                        placeholder="Detalle observacion" disabled>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
                 </div>
 
                 <!-------------------PIE DEL MODAL----------------->
@@ -276,6 +237,167 @@
                 </div>
             </form>
 
+        </div>
+    </div>
+</div>
+
+<!--=====================================================
+      Modal Agregar DetalleRuta
+=====================================================---->
+<!-- The Modal -->
+<div class="modal fade" id="modalAgregarDetalleRuta">
+
+    <div class="modal-dialog ">
+
+        <div class="modal-content">
+
+            <form role="form" method="post">
+
+                <!------------------------CABEZA DEL MODAL----------------->
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <h4 class="modal-title">Registrar Detalle de Ruta</h4>
+                    <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
+
+                </div>
+
+                <!-----------------------CUERPO DEL MODAL------------------>
+                <div class="modal-body">
+                    <p><span class="text-danger">* Casilla Obligatoria</span>
+
+                        <input type="hidden" id="editId" name="editId" required>
+
+                        <!--ENTRADA PARA INGRESAR SALIDA-->
+                    <div class="form-group">
+                        <label>Ingrese Hora Salida<span class="text-danger">*</span></label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <input type="time" class="form-control input-lg" name="ingSalida"
+                                    placeholder="Ingresar Hora de Salida" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR LLEGADA-->
+                    <div class="form-group">
+                        <label>Ingrese Hora Llegada</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <input type="time" class="form-control input-lg" name="ingLlegada"
+                                    placeholder="Ingresar Hora de Llegada" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR GANANCIA-->
+                    <div class="form-group">
+                        <label>Ingrese Ganancia</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <input type="number" step="any" min="0" class="form-control input-lg" name="ingGanancia"
+                                    placeholder="Ingresar Ganancia" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--ENTRADA PARA INGRESAR OBSERVACION-->
+                    <div class="form-group">
+                        <label>Ingrese Observacion</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <input type="text" class="form-control input-lg" name="ingobservacion"
+                                    placeholder="Ingresar Observacion" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <!-------------------PIE DEL MODAL----------------->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <?php
+                    $obj=new ControladorRuta();
+                    $obj->ctrAgregarDetalle();
+                    ?>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--=====================================================
+      Modal Listar Detalle Ruta
+=====================================================---->
+<div class="modal fade" id="modalListarDetalleRuta">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <!------------------------CABEZA DEL MODAL----------------->
+            <div class="modal-header" style="background:#3c8dbc; color:white">
+                <h4 class="modal-title">Lista Detalle Ruta</h4>
+                <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
+            </div>
+            <!-----------------------CUERPO DEL MODAL------------------>
+            <div class="modal-body">
+
+                <table class="table table-bordered table-striped dt-responsive Data-Table" style="width:100%">
+
+                    <thead>
+                        <tr>
+
+                            <th style="width:10px">#</th>
+                            <th>Id Ruta</th>
+                            <th>Hora de Salida</th>
+                            <th>Hora de Llegada</th>
+                            <th>Ingreso</th>
+                            <th>Observacion</th>
+                            <th>Accion</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <?php 
+                                $ListaDetalle=ControladorRuta::ctrListarDetalleRuta();
+                                foreach($ListaDetalle as $Key => $detalle){
+                                ?>
+
+                        <tr>
+
+                            <td><?=($Key+1)?></td>
+                            <td><?=$detalle["IdRuta"]?></td>
+                            <td><?=$detalle["HoraSalida"]?></td>
+                            <td><?=$detalle["HoraLlegada"]?></td>
+                            <td><?=$detalle["Ingreso"]?></td>
+                            <td><?=$detalle["Observacion"]?></td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                                </div>
+
+                            </td>
+
+                            <?php } ?>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+            </div>
         </div>
     </div>
 </div>

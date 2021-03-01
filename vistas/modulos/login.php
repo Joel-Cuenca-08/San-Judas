@@ -21,11 +21,11 @@
                             </div>
                         </div>
                         <div class="invalid-feedback">
-                            Recuerde ingresar correctamente su N° de Documento
+                            Recuerde ingresar correctamente su Usuario
                         </div>
 
                         <div class="valid-feedback">
-                            N° de Documento valido
+                           Usuario valido
                         </div>
                     </div>
                 </div>

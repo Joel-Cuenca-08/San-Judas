@@ -77,6 +77,7 @@
     <script src="vistas/js/conductor.js"></script>
     <script src="vistas/js/administrativo.js"></script>
     <script src="vistas/js/vehiculo.js"></script>
+    <script src="vistas/js/ruta.js"></script>
 
 </head>
 

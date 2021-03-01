@@ -156,7 +156,7 @@
                         <label>Seleccione una Sede <span class="text-danger">*</span></label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                            <select class="form-control input-lg" name="ingIdSede"  required>
+                            <select class="form-control input-lg" name="ingIdSede" required>
                                 <option value="">Seleccione</option>
                                 <?php 
                           $SedeLista=ControladorAdministrativos::ctrListarSede(); 
@@ -271,7 +271,7 @@
                 </div>
 
                 <!-----------------------CUERPO DEL MODAL------------------>
-
+                
                 <!--INGRESAR PERSONA-->
                 <div class="modal-body">
                     <input type="hidden" id="editId" name="editId" required>
@@ -354,7 +354,7 @@
                         <label>Periodo</label>
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                            <select class="form-control input-lg" name="editIdPeriodo" id="editIdPeriodo" >
+                            <select class="form-control input-lg" name="editIdPeriodo" id="editIdPeriodo">
                                 <option>Seleccione</option>
                                 <?php 
                                 $PeriodoLista=ControladorAdministrativos::ctrListarPeriodo(); 

@@ -64,7 +64,7 @@ class ModeloRuta{
 
     
     static public function mdlListarAdministrativo(){
-        $stmt = Conexion::conectar() -> prepare("SELECT a.Id, concat_ws(' ',p.Nombre,p.ApellidoPa,p.ApellidoMa) AS Administrativo FROM persona p inner join administrativo a on p.Id = a.IdPersona");
+        $stmt = Conexion::conectar() -> prepare("SELECT a.Id,a.IdPersona, concat_ws(' ',p.Nombre,p.ApellidoPa,p.ApellidoMa) AS Administrativo, s.Sede FROM persona p inner join administrativo a on p.Id = a.IdPersona INNER JOIN sede s ON a.IdSede = s.Id");
         $stmt -> execute();
         return $stmt -> fetchAll(); 
         $stmt -> close();

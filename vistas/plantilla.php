@@ -121,6 +121,7 @@
             $_GET["ruta"] === "periodos" ||
             $_GET["ruta"] === "propietarios"||
             $_GET["ruta"] === "administrativos"||
+            $_GET["ruta"] === "detalle_ruta"||
             $_GET["ruta"] === "salir"){
             
             include "modulos/".$_GET["ruta"].".php";

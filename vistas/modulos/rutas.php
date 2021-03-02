@@ -30,6 +30,9 @@
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarRuta">
                     Registrar Ruta
                 </button>
+                <button class="btn btn-secondary"> <a href="detalle_ruta" style="color:white;">Rutas Detalladas</a>
+                    
+                </button>
             </div>
 
 
@@ -148,17 +151,16 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text"><i class="fas fa-passport"></i></span>
                                 <select class="form-control input-lg" name="ingAdministrativo" required>
-                                    <option>Seleccione Nombre</option>
                                     <?php 
                                     $AdministrativoLista=ControladorRuta::ctrListarAdministrativo(); 
                                     foreach($AdministrativoLista as $Key => $Admi){
+                                        if($_SESSION["ID_PERSONA"]===$Admi["IdPersona"]){
                                     ?>
-                                    <option value="<?=$Admi["Id"]?>"> <?=$Admi["Administrativo"]?></option>
-                                    <?php } ?>
+                                    <option value="<?=$Admi["Id"]?>"> <?=$Admi["Sede"]?></option>
+                                    <?php }} ?>
                                 </select>
                             </div>
-                        </div>
-
+                        </div> 
                         <!--ENTRADA PARA SELECCIONAR VEHICULO-->
                         <div class="col-md-4">
                             <label>Seleccione Placa Vehicular<span class="text-danger">*</span></label>

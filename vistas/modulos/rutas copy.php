@@ -31,7 +31,7 @@
                     Registrar Ruta
                 </button>
                 <button class="btn btn-secondary"> <a href="detalle_ruta" style="color:white;">Rutas Detalladas</a>
-
+                    
                 </button>
             </div>
 
@@ -39,7 +39,7 @@
 
             <div class="card-body">
 
-                <table class="table table-bordered table-striped table-sm dt-responsive Data-Table" style="width:100%">
+                <table class="table table-bordered table-striped dt-responsive Data-Table" style="width:100%">
 
                     <thead>
                         <tr>
@@ -48,7 +48,8 @@
                             <th>Conductor</th>
                             <th>Placa</th>
                             <th>Fecha</th>
-                            <th>Registros</th> 
+                            <th>Ganancia</th>
+                            <th>Observacion</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
@@ -64,22 +65,23 @@
                             <td><?=($Key+1)?></td>
                             <td><?=$ruta["Conductor"]?></td>
                             <td><?=$ruta["Placa"]?></td>
-                            <td><?=$ruta["Fecha"]?></td> 
-                            <td><?=$ruta["Detalle"]?></td>
+                            <td><?=$ruta["Fecha"]?></td>
+                            <td><?=$ruta["Ganancia"]?></td>
+                            <td><?=$ruta["Vuelta"]?></td>
                             <td>
                                 <div class="btn-group">
-                                    <button class="btn-sm btn btn-primary" data-toggle="modal"
+                                    <button class="btn btn-primary" data-toggle="modal"
                                         data-target="#modalAgregarDetalleRuta" onclick="getRuta('<?=$ruta['Id']?>')"><i
                                             class="fas fa-plus-circle"></i></button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-sm btn btn-warning" data-toggle="modal"
+                                    <button class="btn btn-warning" data-toggle="modal"
                                         data-target="#modalListarDetalleRuta" onclick="getRuta('<?=$ruta['Id']?>')"><i
                                             class="fas fa-eye"></i></button>
-
+                                            
                                 </div>
                             </td>
-
+                            
 
                             <?php } ?>
                         </tr>
@@ -152,7 +154,7 @@
                                     <?php 
                                     $AdministrativoLista=ControladorRuta::ctrListarAdministrativo(); 
                                     foreach($AdministrativoLista as $Key => $Admi){
-                                        if($_SESSION["ID_PERSONA"]==$Admi["IdPersona"]){
+                                        if($_SESSION["ID_PERSONA"]===$Admi["IdPersona"]){
                                     ?>
                                     <option value="<?=$Admi["Id"]?>"> <?=$Admi["Sede"]?></option>
                                     <?php }} ?>
@@ -171,12 +173,58 @@
                                     foreach($VehiculoLista as $Key => $Vehi){
                                     ?>
                                     <option value="<?=$Vehi["Id"]?>"> <?=$Vehi["Placa"]?></option>
+
                                     <?php } ?>
                                 </select>
                             </div>
                         </div>
 
-                    </div> 
+                    </div>
+
+
+                    <div class="row">
+
+                        <!--ENTRADA PARA INGRESAR FECHA-->
+                        <div class="col-md-4">
+                            <label>Ingrese Fecha<span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                    <input type="date" class="form-control input-lg" name="ingFecha"
+                                        placeholder="Ingresar Fecha" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--ENTRADA PARA INGRESAR GANANCIA-->
+                        <div class="col-md-4">
+                            <label>Ingrese Ganancia</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                    <input type="number" step="any" min="0" class="form-control input-lg"
+                                        name="ingGanancia" placeholder="Ingresar Ganancia" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--ENTRADA PARA SELECCIONAR VUELTA-->
+                        <div class="col-md-4">
+                            <label>Ingrese vuelta<span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+
+                                <select class="form-control input-lg" name="ingVuelta" required>
+                                    <option>Seleccione Nro de Vuelta</option>
+                                    <option>V1</option>
+                                    <option>V2</option>
+                                    <option>V3</option>
+                                    <option>V4</option>
+                                    <option>V5</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -216,41 +264,60 @@
 
                 <!-----------------------CUERPO DEL MODAL------------------>
                 <div class="modal-body">
-                    <p><span class="text-danger"> * Casilla Obligatoria</span>
+                    <p><span class="text-danger">* Casilla Obligatoria</span>
 
                         <input type="hidden" id="editId" name="editId" required>
-                        <input type="text" id="editEstado" name="editEstado" required>
 
                         <!--ENTRADA PARA INGRESAR SALIDA-->
-
-                    <div class="row">
-                    <div class="col-md-6">
                     <div class="form-group">
-                        <label>Registro Hora<span class="text-danger">*</span></label>
+                        <label>Ingrese Hora Salida<span class="text-danger">*</span></label>
                         <div class="input-group mb-3">
-                        <?php 
-                        date_default_timezone_set("America/Lima");                    
-                        ?>
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                <input type="time" class="form-control input-lg" name="ingSalida" value="<?=date("H:i:s")?>"
-                                    placeholder="Ingresar Hora de Salida" readonly>
+                                <input type="time" class="form-control input-lg" name="ingSalida"
+                                    placeholder="Ingresar Hora de Salida" required>
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <div class="col-md-6"> 
+
+                    <!--ENTRADA PARA INGRESAR LLEGADA-->
                     <div class="form-group">
-                        <label>Tipo</label>
-                        <div class="input-group mb-3"> 
+                        <label>Ingrese Hora Llegada</label>
+                        <div class="input-group mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                <input type="text" class="form-control input-lg" id="editText"  disabled>
+                                <input type="time" class="form-control input-lg" name="ingLlegada"
+                                    placeholder="Ingresar Hora de Llegada" disabled>
                             </div>
                         </div>
                     </div>
+
+                    <!--ENTRADA PARA INGRESAR GANANCIA-->
+                    <div class="form-group">
+                        <label>Ingrese Ganancia</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <input type="number" step="any" min="0" class="form-control input-lg" name="ingGanancia"
+                                    placeholder="Ingresar Ganancia" disabled>
+                            </div>
+                        </div>
                     </div>
-                    </div> 
+
+                    <!--ENTRADA PARA INGRESAR OBSERVACION-->
+                    <div class="form-group">
+                        <label>Ingrese Observacion</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <input type="text" class="form-control input-lg" name="ingobservacion"
+                                    placeholder="Ingresar Observacion" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
 
                 <!-------------------PIE DEL MODAL----------------->

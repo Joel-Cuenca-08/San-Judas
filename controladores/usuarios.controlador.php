@@ -131,7 +131,7 @@ class ControladorUsuarios{
                         $encriptar = crypt($_POST["ingPassword"],'$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
                     if($respuesta["Password"]===$encriptar){
                         $_SESSION["iniciarSesion"] = "ok";
-                        $_SESSION["ID_PERSONA"]=$respuesta["IdPersona"];
+                        $_SESSION["ID_PERSONA"]=$respuesta["Id"];
                         $_SESSION["NOMBRE"]=$respuesta["Nombre"];
                         $_SESSION["ROL"]=$respuesta["Perfil"];
                         $_SESSION["APELLIDO"]=($respuesta["ApellidoPa"].' '.$respuesta["ApellidoMa"]);

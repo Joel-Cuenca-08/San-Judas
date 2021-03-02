@@ -3,13 +3,11 @@
 class ControladorRuta{
 
     static public function ctrAgregar(){
-        if(isset($_POST["ingPlaca"])){
+        if(isset($_POST["ingPlaca"])){            
             $arrayD = array(
                 "IdConductor"=>$_POST["ingConductor"], 
                 "IdAdministrativo"=>$_POST["ingAdministrativo"],
-                "IdVehiculo"=>$_POST["ingPlaca"],
-                "Fecha"=>$_POST["ingFecha"],
-                "Observacion"=>$_POST["ingVuelta"] 
+                "IdVehiculo"=>$_POST["ingPlaca"]
             );       
             
             $respuesta=ModeloRuta::mdlAgregar($arrayD);                     
@@ -43,13 +41,24 @@ class ControladorRuta{
 
     static public function ctrAgregarDetalle(){
        if(isset($_POST["ingSalida"])){
+        date_default_timezone_set("America/Lima");
+            if($_POST["editEstado"]==="0"){
+            //salida
             $arrayD = array(
                 "IdRuta"=>$_POST["editId"], 
-                "HoraSalida"=>$_POST["ingSalida"]
-            );       
+                "HoraSalida"=>date("H:i:s")
+            ); 
+            $respuesta=ModeloRuta::mdlAgregarDetalle($arrayD);
+            }else{
+            //llegada    
+            $arrayD = array(
+                "Id"=>$_POST["editEstado"], 
+                "HoraLlegada"=>date("H:i:s")
+            ); 
+            $respuesta=ModeloRuta::mdlAgregarDetalleLlegada($arrayD);
+            }      
             
-           
-            $respuesta=ModeloRuta::mdlAgregarDetalle($arrayD);                     
+                                
             if($respuesta ==="ok"){
                 echo '<script>
                 Swal.fire({
@@ -81,6 +90,12 @@ class ControladorRuta{
     static public function ctrListar(){
 
         $Lista = ModeloRuta::mdlListar();
+        return $Lista;
+
+    }
+    static public function ctrBuscarRuta($id){
+
+        $Lista = ModeloRuta::mdlBuscarRuta($id);
         return $Lista;
 
     }

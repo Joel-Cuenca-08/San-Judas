@@ -27,9 +27,11 @@
         <div class="card">
             <div class="card-header with-border">
 
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarConductor">
+            <?php
+                if($_SESSION["Perfil"]=="Administrador" || $_SESSION["Perfil"]=="Especial"){
+                echo'<button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarConductor">
                     Agregar Conductor
-                </button>
+                </button>';}?>
             </div>
 
             <div class="card-body">
@@ -73,13 +75,17 @@
                             </td>
                             <td>
                                 <div class="btn-group">
+
+                                <?php 
+                                if($_SESSION["Perfil"]=="Administrador" || $_SESSION["Perfil"]=="Especial"){?>
                                     <button class="btn btn-warning"  data-toggle="modal" data-target="#modalEditarConductor" 
                                     onclick="getConductor(<?=$Con['Id']?>,'<?=$Con['IdPersona']?>','<?=$Con['NroLicencia']?>','<?=$Con['CatLicencia']?>','<?=$Con['Estado']?>')">
-                                    <i class="fas fa-pencil-alt"></i></button>
-
+                                    <i class="fas fa-pencil-alt"></i></button><?php } ?>
+                                <?php 
+                                if($_SESSION["Perfil"]=="Administrador"){?>
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Con['Id']?>)"
                                         data-toggle="modal" data-target="#modalBorrar"><i
-                                            class="fa fa-times"></i></button>
+                                            class="fa fa-times"></i></button><?php } ?>
                                 </div>
                             </td>
                         </tr>

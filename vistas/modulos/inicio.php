@@ -40,10 +40,18 @@
                 include "inicio/cajas-superiores.php";
             }
             ?>
-                
-            
-               
+
             </div>
+            <div class="col-lg-12">
+                <?php 
+                if($_SESSION["Perfil"] == "Especial" || $_SESSION["Perfil"] == "Digitador"){
+
+                    echo '<h1 style="text-align:center">'.$_SESSION["NOMBRE"].' '.$_SESSION["APELLIDO"].' ('.$_SESSION["Perfil"].')'.'</h1>';
+                }
+                ?>
+            </div>
+
+
 
             <!-- /.box-footer-->
         </div>

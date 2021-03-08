@@ -65,10 +65,12 @@
                             <td><?=$Per["Direccion"]?></td>
                             <td>
                                 <div class="btn-group">
+                                <?php 
+                                if($_SESSION["Perfil"]=="Administrador"){?>
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarPer"
                                         onclick="getPersona(<?=$Per['Id']?>,'<?=$Per['Nombre']?>','<?=$Per['ApellidoPa']?>','<?=$Per['ApellidoMa']?>',
                                     '<?=$Per['Telefono']?>','<?=$Per['TipoDocumento']?>','<?=$Per['Nacionalidad']?>','<?=$Per['Correo']?>','<?=$Per['Direccion']?>','<?=$Per['NumeroDoc']?>')">
-                                    <i class="fas fa-pencil-alt"></i></button>
+                                    <i class="fas fa-pencil-alt"></i></button><?php } ?>
 
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Per['Id']?>)"
                                         data-toggle="modal" data-target="#modalBorrar" disabled><i

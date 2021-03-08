@@ -26,10 +26,12 @@
         <div class="card">
 
             <div class="card-header with-border">
-
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAdministrativo">
+                <?php
+                if($_SESSION["Perfil"]=="Administrador"){
+                echo'<button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarAdministrativo">
                     Agregar Administrativo
-                </button>
+                </button>';}
+                ?>
 
             </div>
 
@@ -82,10 +84,11 @@
                                         data-target="#modalEditarAdministrativo"
                                         onclick="getAdministrativo(<?=$Admi['Id']?>,'<?=$Admi['IdPersona']?>','<?=$Admi['IdPeriodo']?>','<?=$Admi['IdSede']?>','<?=$Admi['Cargo']?>','<?=$Admi['Funcion']?>','<?=$Admi['Estado']?>')">
                                         <i class="fas fa-pencil-alt"></i></button>
-
+                                <?php 
+                                if($_SESSION["Perfil"]=="Administrador"){?>
                                     <button class="btn btn-danger" onclick="getBorrarUsu('<?=$Admi['Id']?>')"
-                                        data-toggle="modal" data-target="#modalBorrar"><i
-                                            class="fa fa-times"></i></button>
+                                        data-toggle="modal" data-target="#modalBorrar"><i class="fa fa-times"></i>
+                                    </button><?php } ?>
                                 </div>
                             </td>
                             <?php } ?>
@@ -111,6 +114,7 @@
 
 
 <!-- Modal -->
+
 <div class="modal fade" id="modalAgregarAdministrativo" role="dialog">
     <div class="modal-dialog">
 
@@ -271,7 +275,7 @@
                 </div>
 
                 <!-----------------------CUERPO DEL MODAL------------------>
-                
+
                 <!--INGRESAR PERSONA-->
                 <div class="modal-body">
                     <input type="hidden" id="editId" name="editId" required>

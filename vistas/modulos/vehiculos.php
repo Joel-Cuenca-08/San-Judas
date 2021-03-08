@@ -25,24 +25,24 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header with-border">
-
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarVehiculo">
+                <?php
+                if($_SESSION["Perfil"]=="Administrador"){
+                echo'<button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarVehiculo">
                     Agregar Vehiculo
-                </button>
+                </button>';}?>
 
             </div>
 
 
             <div class="card-body">
 
-                <table class="table table-bordered table-striped dt-responsive Data-Table" style="width:100%">
+                <table class="table table-bordered table-striped dt-responsive tablas" style="width:100%">
 
                     <thead>
                         <tr>
                             <th style="width:10px">#</th>
                             <th>Propietario</th>
                             <th>Nro Placa</th>
-                            
                             <th>Tipo</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -58,7 +58,7 @@
                         <tr>
                             <td><?=($Key+1)?></td>
                             <td><?=$vehi["Nombre"]?> <?=$vehi["ApellidoPa"]?> <?=$vehi["ApellidoMa"]?></td>
-                            
+
                             <td><?=$vehi["Placa"]?></td>
                             <td><?=$vehi["Tipo"]?></td>
                             <td>
@@ -72,14 +72,17 @@
                             </td>
                             <td>
                                 <div class="btn-group">
+                                    <?php 
+                                if($_SESSION["Perfil"]=="Administrador" || $_SESSION["Perfil"]=="Especial"){?>
                                     <button class="btn btn-warning" data-toggle="modal"
                                         data-target="#modalEditarVehiculo"
                                         onclick="getVehiculo(<?=$vehi['Id']?>,'<?=$vehi['IdPersona']?>','<?=$vehi['Placa']?>','<?=$vehi['Tipo']?>','<?=$vehi['Estado']?>')">
-                                        <i class="fas fa-pencil-alt"></i></button>
-
+                                        <i class="fas fa-pencil-alt"></i></button><?php } ?>
+                                <?php 
+                                if($_SESSION["Perfil"]=="Administrador"){?>
                                     <button class="btn btn-danger" onclick="getBorrarUsu('<?=$vehi['Id']?>')"
                                         data-toggle="modal" data-target="#modalBorrar"><i
-                                            class="fa fa-times"></i></button>
+                                            class="fa fa-times"></i></button><?php } ?>
                                 </div>
                             </td>
                             <?php } ?>
@@ -134,8 +137,9 @@
                               $PropietarioLista=ControladorVehiculo::ctrListarPropietarios(); 
                               foreach($PropietarioLista as $Key => $Propi){
                               ?>
-                                <option value="<?=$Propi["Id"]?>"> <?=$Propi["Nombre"]?> <?=$Propi["ApellidoPa"]?> <?=$Propi["ApellidoMa"]?>
-                                    </option>
+                                <option value="<?=$Propi["Id"]?>"> <?=$Propi["Nombre"]?> <?=$Propi["ApellidoPa"]?>
+                                    <?=$Propi["ApellidoMa"]?>
+                                </option>
 
                                 <?php } ?>
                             </select>
@@ -149,16 +153,16 @@
                         <div class="input-group-prepend">
 
                             <span class="input-group-text"><i class="fas fa-font"></i></span>
-                            <input type="text" minlength="7" maxlength="7" class="form-control input-lg" name="IngPlaca" required
-                                placeholder="Ingresar Placa Vehicular">
+                            <input type="text" minlength="7" maxlength="7" class="form-control input-lg" name="IngPlaca"
+                                required placeholder="Ingresar Placa Vehicular">
 
                         </div>
 
                     </div>
 
-                    
 
-                    
+
+
 
                     <!--ENTRADA PARA INGRESAR EL TIPO DE VEHICULO-->
                     <div class="form-group">
@@ -294,9 +298,9 @@
 
                     </div>
 
-                   
 
-                    
+
+
 
                     <!--ENTRADA PARA INGRESAR EL TIPO DE VEHICULO-->
                     <div class="form-group">

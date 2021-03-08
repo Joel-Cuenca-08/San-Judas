@@ -45,6 +45,7 @@
                             <th>Correo</th>
                             <th>Telefono de Emergencia</th>
                             <th>Estado</th>
+                            
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -73,16 +74,21 @@
                             }
                         ?>
                             </td>
+                            
                             <td>
+                                
                                 <div class="btn-group">
-                                    <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarP"
+                                
+                                <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarP"
                                         onclick="getPropietario(<?=$Pro['Id']?>,'<?=$Pro['IdPersona']?>','<?=$Pro['TarjetaPropiedad']?>','<?=$Pro['TelEmergencia']?>','<?=$Pro['Estado']?>')">
                                         <i class="fas fa-pencil-alt"></i></button>
-
-                                    <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Pro['Id']?>)"
+                                <?php 
+                                if($_SESSION["Perfil"]=="Administrador"){?>
+                                <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Pro['Id']?>)"
                                         data-toggle="modal" data-target="#modalBorrar"><i
-                                            class="fa fa-times"></i></button>
-                                </div>
+                                        class="fa fa-times"></i></button><?php } ?>
+                                </div>      
+                                
                             </td>
                         </tr>
                         <?php } ?>

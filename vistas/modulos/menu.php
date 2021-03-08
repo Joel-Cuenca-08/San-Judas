@@ -13,7 +13,10 @@
          <nav class="mt-2">
              <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                  data-accordion="false">
-                 <li class="nav-item">
+
+                 <?php if($_SESSION["Perfil"] =="Administrador" || $_SESSION["Perfil"] =="Especial"){
+
+                 echo '<li class="nav-item">
                      <a class="nav-link" href="inicio">
                          <i class="nav-icon fa fa-home"></i>
                          <p>Inicio</p>
@@ -27,28 +30,24 @@
                          <p>Personas</p>
                      </a>
 
-                 </li>
+                 </li>';}
 
-                 <li class="nav-item">
+                if($_SESSION["Perfil"] =="Administrador"){
+                 echo '<li class="nav-item">
                      <a class="nav-link" href="usuarios">
                          <i class="nav-icon fa fa-user"></i>
                          <p>Usuarios</p>
                      </a>
 
-                 </li>
+                 </li>';}
 
+                if($_SESSION["Perfil"] =="Administrador" || $_SESSION["Perfil"] =="Especial"){
+                
+                    echo '
                  <li class="nav-item">
                      <a class="nav-link" href="propietarios">
                          <i class="nav-icon fas fa-id-card-alt"></i>
                          <p>Propietarios</p>
-                     </a>
-
-                 </li>
-
-                 <li class="nav-item">
-                     <a class="nav-link" href="conductores">
-                         <i class="nav-icon fas fa-briefcase"></i>
-                         <p>Conductores</p>
                      </a>
 
                  </li>
@@ -59,7 +58,16 @@
                          <p>Administrativos</p>
                      </a>
 
-                 </li>
+                 </li>';}
+                 if($_SESSION["Perfil"] =="Administrador" || $_SESSION["Perfil"] =="Especial" || $_SESSION["Perfil"] =="Digitador"){
+                
+                echo '<li class="nav-item">
+                    <a class="nav-link" href="conductores">
+                        <i class="nav-icon fas fa-briefcase"></i>
+                        <p>Conductores</p>
+                    </a>
+
+                </li>
 
                  <li class="nav-item">
                      <a class="nav-link" href="vehiculos">
@@ -67,65 +75,54 @@
                          <p>Vehiculos</p>
                      </a>
 
-                 </li>
+                 </li>';}
 
-                 <!--<li class="nav-item">
-                     <a class="nav-link" href="rutas">
-                         <i class="nav-icon fas fa-road"></i>
-                         <p>Ruta</p>
-                     </a>
-
-                 </li>-->
-                 <li
-                     class="nav-item has-treeview">
-                     <a href="#"
-                         class="nav-link">
+                 if($_SESSION["Perfil"] =="Administrador" || $_SESSION["Perfil"] =="Especial" || $_SESSION["Perfil"] =="Digitador"){
+                
+                    echo '
+                 <li class="nav-item has-treeview">
+                     <a href="#" class="nav-link">
                          <i class="nav-icon fas fa-th"></i>
                          <p>
                              Ruta
                              <i class="right fas fa-angle-left"></i>
                          </p>
                      </a>
-                     <ul class="nav nav-treeview">
+                     
+                     <ul class="nav nav-treeview">';}
+                     if($_SESSION["Perfil"] =="Digitador"){
+                        echo '
                          <li class="nav-item">
-                             <a href="rutas"
-                                 class="nav-link">
+                             <a href="rutas" class="nav-link">
                                  <i class="nav-icon fas fa-road"></i>
                                  <p>
                                      Agregar Ruta
                                  </p>
                              </a>
-                         </li>
-                         <li class="nav-item">
-                             <a href="detalleRuta"
-                                 class="nav-link ">
+                         </li>';}
+                         if($_SESSION["Perfil"] =="Administrador" || $_SESSION["Perfil"] =="Especial"){
+                         echo '<li class="nav-item">
+                             <a href="detalleRuta" class="nav-link ">
                                  <i class="fas fa-history"></i>
                                  <p>
                                      Historial de Ruta
                                  </p>
                              </a>
                          </li>
-                         <li class="nav-item">
-                             <a href="reporte"
-                                 class="nav-link">
-                                 <i class="fa fa-dashboard"></i>
-                                 <p>
-                                     Reporte
-                                 </p>
-                             </a>
-                         </li>
-                        
-                     </ul>
-                 </li>
+                         
 
-                 <li class="nav-item">
-                     <a class="nav-link" href="#">
-                         <i class="nav-icon far fa-calendar-times"></i>
-                         <p>Periodo</p>
-                     </a>
+             </ul>
+             </li>';
+            }
+             if($_SESSION["Perfil"] =="SuperAdmin"){
+             echo'<li class="nav-item">
+                 <a class="nav-link" href="#">
+                     <i class="nav-icon far fa-calendar-times"></i>
+                     <p>Periodo</p>
+                 </a>
 
-                 </li>
-                 
+             </li>';}
+             ?>
              </ul>
              </section>
  </aside>

@@ -89,8 +89,7 @@
     <script src="vistas/js/vehiculo.js"></script>
     <script src="vistas/js/ruta.js"></script>
     <script src="vistas/js/rango.js"></script>
-    <script src="vistas/js/getEditRuta.js"></script>
-    <script src="vistas/js/reporte.js"></script>
+    
     
 
 </head>
@@ -136,7 +135,6 @@
             $_GET["ruta"] === "propietarios"||
             $_GET["ruta"] === "administrativos"||
             $_GET["ruta"] === "detalleRuta"||
-            $_GET["ruta"] === "reporte"||
             $_GET["ruta"] === "salir"){
             
             include "modulos/".$_GET["ruta"].".php";

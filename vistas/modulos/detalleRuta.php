@@ -72,7 +72,7 @@
                             <td><?=$ruta["Placa"]?></td>
                             <td><?=$ruta["Fecha"]?></td>
                             <td><?=$ruta["Detalle"]?></td>
-                            <td><?=$ruta["Ganancia"]?></td>
+                            <td>S/.<?=$ruta["Ganancia"]?></td>
                             <td><?=$ruta["Vuelta"]?></td>
 
                             <?php } ?>

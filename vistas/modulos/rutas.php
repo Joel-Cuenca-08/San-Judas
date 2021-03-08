@@ -24,10 +24,12 @@
 
         <!-- Default box -->
         <div class="card">
+
             <div class="card-header with-border">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarRuta">
+            <?php if($_SESSION["Perfil"] == "Digitador"){
+               echo '<button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarRuta">
                     Registrar Ruta
-                </button>
+                </button>';}?>
             </div>
             <div class="card-body">
                 <label>Seleccione Sede:</label>
@@ -69,15 +71,17 @@
                             <td><?=$ruta["Observacion"]?></td>
                             <td>
                                 <div class="btn-group">
+                                <?php if($_SESSION["Perfil"] == "Digitador"){?>
                                     <button class="btn-sm btn btn-primary" data-toggle="modal"
                                         data-target="#modalAgregarDetalleRuta" onclick="getRuta(<?=$ruta['Id']?>)"><i
-                                            class="fas fa-plus-circle"></i></button>
+                                            class="fas fa-plus-circle"></i></button><?php }?>
                                 </div>
                                 <div class="btn-group">
-                                    <button type="button" class="btn-sm btn btn-danger" data-toggle="modal"
+                                <?php if($_SESSION["Perfil"] == "Digitador"){?>
+                                   <button type="button" class="btn-sm btn btn-danger" data-toggle="modal"
                                         data-target="#modalEditarRuta"
                                         onclick="getRutaCierre('<?=$ruta['Id']?>')">
-                                        Cierre</button>
+                                        Cierre</button><?php } ?>
                                 </div>
                             </td>
                             <?php } ?>

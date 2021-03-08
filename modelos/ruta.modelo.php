@@ -47,11 +47,9 @@ class ModeloRuta{
     }
 
     static public function mdlListar(){
-        /*$stmt = Conexion::conectar() -> prepare("SELECT concat_ws(' ',p.Nombre,p.ApellidoPa,p.ApellidoMa) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Vuelta, r.Id from vehiculo v 
-        INNER JOIN ruta r ON v.Id = r.IdVehiculo
-        INNER JOIN conductor c ON r.IdConductor = c.Id
-        INNER JOIN persona p ON c.IdPersona = p.Id");*/
-        $stmt = Conexion::conectar() -> prepare("SELECT r.Id, concat(p.ApellidoPa,' ',p.ApellidoMa,', ',p.Nombre) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Vuelta,GROUP_CONCAT(CONCAT('Salida : ',IFNULL(DR.HoraSalida,' sin registro '),' - Regreso : ',IFNULL(DR.HoraLlegada,' sin registro '))SEPARATOR ' \n / \n') as Detalle from ruta r INNER JOIN vehiculo v ON v.Id = r.IdVehiculo INNER JOIN conductor c ON r.IdConductor = c.Id INNER JOIN persona p ON c.IdPersona = p.Id left join detalle_ruta DR on DR.IdRuta=r.Id where DATE_FORMAT(Fecha, '%Y-%m-%d') = CURDATE() GROUP BY r.Id");
+        
+        /*SELECT r.Id, concat(p.ApellidoPa,' ',p.ApellidoMa,', ',p.Nombre) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Observacion,GROUP_CONCAT(CONCAT('Salida : ',IFNULL(DR.HoraSalida,' sin registro '),' - Regreso : ',IFNULL(DR.HoraLlegada,' sin registro '))SEPARATOR ' \n / \n') as Detalle from ruta r INNER JOIN vehiculo v ON v.Id = r.IdVehiculo INNER JOIN conductor c ON r.IdConductor = c.Id INNER JOIN persona p ON c.IdPersona = p.Id left join detalle_ruta DR on DR.IdRuta=r.Id where DATE_FORMAT(Fecha, '%Y-%m-%d') = CURDATE() GROUP BY r.Id*/
+        $stmt = Conexion::conectar() -> prepare("SELECT r.Id, concat(p.ApellidoPa,' ',p.ApellidoMa,', ',p.Nombre) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Observacion,GROUP_CONCAT(CONCAT('Salida : ',IFNULL(DR.HoraSalida,' sin registro '),' - Regreso : ',IFNULL(DR.HoraLlegada,' sin registro '))SEPARATOR ' \n / \n') as Detalle from ruta r INNER JOIN vehiculo v ON v.Id = r.IdVehiculo INNER JOIN conductor c ON r.IdConductor = c.Id INNER JOIN persona p ON c.IdPersona = p.Id left join detalle_ruta DR on DR.IdRuta=r.Id where DATE_FORMAT(Fecha, '%Y-%m-%d') = CURDATE() GROUP BY r.Id");
             $stmt -> execute();
             return $stmt -> fetchAll(); 
             $stmt -> close();
@@ -67,7 +65,7 @@ class ModeloRuta{
     }
 
     static public function mdlListarVehiculo(){
-        $stmt = Conexion::conectar() -> prepare("SELECT * FROM vehiculo");
+        $stmt = Conexion::conectar() -> prepare("SELECT * FROM vehiculo WHERE Estado = 1");
         $stmt -> execute();
         return $stmt -> fetchAll(); 
         $stmt -> close();
@@ -75,7 +73,7 @@ class ModeloRuta{
     }
 
     static public function mdlListarConductor(){
-        $stmt = Conexion::conectar() -> prepare("SELECT c.Id, concat_ws(' ',p.Nombre,p.ApellidoPa,p.ApellidoMa) AS Conductor FROM persona p inner join conductor c on p.Id = c.IdPersona");
+        $stmt = Conexion::conectar() -> prepare("SELECT c.Id, concat_ws(' ',p.Nombre,p.ApellidoPa,p.ApellidoMa) AS Conductor FROM persona p inner join conductor c on p.Id = c.IdPersona WHERE c.Estado = 1");
         $stmt -> execute();
         return $stmt -> fetchAll(); 
         $stmt -> close();
@@ -98,6 +96,58 @@ class ModeloRuta{
         return $stmt -> fetchAll(); 
         $stmt -> close();
         $stmt -> null;  
+    }
+
+    static public function mdlEditarRuta($datos){
+        $stmt = Conexion::conectar()->prepare("UPDATE `ruta` set Ganancia=:Ganancia, Observacion=:Observacion WHERE Id=:Id ");
+        $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Ganancia",$datos["Ganancia"],PDO::PARAM_STR);
+        $stmt -> bindParam(":Observacion",$datos["Observacion"],PDO::PARAM_STR);
+        if($stmt->execute()){
+            return "ok";            
+        }
+        else{
+            return "error";                        
+        }
+        $stmt->close();
+        $stmt=null;
+    }
+
+    /**Suma total de Ganancia**/
+    static public function mdlSumaGanancia(){
+        $stmt = Conexion::conectar()->prepare("SELECT SUM(Ganancia) AS total FROM ruta");
+        $stmt->execute();
+        return $stmt -> fetch();
+        $stmt->close();
+        $stmt=null;
+    }
+
+    /**Lista total ruta**/
+    static public function mdlListarRutaDetalle(){
+            $stmt = Conexion::conectar() -> prepare("SELECT r.Id, concat(p.ApellidoPa,' ',p.ApellidoMa,', ',p.Nombre) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Observacion,GROUP_CONCAT(CONCAT('Salida : ',IFNULL(DR.HoraSalida,' sin registro '),' - Regreso : ',IFNULL(DR.HoraLlegada,' sin registro '))SEPARATOR ' \n / \n') as Detalle, COUNT(HoraSalida) as Vuelta from ruta r INNER JOIN vehiculo v ON v.Id = r.IdVehiculo INNER JOIN conductor c ON r.IdConductor = c.Id INNER JOIN persona p ON c.IdPersona = p.Id left join detalle_ruta DR on DR.IdRuta=r.Id GROUP BY r.Id");
+            $stmt -> execute();
+            return $stmt -> fetchAll(); 
+            $stmt -> close();
+            $stmt -> null;  
+    }
+
+    /**Rango de Fechas**/
+    static public function mdlRangoFechaGanancia($fechaInicial, $fechaFinal){
+        if($fechaInicial == null){
+            $stmt = Conexion::conectar() -> prepare("SELECT r.Id, concat(p.ApellidoPa,' ',p.ApellidoMa,', ',p.Nombre) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Observacion,GROUP_CONCAT(CONCAT('Salida : ',IFNULL(DR.HoraSalida,' sin registro '),' - Regreso : ',IFNULL(DR.HoraLlegada,' sin registro '))SEPARATOR ' \n / \n') as Detalle, COUNT(HoraSalida) as Vuelta from ruta r INNER JOIN vehiculo v ON v.Id = r.IdVehiculo INNER JOIN conductor c ON r.IdConductor = c.Id INNER JOIN persona p ON c.IdPersona = p.Id left join detalle_ruta DR on DR.IdRuta=r.Id GROUP BY r.Id");
+            $stmt -> execute();
+            return $stmt -> fetchAll(); 
+        }else if($fechaInicial == $fechaFinal){
+            $stmt = Conexion::conectar() -> prepare("SELECT r.Id, concat(p.ApellidoPa,' ',p.ApellidoMa,', ',p.Nombre) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Observacion,GROUP_CONCAT(CONCAT('Salida : ',IFNULL(DR.HoraSalida,' sin registro '),' - Regreso : ',IFNULL(DR.HoraLlegada,' sin registro '))SEPARATOR ' \n / \n') as Detalle, COUNT(HoraSalida) as Vuelta from ruta r INNER JOIN vehiculo v ON v.Id = r.IdVehiculo INNER JOIN conductor c ON r.IdConductor = c.Id INNER JOIN persona p ON c.IdPersona = p.Id left join detalle_ruta DR on DR.IdRuta=r.Id WHERE Fecha like '%$fechaFinal%' GROUP BY r.Id");
+            $stmt -> bindParam(":Fecha",$fechaFinal,PDO::PARAM_STR);
+            $stmt -> execute();
+            return $stmt -> fetchAll(); 
+        }else{
+            $stmt = Conexion::conectar() -> prepare("SELECT r.Id, concat(p.ApellidoPa,' ',p.ApellidoMa,', ',p.Nombre) AS Conductor, v.Placa, r.Fecha, r.Ganancia, r.Observacion as Observacion,GROUP_CONCAT(CONCAT('Salida : ',IFNULL(DR.HoraSalida,' sin registro '),' - Regreso : ',IFNULL(DR.HoraLlegada,' sin registro '))SEPARATOR ' \n / \n') as Detalle, COUNT(HoraSalida) as Vuelta from ruta r INNER JOIN vehiculo v ON v.Id = r.IdVehiculo INNER JOIN conductor c ON r.IdConductor = c.Id INNER JOIN persona p ON c.IdPersona = p.Id left join detalle_ruta DR on DR.IdRuta=r.Id WHERE Fecha BETWEEN '$fechaInicial' and '$fechaFinal' GROUP BY r.Id");
+            $stmt -> execute();
+            return $stmt -> fetchAll(); 
+        }
+
     }
 
 }

@@ -15,7 +15,6 @@ class ControladorPropietario{
             $arrayD = array(
                 "IdPersona"=>$_POST["ingIdPersona"],
                 "TarjetaPropiedad"=>$_POST["ingTarjetaPro"],
-                "Ruc"=>$_POST["ingRuc"],
                 "TelEmergencia"=>$_POST["ingTel"]   
             );
             $respuesta=ModeloPropietario::mdlAgregar($arrayD);
@@ -92,10 +91,10 @@ class ControladorPropietario{
             $arrayD = array(
                 "Id"=>$_POST["editId"], 
                 "TarjetaPropiedad"=>$_POST["editTarjeta"],
-                "Ruc"=>$_POST["editRuc"],
                 "TelEmergencia"=>$_POST["editTel"],
                 "Estado"=>$_POST["editEstado"]  
             );        
+            
             $respuesta=ModeloPropietario::mdlEditar($arrayD);  
             if($respuesta==="ok"){
                 echo '<script>

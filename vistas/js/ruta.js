@@ -21,21 +21,11 @@ function getRuta(id){
                 $("#editText").val("Llegada");
             }
              
-/*
-            let template = '';
-            respuesta.forEach(respuesta => {
-                template += `
-                    <tr>
-                        <td> ${respuesta.NOMBRE}, ${respuesta.APELLIDO_P}</td> 
-                        <td> ${respuesta.DIA}</td>
-                        <td> ${respuesta.HORA_I}</td>
-                        <td> ${respuesta.HORA_F}</td> 
-                    </tr>
-                        `
-            });
-            $('#HorarioCuerpo').html(template);
-            */
         }
     });
-    //Asignando datos
+    
+    $("#editId").val(id);
+    
 }
+
+

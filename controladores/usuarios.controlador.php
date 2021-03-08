@@ -133,7 +133,7 @@ class ControladorUsuarios{
                         $_SESSION["iniciarSesion"] = "ok";
                         $_SESSION["ID_PERSONA"]=$respuesta["Id"];
                         $_SESSION["NOMBRE"]=$respuesta["Nombre"];
-                        $_SESSION["ROL"]=$respuesta["Perfil"];
+                        $_SESSION["Perfil"]=$respuesta["Perfil"];
                         $_SESSION["APELLIDO"]=($respuesta["ApellidoPa"].' '.$respuesta["ApellidoMa"]);
                         echo '<script>
                             window.location = "inicio";

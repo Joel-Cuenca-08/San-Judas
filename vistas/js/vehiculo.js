@@ -1,11 +1,10 @@
-function getVehiculo(id,idP,placa,marca,año,tipo,estado){
+function getVehiculo(id,idP,placa,tipo,estado){
     //Limpiando campos
     $("#editId").val(""),
     $("#editIdPersona").val(""),
     $("#editPlaca").val(""),
-    $("#editMarca").val(""),
-    $("#editAño").val("")
-    $("#editTipo").val("");
+    
+    $("#editTipo").val(""),
     $("#editEstado").val("");
 
 
@@ -13,8 +12,7 @@ function getVehiculo(id,idP,placa,marca,año,tipo,estado){
     $("#editId").val(id),
     $("#editIdPersona").val(idP),
     $("#editPlaca").val(placa),
-    $("#editMarca").val(marca),
-    $("#editAño").val(año);
-    $("#editTipo").val(tipo);
+    
+    $("#editTipo").val(tipo),
     $("#editEstado").val(estado);
 }

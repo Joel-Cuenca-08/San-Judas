@@ -5,7 +5,7 @@ require_once "../controladores/ruta.controlador.php";
 require_once "../modelos/ruta.modelo.php"; 
 
 class Ajaxruta{
-    //Editar Administrativo
+    
     public $idEditar;
     public function ajaxEditar(){ 
         $item=$this->idEditar;
@@ -22,13 +22,13 @@ class Ajaxruta{
     } 
 }
 
-//Editar Administrativo
+
 if(isset($_POST["idRuta"])){
     $editar=new Ajaxruta();
     $editar->idEditar = $_POST["idRuta"];
     $editar->ajaxEditar();
 } 
-//Editar Administrativo
+
 if(isset($_POST["idRutaListar"])){
     $editar=new Ajaxruta();
     $editar->idEditarListar = $_POST["idRutaListar"];

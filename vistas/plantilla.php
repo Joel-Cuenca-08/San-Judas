@@ -40,8 +40,8 @@
         integrity="sha512-+lcEupw9bvzdp2Ey2GU0VfC7kvjySIYdCC4higXahhw8zUPKO1TUG8O3xf3QZV8rUwQjF5CgJR6V43r/JRhR3w=="
         crossorigin="anonymous"></script>
     <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<!-- Font Awesome -->
-<script src="https://kit.fontawesome.com/b5c75f0bc8.js" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/b5c75f0bc8.js" crossorigin="anonymous"></script>
     <!-- Plugin overlayScrollbars -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.1/css/OverlayScrollbars.css"
@@ -55,7 +55,7 @@
         integrity="sha512-YE4+14g9xQWsnnF/1hQ+h7rhZEu113qaL73REt2oWyPq0K/K54hkiLzNoo1KDFQi/TNc8Wzrj2QtSVEcDlyOBw=="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="vistas/plugins/datatables-buttons/js/buttons.html5.min.js"></script> 
+    <script src="vistas/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
     <!-- Inputmask-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.3/jquery.inputmask.min.js"
         integrity="sha512-16cQU/sze5bIFvV74riJ7qh6hFlqQYjjyEUrtsSkj8PtN62QukBODV0bui4+gbx2G4OwB+rSoYgJCLHulU864A=="
@@ -69,6 +69,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="vistas/plugins/daterangepicker/daterangepicker.css">
+    <script src="vistas/plugins/moment/moment.min.js"></script>
+    <script src="vistas/plugins/daterangepicker/daterangepicker.js"></script>
+
+    <!--MORRIS JAVASCRIPT--->
+    <script src="vistas/bower_components/raphael/raphael.min.js"></script>
+    <script src="vistas/bower_components/morris.js/morris.min.js"></script>
+    
+
     <!-- Usuario -->
     <script src="vistas/js/usuario.js"></script>
     <script src="vistas/js/persona.js"></script>
@@ -78,6 +88,10 @@
     <script src="vistas/js/administrativo.js"></script>
     <script src="vistas/js/vehiculo.js"></script>
     <script src="vistas/js/ruta.js"></script>
+    <script src="vistas/js/rango.js"></script>
+    <script src="vistas/js/getEditRuta.js"></script>
+    <script src="vistas/js/reporte.js"></script>
+    
 
 </head>
 
@@ -121,7 +135,8 @@
             $_GET["ruta"] === "periodos" ||
             $_GET["ruta"] === "propietarios"||
             $_GET["ruta"] === "administrativos"||
-            $_GET["ruta"] === "detalle_ruta"||
+            $_GET["ruta"] === "detalleRuta"||
+            $_GET["ruta"] === "reporte"||
             $_GET["ruta"] === "salir"){
             
             include "modulos/".$_GET["ruta"].".php";
@@ -150,7 +165,7 @@
   ?>
 
 
-<script>
+    <script>
     (function($) {
         "use strict";
         $('.Scroll').overlayScrollbars({

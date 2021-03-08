@@ -25,7 +25,7 @@
                 </button>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped dt-responsive tablas" style="width:100%">
+                <table class="table table-bordered table-striped  dt-responsive tablas" style="width:100%">
                     <thead>
                         <tr>
                             <th style="width:10px">#</th>
@@ -65,7 +65,7 @@
                                         onclick="getUsuario(<?=$Usu['Id']?>,'<?=$Usu['IdPersona']?>','<?=$Usu['Usuario']?>','<?=$Usu['Perfil']?>','<?=$Usu['Estado']?>')"><i
                                             class="fas fa-pencil-alt"></i></button>
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Usu['Id']?>)"
-                                        data-toggle="modal" data-target="#modalBorrar"><i
+                                        data-toggle="modal" data-target="#modalBorrar" disabled><i
                                             class="fa fa-times"></i></button>
                                 </div>
                             </td>
@@ -116,7 +116,7 @@
                           $PersonaLista=ControladorUsuarios::MdlListarPersonaNoInscrita(); 
                           foreach($PersonaLista as $Key => $Per){
                           ?>
-                                <option value="<?=$Per["Id"]?>"><?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
+                                <option value="<?=$Per["IdPersona"]?>"><?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
                                     <?=$Per["Nombre"]?></option>
 
                                 <?php } ?>
@@ -175,7 +175,6 @@
                             <select class="form-control input-lg" name="ingPerfil">
                                 <option value="">Seleccionar Perfil</option>
                                 <option value="Administrador">Administrador</option>
-                                <option value="Especial">Especial</option>
                                 <option value="Digitador">Digitador</option>
                             </select>
                         </div>
@@ -187,7 +186,7 @@
                 <!-------------------PIE DEL MODAL----------------->
                 <div class="modal-footer">
 
-                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     <?php 
               $obj=new ControladorUsuarios();
@@ -321,7 +320,7 @@
                 <!-------------------PIE DEL MODAL----------------->
                 <div class="modal-footer">
 
-                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     <?php  
               ?>

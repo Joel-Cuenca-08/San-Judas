@@ -1,9 +1,9 @@
-function getPropietario(id,idP,tarjeta,ruc,tel,estado){
+function getPropietario(id,idP,tarjeta,tel,estado){
     //Limpiando campos
     $("#editId").val(""),
     $("#editIdPersona").val(""),
     $("#editTarjeta").val(""),
-    $("#editRuc").val(""),
+    
     $("#editTel").val(""),
     $("#editEstado").val("")
 
@@ -12,7 +12,7 @@ function getPropietario(id,idP,tarjeta,ruc,tel,estado){
     $("#editId").val(id),
     $("#editIdPersona").val(idP),
     $("#editTarjeta").val(tarjeta),
-    $("#editRuc").val(ruc),
+    
     $("#editTel").val(tel),
     $("#editEstado").val(estado);
 }

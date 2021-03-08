@@ -24,31 +24,30 @@
 
         <!-- Default box -->
         <div class="card">
-
             <div class="card-header with-border">
-
                 <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarRuta">
                     Registrar Ruta
                 </button>
-                <button class="btn btn-secondary"> <a href="detalle_ruta" style="color:white;">Rutas Detalladas</a>
-
-                </button>
             </div>
-
-
-
             <div class="card-body">
+                <label>Seleccione Sede:</label>
+                <select class="form-control input-lg" name="ingConductor" disabled>
+                    <option>Las Palmas</option>
+                    <option>Centro de Lima</option>
+                    <option>Las Palmas</option>
 
+                </select>
+                <br>
                 <table class="table table-bordered table-striped table-sm dt-responsive Data-Table" style="width:100%">
-
                     <thead>
                         <tr>
-
                             <th style="width:10px">#</th>
                             <th>Conductor</th>
                             <th>Placa</th>
                             <th>Fecha</th>
-                            <th>Registros</th> 
+                            <th>Registros</th>
+                            <th>Ganancia</th>
+                            <th>Observacion</th>
                             <th>Accion</th>
                         </tr>
                     </thead>
@@ -64,8 +63,10 @@
                             <td><?=($Key+1)?></td>
                             <td><?=$ruta["Conductor"]?></td>
                             <td><?=$ruta["Placa"]?></td>
-                            <td><?=$ruta["Fecha"]?></td> 
+                            <td><?=$ruta["Fecha"]?></td>
                             <td><?=$ruta["Detalle"]?></td>
+                            <td>S/.<?=$ruta["Ganancia"]?></td>
+                            <td><?=$ruta["Observacion"]?></td>
                             <td>
                                 <div class="btn-group">
                                     <button class="btn-sm btn btn-primary" data-toggle="modal"
@@ -73,14 +74,12 @@
                                             class="fas fa-plus-circle"></i></button>
                                 </div>
                                 <div class="btn-group">
-                                    <button class="btn-sm btn btn-warning" data-toggle="modal"
-                                        data-target="#modalListarDetalleRuta" onclick="getRuta('<?=$ruta['Id']?>')"><i
-                                            class="fas fa-eye"></i></button>
-
+                                    <button type="button" class="btn-sm btn btn-danger" data-toggle="modal"
+                                        data-target="#modalEditarRuta"
+                                        onclick="getRuta('<?=$ruta['Id']?>')">
+                                        Cierre</button>
                                 </div>
                             </td>
-
-
                             <?php } ?>
                         </tr>
 
@@ -128,7 +127,7 @@
                         <div class="col-md-4">
                             <label>Seleccione Conductor <span class="text-danger">*</span></label>
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 <select class="form-control input-lg" name="ingConductor" required>
                                     <option>Seleccione Conductor</option>
                                     <?php 
@@ -145,9 +144,9 @@
 
                         <!--ENTRADA PARA SELECCIONAR ADMINISTRATIVO-->
                         <div class="col-md-4">
-                            <label>Seleccione su Nombre<span class="text-danger">*</span></label>
+                            <label>Seleccione su Sede<span class="text-danger">*</span></label>
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                 <select class="form-control input-lg" name="ingAdministrativo" required>
                                     <?php 
                                     $AdministrativoLista=ControladorRuta::ctrListarAdministrativo(); 
@@ -158,12 +157,13 @@
                                     <?php }} ?>
                                 </select>
                             </div>
-                        </div> 
+                        </div>
+
                         <!--ENTRADA PARA SELECCIONAR VEHICULO-->
                         <div class="col-md-4">
                             <label>Seleccione Placa Vehicular<span class="text-danger">*</span></label>
                             <div class="input-group mb-3">
-                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                <span class="input-group-text"><i class="fas fa-bus"></i></span>
                                 <select class="form-control input-lg" name="ingPlaca" required>
                                     <option value="">Seleccione Vehiculo</option>
                                     <?php 
@@ -176,7 +176,7 @@
                             </div>
                         </div>
 
-                    </div> 
+                    </div>
 
                 </div>
 
@@ -224,33 +224,33 @@
                         <!--ENTRADA PARA INGRESAR SALIDA-->
 
                     <div class="row">
-                    <div class="col-md-6">
-                    <div class="form-group">
-                        <label>Registro Hora<span class="text-danger">*</span></label>
-                        <div class="input-group mb-3">
-                        <?php 
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Registro Hora<span class="text-danger">*</span></label>
+                                <div class="input-group mb-3">
+                                    <?php 
                         date_default_timezone_set("America/Lima");                    
                         ?>
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                <input type="time" class="form-control input-lg" name="ingSalida" value="<?=date("H:i:s")?>"
-                                    placeholder="Ingresar Hora de Salida" readonly>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                        <input type="time" class="form-control input-lg" name="ingSalida"
+                                            value="<?=date("H:i:s")?>" placeholder="Ingresar Hora de Salida" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Tipo</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-passport"></i></span>
+                                        <input type="text" class="form-control input-lg" id="editText" disabled>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    </div>
-                    <div class="col-md-6"> 
-                    <div class="form-group">
-                        <label>Tipo</label>
-                        <div class="input-group mb-3"> 
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="fas fa-passport"></i></span>
-                                <input type="text" class="form-control input-lg" id="editText"  disabled>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                    </div> 
                 </div>
 
                 <!-------------------PIE DEL MODAL----------------->
@@ -270,69 +270,70 @@
 
 
 
-
-
 <!--=====================================================
-      Modal Listar Detalle Ruta
+      Modal Editar Ruta
 =====================================================---->
-<div class="modal fade" id="modalListarDetalleRuta">
+<div class="modal fade" id="modalEditarRuta">
 
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog ">
 
         <div class="modal-content">
 
-            <!------------------------CABEZA DEL MODAL----------------->
-            <div class="modal-header" style="background:#3c8dbc; color:white">
-                <h4 class="modal-title">Lista Detalle Ruta</h4>
-                <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
-            </div>
-            <!-----------------------CUERPO DEL MODAL------------------>
-            <div class="modal-body">
+            <form role="form" method="post">
 
-                <table class="table table-bordered table-striped dt-responsive Data-Table" style="width:100%">
+                <!------------------------CABEZA DEL MODAL----------------->
+                <div class="modal-header" style="background:#3c8dbc; color:white">
+                    <h4 class="modal-title">Registrar Cierre de Ruta</h4>
+                    <button type="button" class="close bg-danger" data-dismiss="modal">&times;</button>
 
-                    <thead>
-                        <tr>
+                </div>
 
-                            <th style="width:10px">#</th>
-                            <th>Id Ruta</th>
-                            <th>Hora de Salida</th>
-                            <th>Hora de Llegada</th>
-                            <th>Ingreso</th>
-                            <th>Observacion</th>
-                            <th>Accion</th>
-                        </tr>
-                    </thead>
+                <!-----------------------CUERPO DEL MODAL------------------>
+                <div class="modal-body">
+                    <p><span class="text-danger"> * Casilla Obligatoria</span>
 
-                    <tbody>
+                        <input type="hidden" id="editId" name="editId" required>
+                        <!--ENTRADA PARA INGRESAR GANANCIA-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Registro Ganancia<span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
 
-                        <?php 
-                                $ListaDetalle=ControladorRuta::ctrListarDetalleRuta();
-                                foreach($ListaDetalle as $Key => $detalle){
-                                ?>
-
-                        <tr>
-
-                            <td><?=($Key+1)?></td>
-                            <td><?=$detalle["IdRuta"]?></td>
-                            <td><?=$detalle["HoraSalida"]?></td>
-                            <td><?=$detalle["HoraLlegada"]?></td>
-                            <td><?=$detalle["Ingreso"]?></td>
-                            <td><?=$detalle["Observacion"]?></td>
-                            <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-primary"><i class="fas fa-pencil-alt"></i></button>
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-money-bill"></i></span>
+                                    <input type="number" step="any" min="1" class="form-control input-lg"
+                                        id="editGanancia" name="editGanancia" placeholder="Ingrese la ganancia"
+                                        required>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--ENTRADA PARA INGRESAR OBSERVACION-->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Observacion<span class="text-danger">*</span></label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-comment-alt"></i></span>
+                                    <input type="text" class="form-control input-lg" name="editObservacion"
+                                        id="editObservacion" placeholder="Ingrese Observacion" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                            </td>
+                </div>
 
-                            <?php } ?>
-                        </tr>
-
-                    </tbody>
-
-                </table>
-            </div>
+                <!-------------------PIE DEL MODAL----------------->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+                    <?php
+                        $obj=new ControladorRuta();
+                        $obj->ctrEditar();
+                        ?>
+                </div>
+            </form>
         </div>
     </div>
 </div>

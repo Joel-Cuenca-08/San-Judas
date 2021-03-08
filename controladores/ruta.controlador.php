@@ -88,16 +88,14 @@ class ControladorRuta{
     }
 
     static public function ctrListar(){
-
         $Lista = ModeloRuta::mdlListar();
         return $Lista;
 
     }
-    static public function ctrBuscarRuta($id){
 
+    static public function ctrBuscarRuta($id){
         $Lista = ModeloRuta::mdlBuscarRuta($id);
         return $Lista;
-
     }
 
     static public function ctrListarVehiculo(){
@@ -123,6 +121,63 @@ class ControladorRuta{
         }
         return $lista;
         
+    }
+
+    static public function ctrEditar(){
+        if(isset($_POST["editId"])){
+
+            $arrayD = array(
+                
+                "Ganancia"=>$_POST["editGanancia"],
+                "Observacion"=>$_POST["editObservacion"],
+                "Id"=>$_POST["editId"]
+            );   
+            var_dump($arrayD);
+            die(); 
+            $respuesta=ModeloRuta::mdlEditarRuta($arrayD);  
+            if($respuesta==="ok"){
+                echo '<script>
+                Swal.fire({
+                    icon: "success",
+                    title: "Actualizado",
+                    text: "Se actualizo correctamente",
+                    allowOutsideClick: false
+                  }).then((result)=>{
+                      if(result.value){
+                        window.location="rutas"; 
+                      }
+                    });
+                </script>
+                ';
+            }else{
+                echo '<script>
+                Swal.fire({
+                    icon: "error",
+                    title: "error",
+                    text: "No Se registro",
+                    allowOutsideClick: false
+                  });
+                </script>';
+            }
+        }
+    }
+
+    static public function ctrSumaGanancia(){
+        $ganancia = ModeloRuta::mdlSumaGanancia();
+        return $ganancia;
+    }
+
+    /**Listar Ruta Detalle**/
+    static public function ctrListarRutaDetallada(){
+        $Lista = ModeloRuta::mdlListarRutaDetalle();
+        return $Lista;
+    }
+
+    /**Rango de Fechas**/
+    static public function ctrRangoFechaGanancia($fechaInicial, $fechaFinal){
+        $respuesta = ModeloRuta::mdlRangoFechaGanancia($fechaInicial, $fechaFinal);
+        return $respuesta;
+
     }
     
 }

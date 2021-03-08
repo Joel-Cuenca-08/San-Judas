@@ -40,7 +40,7 @@
                             <th>Persona</th>
                             <th>Nro Documento</th>
                             <th>Nro Tarjeta de Propiedad</th>
-                            <th>RUC</th>
+
                             <th>Telefono</th>
                             <th>Correo</th>
                             <th>Telefono de Emergencia</th>
@@ -60,7 +60,7 @@
                             <td><?=$Pro["Nombre"]?> <?=$Pro["ApellidoPa"]?> <?=$Pro["ApellidoMa"]?></td>
                             <td><?=$Pro["NumeroDoc"]?></td>
                             <td><?=$Pro["TarjetaPropiedad"]?></td>
-                            <td><?=$Pro["Ruc"]?></td>
+
                             <td><?=$Pro["Telefono"]?></td>
                             <td><?=$Pro["Correo"]?></td>
                             <td><?=$Pro["TelEmergencia"]?></td>
@@ -76,8 +76,8 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalEditarP"
-                                    onclick="getPropietario(<?=$Pro['Id']?>,'<?=$Pro['IdPersona']?>','<?=$Pro['TarjetaPropiedad']?>','<?=$Pro['Ruc']?>','<?=$Pro['TelEmergencia']?>','<?=$Pro['Estado']?>')">
-                                    <i class="fas fa-pencil-alt"></i></button>
+                                        onclick="getPropietario(<?=$Pro['Id']?>,'<?=$Pro['IdPersona']?>','<?=$Pro['TarjetaPropiedad']?>','<?=$Pro['TelEmergencia']?>','<?=$Pro['Estado']?>')">
+                                        <i class="fas fa-pencil-alt"></i></button>
 
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Pro['Id']?>)"
                                         data-toggle="modal" data-target="#modalBorrar"><i
@@ -139,8 +139,9 @@
                               $PersonaLista=ControladorPropietario::ctrListarPersonaNoInscrita(); 
                               foreach($PersonaLista as $Key => $Per){
                               ?>
-                                <option value="<?=$Per["Id"]?>"><?=$Per["Nombre"]?> <?=$Per["ApellidoPa"]?> <?=$Per["ApellidoMa"]?>
-                                    </option>
+                                <option value="<?=$Per["Id"]?>"><?=$Per["Nombre"]?> <?=$Per["ApellidoPa"]?>
+                                    <?=$Per["ApellidoMa"]?>
+                                </option>
 
                                 <?php } ?>
                             </select>
@@ -163,20 +164,6 @@
 
                     </div>
 
-                    <!--ENTRADA PARA INGRESAR RUC-->
-
-                    <div class="form-group">
-
-                        <label>Ingrese Ruc</label>
-                        <div class="input-group-prepend">
-
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="11"
-                                name="ingRuc" placeholder="Ingresar Nro de Ruc">
-
-                        </div>
-
-                    </div>
 
                     <!--ENTRADA PARA INGRESAR TELEFONO DE EMERGENCIA-->
 
@@ -277,7 +264,7 @@
 
                     <!--ENTRADA PARA EDITAR PERSONA-->
                     <div class="form-group ">
-                      <input type="hidden" id="editId" name="editId" required>
+                        <input type="hidden" id="editId" name="editId" required>
                         <label>Seleccione una Persona <span class="text-danger">*</span></label>
                         <div class="input-group-prepend">
 
@@ -288,8 +275,8 @@
                              
                               foreach($ListaPro as $Key => $Pro){
                               ?>
-                                <option value="<?=$Pro["IdPersona"]?>"><?=$Pro["Nombre"]?> <?=$Pro["ApellidoPa"]?> 
-                                <?=$Pro["ApellidoMa"]?></option>
+                                <option value="<?=$Pro["IdPersona"]?>"><?=$Pro["Nombre"]?> <?=$Pro["ApellidoPa"]?>
+                                    <?=$Pro["ApellidoMa"]?></option>
 
                                 <?php } ?>
                             </select>
@@ -307,21 +294,6 @@
                             <span class="input-group-text"><i class="far fa-credit-card"></i></span>
                             <input type="text" class="form-control input-lg" name="editTarjeta" id="editTarjeta"
                                 placeholder="Ingresar Tarjeta de Propiedad" required>
-
-                        </div>
-
-                    </div>
-
-                    <!--ENTRADA PARA EDITAR RUC-->
-
-                    <div class="form-group">
-
-                        <label>Ingrese Ruc</label>
-                        <div class="input-group-prepend">
-
-                            <span class="input-group-text"><i class="fa fa-user"></i></span>
-                            <input type="text" class="form-control input-lg" pattern="[0-9]{7,10}" maxlength="11"
-                                name="editRuc" id="editRuc" placeholder="Ingresar Nro de Ruc">
 
                         </div>
 

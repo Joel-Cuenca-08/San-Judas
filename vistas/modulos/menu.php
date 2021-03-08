@@ -1,10 +1,11 @@
  <!-- Main Sidebar Container -->
- <aside class="main-sidebar sidebar-dark-warning"> 
-       <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="vistas/img/plantilla/icono-sj3.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">San judas tadeo</span>
-    </a>
+ <aside class="main-sidebar sidebar-dark-warning">
+     <!-- Brand Logo -->
+     <a href="#" class="brand-link">
+         <img src="vistas/img/plantilla/icono-sj3.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+         <span class="brand-text font-weight-light">San judas tadeo</span>
+     </a>
 
      <!-- Sidebar -->
      <div class="sidebar">
@@ -68,12 +69,53 @@
 
                  </li>
 
-                 <li class="nav-item">
+                 <!--<li class="nav-item">
                      <a class="nav-link" href="rutas">
                          <i class="nav-icon fas fa-road"></i>
                          <p>Ruta</p>
                      </a>
 
+                 </li>-->
+                 <li
+                     class="nav-item has-treeview">
+                     <a href="#"
+                         class="nav-link">
+                         <i class="nav-icon fas fa-th"></i>
+                         <p>
+                             Ruta
+                             <i class="right fas fa-angle-left"></i>
+                         </p>
+                     </a>
+                     <ul class="nav nav-treeview">
+                         <li class="nav-item">
+                             <a href="rutas"
+                                 class="nav-link">
+                                 <i class="nav-icon fas fa-road"></i>
+                                 <p>
+                                     Agregar Ruta
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="detalleRuta"
+                                 class="nav-link ">
+                                 <i class="fas fa-history"></i>
+                                 <p>
+                                     Historial de Ruta
+                                 </p>
+                             </a>
+                         </li>
+                         <li class="nav-item">
+                             <a href="reporte"
+                                 class="nav-link">
+                                 <i class="fa fa-dashboard"></i>
+                                 <p>
+                                     Reporte
+                                 </p>
+                             </a>
+                         </li>
+                        
+                     </ul>
                  </li>
 
                  <li class="nav-item">
@@ -83,9 +125,7 @@
                      </a>
 
                  </li>
-
-
-
+                 
              </ul>
              </section>
  </aside>

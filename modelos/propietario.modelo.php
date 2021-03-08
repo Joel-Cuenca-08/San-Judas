@@ -25,10 +25,9 @@ class ModeloPropietario{
 
     /**Agregar Propietario**/
     static public function mdlAgregar($datos){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO propietario( IdPersona, TarjetaPropiedad, Ruc, TelEmergencia) VALUES(:IdPersona, :TarjetaPropiedad, :Ruc, :TelEmergencia)");
+        $stmt = Conexion::conectar()->prepare("INSERT INTO propietario( IdPersona, TarjetaPropiedad, TelEmergencia) VALUES(:IdPersona, :TarjetaPropiedad, :TelEmergencia)");
         $stmt -> bindParam(":IdPersona",$datos["IdPersona"],PDO::PARAM_STR);
         $stmt -> bindParam(":TarjetaPropiedad",$datos["TarjetaPropiedad"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Ruc",$datos["Ruc"],PDO::PARAM_STR);
         $stmt -> bindParam(":TelEmergencia",$datos["TelEmergencia"],PDO::PARAM_STR);
         if($stmt->execute()){
             return "ok";            
@@ -58,9 +57,8 @@ class ModeloPropietario{
 
     /**Editar**/
     static public function mdlEditar($datos){
-        $stmt = Conexion::conectar()->prepare("UPDATE `propietario` SET TarjetaPropiedad=:TarjetaPropiedad, Ruc=:Ruc, TelEmergencia=:TelEmergencia, Estado=:Estado WHERE Id=:Id");  
+        $stmt = Conexion::conectar()->prepare("UPDATE `propietario` SET TarjetaPropiedad=:TarjetaPropiedad, TelEmergencia=:TelEmergencia, Estado=:Estado WHERE Id=:Id");  
         $stmt -> bindParam(":TarjetaPropiedad",$datos["TarjetaPropiedad"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Ruc",$datos["Ruc"],PDO::PARAM_STR);
         $stmt -> bindParam(":TelEmergencia",$datos["TelEmergencia"],PDO::PARAM_STR);
         $stmt -> bindParam(":Estado",$datos["Estado"],PDO::PARAM_STR);
         $stmt -> bindParam(":Id",$datos["Id"],PDO::PARAM_STR);

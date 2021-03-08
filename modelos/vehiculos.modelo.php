@@ -15,8 +15,8 @@ class ModeloVehiculo{
         $stmt -> null;
     } 
 
-    static public function mdlCrear($d1,$d2,$d3,$d4,$d5){
-        $stmt = Conexion::conectar()->prepare("INSERT INTO `vehiculo`(IdPropietario, Placa, Marca, Año, Tipo) VALUES ('$d1', '$d2', '$d3', $d4, '$d5')");
+    static public function mdlCrear($d1,$d2,$d3){
+        $stmt = Conexion::conectar()->prepare("INSERT INTO `vehiculo`(IdPropietario, Placa, Tipo) VALUES ('$d1', '$d2', '$d3')");
         if($stmt->execute()){
             return "ok";            
         }
@@ -51,10 +51,9 @@ class ModeloVehiculo{
     }
 
     static public function mdlEditar($datos){
-        $stmt = Conexion::conectar()->prepare("UPDATE vehiculo SET Placa=:Placa, Marca=:Marca, Año=:Año, Tipo=:Tipo, Estado=:Estado, WHERE Id=:Id");
+        $stmt = Conexion::conectar()->prepare("UPDATE vehiculo SET Placa=:Placa, Tipo=:Tipo, Estado=:Estado, WHERE Id=:Id");
         $stmt -> bindParam(":Placa",$datos["Placa"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Marca",$datos["Marca"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Año",$datos["Año"],PDO::PARAM_STR);
+        
         $stmt -> bindParam(":Tipo",$datos["Tipo"],PDO::PARAM_STR);
         $stmt -> bindParam(":Estado",$datos["Estado"],PDO::PARAM_STR);
         $stmt -> bindValue(":Id",$datos["Id"],PDO::PARAM_STR);
@@ -71,8 +70,8 @@ class ModeloVehiculo{
     }
 
 
-    static public function mdlEditarV($d1,$d2,$d3,$d4,$d5,$d6){
-        $stmt = Conexion::conectar()->prepare("UPDATE `vehiculo` SET Placa='$d1', Marca='$d2', Año='$d3', Tipo='$d4', Estado='$d5' WHERE Id='$d6'");
+    static public function mdlEditarV($d1,$d4,$d5,$d6){
+        $stmt = Conexion::conectar()->prepare("UPDATE `vehiculo` SET Placa='$d1',  Tipo='$d4', Estado='$d5' WHERE Id='$d6'");
         if($stmt->execute()){
             return "ok";
         }else{
@@ -82,13 +81,7 @@ class ModeloVehiculo{
         $stmt->close();
         $stmt=null;
         
-        /*$stmt = Conexion::conectar()->prepare("UPDATE `vehiculo` SET Placa=:Placa, Marca=:Marca, Año=:Año, Tipo=:Tipo, Estado=:Estado WHERE Id=:Id");
-        $stmt -> bindParam(":Placa",$dato["Placa"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Marca",$dato["Marca"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Año",$dato["Año"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Tipo",$dato["Tipo"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Estado",$dato["Estado"],PDO::PARAM_STR);
-        $stmt -> bindParam(":Id",$dato["Id"],PDO::PARAM_STR);*/
+        
 
         
     }

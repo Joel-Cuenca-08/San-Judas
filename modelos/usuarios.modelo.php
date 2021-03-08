@@ -31,14 +31,14 @@ class ModeloUsuarios{
         $stmt=null;
     }
     static public function MdlMostarUsuarios($usu){
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM persona P inner join usuario U on U.IdPersona=P.Id where U.Usuario='$usu'");        
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM persona P inner join usuario U on U.IdPersona=P.Id where U.Usuario='$usu' and U.Estado = 1 ");        
         $stmt -> execute();
         return $stmt -> fetch();
         $stmt -> close();
         $stmt -> null;
     }
     static public function MdlListarPersonaNoInscrita (){
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM persona  where Id NOT IN (select usuario.IdPersona from usuario)");        
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM administrativo a INNER JOIN persona p ON a.IdPersona = p.Id  where a.IdPersona NOT IN (select usuario.IdPersona from usuario)");        
         $stmt -> execute();
         return $stmt -> fetchAll();
         $stmt -> close();

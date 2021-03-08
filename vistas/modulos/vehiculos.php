@@ -42,8 +42,7 @@
                             <th style="width:10px">#</th>
                             <th>Propietario</th>
                             <th>Nro Placa</th>
-                            <th>Marca</th>
-                            <th>Año</th>
+                            
                             <th>Tipo</th>
                             <th>Estado</th>
                             <th>Acciones</th>
@@ -59,9 +58,8 @@
                         <tr>
                             <td><?=($Key+1)?></td>
                             <td><?=$vehi["Nombre"]?> <?=$vehi["ApellidoPa"]?> <?=$vehi["ApellidoMa"]?></td>
+                            
                             <td><?=$vehi["Placa"]?></td>
-                            <td><?=$vehi["Marca"]?></td>
-                            <td><?=$vehi["Año"]?></td>
                             <td><?=$vehi["Tipo"]?></td>
                             <td>
                                 <?php
@@ -76,7 +74,7 @@
                                 <div class="btn-group">
                                     <button class="btn btn-warning" data-toggle="modal"
                                         data-target="#modalEditarVehiculo"
-                                        onclick="getVehiculo(<?=$vehi['Id']?>,'<?=$vehi['IdPersona']?>','<?=$vehi['Placa']?>','<?=$vehi['Marca']?>','<?=$vehi['Año']?>','<?=$vehi['Tipo']?>','<?=$vehi['Estado']?>')">
+                                        onclick="getVehiculo(<?=$vehi['Id']?>,'<?=$vehi['IdPersona']?>','<?=$vehi['Placa']?>','<?=$vehi['Tipo']?>','<?=$vehi['Estado']?>')">
                                         <i class="fas fa-pencil-alt"></i></button>
 
                                     <button class="btn btn-danger" onclick="getBorrarUsu('<?=$vehi['Id']?>')"
@@ -151,42 +149,16 @@
                         <div class="input-group-prepend">
 
                             <span class="input-group-text"><i class="fas fa-font"></i></span>
-                            <input type="text" class="form-control input-lg" name="IngPlaca" required
+                            <input type="text" minlength="7" maxlength="7" class="form-control input-lg" name="IngPlaca" required
                                 placeholder="Ingresar Placa Vehicular">
 
                         </div>
 
                     </div>
 
-                    <!--INGRESAR MARCA-->
+                    
 
-                    <div class="form-group">
-
-                        <label>Ingrese Marca <span class="text-danger">*</span></label>
-                        <div class="input-group-prepend">
-
-                            <span class="input-group-text"><i class="fas fa-taxi"></i></span>
-                            <input type="text" class="form-control input-lg" name="IngMarca"
-                                placeholder="Ingrese la Marca">
-
-                        </div>
-
-                    </div>
-
-                    <!--INGRESAR AÑO-->
-
-                    <div class="form-group">
-
-                        <label>Ingrese Año <span class="text-danger">*</span></label>
-                        <div class="input-group-prepend">
-
-                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                            <input type="number" min="1900" max="2099" step="1" class="form-control input-lg"
-                                name="IngAño" placeholder="Ingrese el Año">
-
-                        </div>
-
-                    </div>
+                    
 
                     <!--ENTRADA PARA INGRESAR EL TIPO DE VEHICULO-->
                     <div class="form-group">
@@ -322,35 +294,9 @@
 
                     </div>
 
-                    <!--INGRESAR MARCA-->
+                   
 
-                    <div class="form-group">
-
-                        <label>Marca</label>
-                        <div class="input-group-prepend">
-
-                            <span class="input-group-text"><i class="fas fa-taxi"></i></span>
-                            <input type="text" class="form-control input-lg" name="editMarca" id="editMarca"
-                                placeholder="Ingrese la Marca">
-
-                        </div>
-
-                    </div>
-
-                    <!--INGRESAR AÑO-->
-
-                    <div class="form-group">
-
-                        <label>Año </label>
-                        <div class="input-group-prepend">
-
-                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
-                            <input type="number" min="1900" max="2099" step="1" class="form-control input-lg"
-                                name="editAño" id="editAño" placeholder="Ingrese el Año">
-
-                        </div>
-
-                    </div>
+                    
 
                     <!--ENTRADA PARA INGRESAR EL TIPO DE VEHICULO-->
                     <div class="form-group">

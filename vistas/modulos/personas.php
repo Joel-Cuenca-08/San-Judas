@@ -71,7 +71,7 @@
                                     <i class="fas fa-pencil-alt"></i></button>
 
                                     <button class="btn btn-danger" onclick="getBorrarUsu(<?=$Per['Id']?>)"
-                                        data-toggle="modal" data-target="#modalBorrar"><i
+                                        data-toggle="modal" data-target="#modalBorrar" disabled><i
                                             class="fa fa-times"></i></button>
                                 </div>
                             </td>
@@ -502,7 +502,7 @@
                 <!-------------------PIE DEL MODAL----------------->
                 <div class="modal-footer">
 
-                    <button type="submit" class="btn btn-success">Guardar</button>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                     <?php  
               ?>

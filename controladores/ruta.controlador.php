@@ -124,16 +124,14 @@ class ControladorRuta{
     }
 
     static public function ctrEditar(){
-        if(isset($_POST["editId"])){
+        if(isset($_POST["editIdCierre"])){
 
             $arrayD = array(
                 
                 "Ganancia"=>$_POST["editGanancia"],
                 "Observacion"=>$_POST["editObservacion"],
-                "Id"=>$_POST["editId"]
-            );   
-            var_dump($arrayD);
-            die(); 
+                "Id"=>$_POST["editIdCierre"]
+            );    
             $respuesta=ModeloRuta::mdlEditarRuta($arrayD);  
             if($respuesta==="ok"){
                 echo '<script>

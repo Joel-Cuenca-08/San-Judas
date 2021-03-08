@@ -70,13 +70,13 @@
                             <td>
                                 <div class="btn-group">
                                     <button class="btn-sm btn btn-primary" data-toggle="modal"
-                                        data-target="#modalAgregarDetalleRuta" onclick="getRuta('<?=$ruta['Id']?>')"><i
+                                        data-target="#modalAgregarDetalleRuta" onclick="getRuta(<?=$ruta['Id']?>)"><i
                                             class="fas fa-plus-circle"></i></button>
                                 </div>
                                 <div class="btn-group">
                                     <button type="button" class="btn-sm btn btn-danger" data-toggle="modal"
                                         data-target="#modalEditarRuta"
-                                        onclick="getRuta('<?=$ruta['Id']?>')">
+                                        onclick="getRutaCierre('<?=$ruta['Id']?>')">
                                         Cierre</button>
                                 </div>
                             </td>
@@ -219,7 +219,7 @@
                     <p><span class="text-danger"> * Casilla Obligatoria</span>
 
                         <input type="hidden" id="editId" name="editId" required>
-                        <input type="text" id="editEstado" name="editEstado" required>
+                        <input type="hidden" id="editEstado" name="editEstado" required>
 
                         <!--ENTRADA PARA INGRESAR SALIDA-->
 
@@ -292,7 +292,7 @@
                 <div class="modal-body">
                     <p><span class="text-danger"> * Casilla Obligatoria</span>
 
-                        <input type="hidden" id="editId" name="editId" required>
+                        <input type="text" id="editIdCierre" name="editIdCierre" required>
                         <!--ENTRADA PARA INGRESAR GANANCIA-->
                     <div class="col-md-6">
                         <div class="form-group">

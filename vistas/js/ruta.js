@@ -13,7 +13,7 @@ function getRuta(id){
         dataType: "json",
         success: function (respuesta) { 
             $("#editId").val(id);
-            if(respuesta["HoraLlegada"]!=null || respuesta==null){
+            if(respuesta["HoraLlegada"]!=null || respuesta==false){
                 $("#editEstado").val("0");
                 $("#editText").val("Salida");
             }else{                
@@ -24,7 +24,13 @@ function getRuta(id){
         }
     });
     
-    $("#editId").val(id);
+    $("#editId").val(id); 
+}
+
+function getRutaCierre(id){
+    //Limpiando campos
+    $("#editIdCierre").val(""); 
+    $("#editIdCierre").val(id);
     
 }
 

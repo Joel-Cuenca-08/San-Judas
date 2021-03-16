@@ -44,8 +44,9 @@
                             <th>Placa</th>
                             <th>Fecha</th>
                             <th>Registros</th>
-                            <th>Ganancia</th>
                             <th>Nro de Vueltas</th>
+                            <th>Ganancia</th>
+                            
                         </tr>
                     </thead>
 
@@ -72,8 +73,8 @@
                             <td><?=$ruta["Placa"]?></td>
                             <td><?=$ruta["Fecha"]?></td>
                             <td><?=$ruta["Detalle"]?></td>
-                            <td>S/.<?=$ruta["Ganancia"]?></td>
                             <td><?=$ruta["Vuelta"]?></td>
+                            <td>S/.<?=$ruta["Ganancia"]?></td>
 
                             <?php } ?>
                         </tr>

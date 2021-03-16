@@ -296,7 +296,7 @@
                 <div class="modal-body">
                     <p><span class="text-danger"> * Casilla Obligatoria</span>
 
-                        <input type="text" id="editIdCierre" name="editIdCierre" required>
+                        <input type="hidden" id="editIdCierre" name="editIdCierre" required>
                         <!--ENTRADA PARA INGRESAR GANANCIA-->
                     <div class="col-md-6">
                         <div class="form-group">

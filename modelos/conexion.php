@@ -6,8 +6,8 @@ class Conexion{
     
     private function __construct() {
         try {
-            self::$instance = new PDO("mysql:host=localhost:3306;dbname=bdsanjudas;charset=utf8", "root","");
-            //$link = new PDO("mysql:host=localhost:3306;dbname=afarfan3_bd_gilda4;charset=utf8","afarfan3_gilda","@Fernando18");  
+            self::$instance = new PDO("mysql:host=brf3fruoqe1duf5mbdvb-mysql.services.clever-cloud.com:3306;dbname=brf3fruoqe1duf5mbdvb;charset=utf8", "uhculvvrdda6gdp6","6dv2wQfgS2Ipn3e4K8n5");
+            //"mysql:host=localhost:3306;dbname=bdsanjudas;charset=utf8", "root",""
         } catch (PDOException $e) {
             echo "MySql Connection Error: " . $e->getMessage();
         }
@@ -19,12 +19,5 @@ class Conexion{
         }
         return self::$instance; 
     }  
-    /*
-    static public function conectar(){
-
-        $link = new PDO("mysql:host=localhost;dbname=bdsanjudas","root","");
-        $link -> exec("set names utf8");
-        return $link;
-
-    }*/
+    
 }

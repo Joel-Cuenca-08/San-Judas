@@ -19,3 +19,4 @@ require_once "modelos/ruta.modelo.php";
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> ctrPlantilla();
+?>

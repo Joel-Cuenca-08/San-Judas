@@ -74,9 +74,7 @@
     <script src="vistas/plugins/moment/moment.min.js"></script>
     <script src="vistas/plugins/daterangepicker/daterangepicker.js"></script>
 
-    <!--MORRIS JAVASCRIPT--->
-    <script src="vistas/bower_components/raphael/raphael.min.js"></script>
-    <script src="vistas/bower_components/morris.js/morris.min.js"></script>
+   
     
 
     <!-- Usuario -->
